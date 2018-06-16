@@ -1,4 +1,4 @@
-## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
+## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Read the docs in Chinese: https://github.com/sec-bit/token-list/blob/master/README_CN.md
 
@@ -44,3 +44,8 @@ We hope to contribute to Ethereum ecosystem by this project.
 
 We would maintain this list for a long period and make some updates from time to time. Cooperations are welcome to build a better Ethereum ecosystem together.
 
+
+
+## License
+
+It is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), also included in our repository in the `COPYING` file.

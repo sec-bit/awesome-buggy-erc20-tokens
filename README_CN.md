@@ -1,4 +1,4 @@
-## 以太坊ERC20智能合约风险问题及影响Token汇总
+## 以太坊ERC20智能合约风险问题及影响Token汇总 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 以太坊ERC20 Token标准自2015-11-19诞生以来，其为智能合约发展、以太坊生态以及区块链应用的发展产生了巨大的贡献。
 
@@ -39,3 +39,8 @@
 我们希望通过此工作，能为以太坊生态做出一点贡献。
 
 我们会长期维护此列表，并对其不定期的更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
+
+
+## 版权声明
+
+[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
