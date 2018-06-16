@@ -41,7 +41,8 @@ issue_dict = {
     "setowner-anyone": "6",
     "totalsupply-overflow": "7",
     "transferProxy-keccak256": "8",
-    "verify-reverse-in-transfer": "9"
+    "verify-reverse-in-transfer": "9",
+    "pauseTransfer-anyone": "10"
 }
 
 write_csv = True
