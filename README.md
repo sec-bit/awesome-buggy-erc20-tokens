@@ -8,11 +8,11 @@
 
 
 
-### 问题列表
+##  问题列表
 
 这里针对每个问题给出了问题的详细描述
 
-[ERC20智能合约安全问题列表](https://github.com/sec-bit/token-list/tree/master/bug-list)
+[ERC20智能合约安全问题](https://github.com/sec-bit/token-list/tree/master/bug-list)
 
 
 
@@ -24,7 +24,7 @@
 
 
 
-### 问题Token汇总
+## 问题Token汇总
 
 这里是所有问题合约的汇总，提供了根据Token地址的检索，大家可以在这里方便的查询到问题Token对应的问题分类、缩写、名称等信息。
 
@@ -34,7 +34,7 @@
 
 
 
-### 写在最后
+## 写在最后
 
 我们希望通过此工作，能为以太坊生态做出一点贡献。
 
