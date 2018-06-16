@@ -1,5 +1,9 @@
 ## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
 
+Read the docs in Chinese: https://github.com/sec-bit/token-list/blob/master/README_CN.md
+
+-------------------
+
 ERC20 Token specification has made great contributions to the development of smart contracts, Ethereum ecosystem and blockchain applications since its birth on November 19th, 2015.
 
 It has gone through many challenges and improvements during its growth, while numerous critical bugs were found in many ERC20 contracts and some of them even led to severe security incidents.
