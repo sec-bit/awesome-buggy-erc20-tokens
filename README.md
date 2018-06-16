@@ -1,41 +1,42 @@
-## 以太坊ERC20智能合约风险问题及影响Token汇总
+## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
 
-以太坊ERC20 Token标准自2015-11-19诞生以来，其为智能合约发展、以太坊生态以及区块链应用的发展产生了巨大的贡献。
+ERC20 Token specification has made great contributions to the development of smart contracts, Ethereum ecosystem and blockchain applications since its birth on November 19th, 2015.
 
-在其发展历程中，经历了逐渐成熟和完善的过程，其中有不少ERC20智能合约出现过重大漏洞，其中部分甚至引发过多次重大的安全事件。
+It has gone through many challenges and improvements during its growth, while numerous critical bugs were found in many ERC20 contracts and some of them even led to severe security incidents.
 
-在这里我们对发生过的漏洞和缺陷做了一个汇总，我们收集了交易量靠前，并且有公开源码的项目中出现过的问题。这个汇总有助于大家了解这些问题的细节，便于大家在智能合约开发中避免这些问题，同时这里也提供问题针对Token的索引，便于交易所、DAPP、项目方及Token投资者能够便利的查询到问题Token，避免在交易中造成损失。
-
-
-
-##  问题列表
-
-这里针对每个问题给出了问题的详细描述
-
-[ERC20智能合约安全问题](https://github.com/sec-bit/token-list/tree/master/bug-list)
+We made a collection of past bugs and vulnerabilities by issues in open-source projects with many transactions. This summary helps us learn issue details and get rid of them in future smart contract development. The index of bugged Token contracts is offered as well. It is intended for exchanges, DAPPs, developing teams and Token investors to find bugged Token contracts and avoid trade loss.
 
 
 
-这里给出了每个问题对应的Token列表
+##  List of Vulnerabilities
 
-[CSV格式](https://github.com/sec-bit/token-list/tree/master/csv)
+Here is a detailed description of all bugs
 
-[json格式](https://github.com/sec-bit/token-list/tree/master/json)
-
-
-
-## 问题Token汇总
-
-这里是所有问题合约的汇总，提供了根据Token地址的检索，大家可以在这里方便的查询到问题Token对应的问题分类、缩写、名称等信息。
-
-[CSV格式](https://github.com/sec-bit/token-list/blob/master/summary.csv)
-
-[json格式](https://github.com/sec-bit/token-list/blob/master/summary.json)
+[Security Issues in ERC20 Smart Contracts](https://github.com/sec-bit/token-list/tree/master/bug-list)
 
 
 
-## 写在最后
+Here are lists of bugs with corresponding Token contracts
 
-我们希望通过此工作，能为以太坊生态做出一点贡献。
+[CSV format](https://github.com/sec-bit/token-list/tree/master/csv)
 
-我们会长期维护此列表，并对其不定期的更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
+[json format](https://github.com/sec-bit/token-list/tree/master/json)
+
+
+
+## Collection of Affected Tokens
+
+Here is a collection of all bugged contracts with the function of searching by the token contract's address. You could easily find information about the bug category, abbreviation and name of Token contracts.
+
+[CSV format](https://github.com/sec-bit/token-list/blob/master/summary.csv)
+
+[json format](https://github.com/sec-bit/token-list/blob/master/summary.json)
+
+
+
+## Epilogue
+
+We hope to contribute to Ethereum ecosystem by this project.
+
+We would maintain this list for a long period and make some updates from time to time. Cooperations are welcome to build a better Ethereum ecosystem together.
+
