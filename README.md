@@ -16,15 +16,15 @@ We made a collection of past bugs and vulnerabilities by issues in open-source p
 
 Here is a detailed description of all bugs
 
-[Security Issues in ERC20 Smart Contracts](bug-list)
+- [Security Issues in ERC20 Smart Contracts](bug-list)
 
 
 
 Here are lists of bugs with corresponding Token contracts
 
-[CSV format](csv)
+- [CSV format](csv)
 
-[json format](json)
+- [JSON format](json)
 
 
 
@@ -32,9 +32,9 @@ Here are lists of bugs with corresponding Token contracts
 
 Here is a collection of all bugged contracts with the function of searching by the token contract's address. You could easily find information about the bug category, abbreviation and name of Token contracts.
 
-[CSV format](badtop600token.csv)
+- [CSV format](badtop600token.csv)
 
-[json format](badtop600token.json)
+- [JSON format](badtop600token.json)
 
 
 
