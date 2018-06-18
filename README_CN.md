@@ -12,15 +12,15 @@
 
 这里针对每个问题给出了问题的详细描述
 
-[ERC20智能合约安全问题](https://github.com/sec-bit/token-list/tree/master/bug-list)
+[ERC20智能合约安全问题](bug-list)
 
 
 
 这里给出了每个问题对应的Token列表
 
-[CSV格式](https://github.com/sec-bit/token-list/tree/master/csv)
+[CSV格式](csv)
 
-[json格式](https://github.com/sec-bit/token-list/tree/master/json)
+[json格式](json)
 
 
 
@@ -28,9 +28,9 @@
 
 这里是所有问题合约的汇总，提供了根据Token地址的检索，大家可以在这里方便的查询到问题Token对应的问题分类、缩写、名称等信息。
 
-[CSV格式](https://github.com/sec-bit/token-list/blob/master/summary.csv)
+[CSV格式](badtop600token.csv)
 
-[json格式](https://github.com/sec-bit/token-list/blob/master/summary.json)
+[json格式](badtop600token.json)
 
 
 

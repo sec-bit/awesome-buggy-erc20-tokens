@@ -4,7 +4,7 @@ Use this script to generate token list in csv/json folder
 Workflow:
 
 1. Edit data in raw folder
-2. Run `python3 gen_list_from_raw.py -i raw/* -o summary`
+2. Run `python3 gen_list_from_raw.py -i raw/* -o badtop600token`
 3. Check output files: *.json *.csv
 
 This script need web3 package.
@@ -29,21 +29,11 @@ with open('TOKEN_DETAIL_DICT.json', 'r') as f:
     TOKEN_DETAIL_DICT = json.load(f)
     print("TOKEN_DETAIL_DICT.json loaded.")
 
+with open('issues.json', 'r') as f:
+    issue_dict = json.load(f)
+    print("issues.json loaded.")
 
 csv_header = "addr,category,name,symbol,info\n"
-
-issue_dict = {
-    "transfer-no-retrun": "1",
-    "approve-no-return": "2",
-    "transferfrom-no-return": "3",
-    "approveProxy-keccak256": "4",
-    "batchTransfer-overflow": "5",
-    "setowner-anyone": "6",
-    "totalsupply-overflow": "7",
-    "transferProxy-keccak256": "8",
-    "verify-reverse-in-transfer": "9",
-    "pauseTransfer-anyone": "10"
-}
 
 write_csv = True
 

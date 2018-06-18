@@ -1,6 +1,6 @@
 ## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Read the docs in Chinese: https://github.com/sec-bit/token-list/blob/master/README_CN.md
+Read the docs in Chinese: https://github.com/sec-bit/bad-token-list/blob/master/README_CN.md
 
 -------------------
 
@@ -16,15 +16,15 @@ We made a collection of past bugs and vulnerabilities by issues in open-source p
 
 Here is a detailed description of all bugs
 
-[Security Issues in ERC20 Smart Contracts](https://github.com/sec-bit/token-list/tree/master/bug-list)
+[Security Issues in ERC20 Smart Contracts](bug-list)
 
 
 
 Here are lists of bugs with corresponding Token contracts
 
-[CSV format](https://github.com/sec-bit/token-list/tree/master/csv)
+[CSV format](csv)
 
-[json format](https://github.com/sec-bit/token-list/tree/master/json)
+[json format](json)
 
 
 
@@ -32,9 +32,9 @@ Here are lists of bugs with corresponding Token contracts
 
 Here is a collection of all bugged contracts with the function of searching by the token contract's address. You could easily find information about the bug category, abbreviation and name of Token contracts.
 
-[CSV format](https://github.com/sec-bit/token-list/blob/master/summary.csv)
+[CSV format](badtop600token.csv)
 
-[json format](https://github.com/sec-bit/token-list/blob/master/summary.json)
+[json format](badtop600token.json)
 
 
 
