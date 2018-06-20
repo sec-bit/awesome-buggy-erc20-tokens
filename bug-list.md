@@ -262,7 +262,7 @@ function transfer(address _to, uint256 _value) {
         }
     ```
 
-## 12.owner-control-sell-price
+## 12.owner-control-sell-price-for-overflow
 
 * 问题描述
     (**CVE-2018-11811**)
@@ -277,7 +277,7 @@ function transfer(address _to, uint256 _value) {
     }
     ```
 
-## 13.owner-overweight-token
+## 13.owner-overweight-token-by-overflow
 
 * 问题描述
     (**CVE-2018-11687**)
@@ -295,7 +295,7 @@ function transfer(address _to, uint256 _value) {
     }
     ```
 
-## 14.owner-decrease-balance-by-mint
+## 14.owner-decrease-balance-by-mint-by-overflow
 
 * 问题描述
     （**CVE-2018-11812**）
@@ -343,7 +343,7 @@ function transfer(address _to, uint256 _value) {
     }
     ```
 
-## 16-excess-mint-token
+## 16.excess-mint-token-by-overflow
 
 * 问题描述
     （**CVE-2018-11809**）
@@ -363,7 +363,7 @@ function transfer(address _to, uint256 _value) {
     }
     ```
 
-## 17.excess-buy-token
+## 17.excess-buy-token-by-overflow
 
 * 问题描述
     （**CVE-2018-11809**）
@@ -417,7 +417,7 @@ onlycentralAccount账户可以任意转出他人账户上的余额。
 
 ## reference
 
-[1]: https://nvd.nist.gov/vuln/detail/CVE-2018-10299 "CVE-2018-10299"
-[2]: https://nvd.nist.gov/vuln/detail/CVE-2018-10468  "CVE-2018-10468"
-[3]:  https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 "CVE-2018-1000203"
+[1] https://nvd.nist.gov/vuln/detail/CVE-2018-10299 "CVE-2018-10299"
+[2] https://nvd.nist.gov/vuln/detail/CVE-2018-10468  "CVE-2018-10468"
+[3] https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 "CVE-2018-1000203"
 
