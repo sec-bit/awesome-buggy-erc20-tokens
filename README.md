@@ -1,6 +1,6 @@
 ## A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Read the docs in Chinese: https://github.com/sec-bit/bad-token-list/blob/master/README_CN.md
+Read the docs in Chinese: https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md
 
 -------------------
 

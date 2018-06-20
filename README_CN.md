@@ -14,9 +14,9 @@
 
 ![以太坊主网上 ERC20 合约每日创建数量](img/erc20-creation.jpeg)
 
-ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。其中有不少 ERC20 智能合约出现过重大漏洞，造成难以估量的经济损失[2-5]。
+ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。其中有不少 ERC20 智能合约出现过重大漏洞，造成难以估量的经济损失[2-5]。
 
-此外，很多 Token 合约未参照 ERC20 标准实现，也给 DApp 开发带来很大的困扰[6-7]。
+此外，很多 Token 合约未参照 ERC20 标准实现，也给 DApp 开发带来很大的困扰[6-7]。
 
 在此，我们对已知的漏洞和缺陷做了一个汇总，收录的 Token 问题类型主要包括：
 
@@ -56,7 +56,7 @@ awesome-buggy-erc20-tokens
 - [`issues.json`](issues.json) 是已知漏洞和代号编码的映射
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) 和 [`bad_top_tokens.json`](bad_top_tokens.json) 是问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
 - [`raw`](raw)、[`csv`](csv) 和 [`json`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
-- [`gen_list_from_raw.py`](gen_list_from_raw.py) 是生成各个 CSV 和 JSON 列表的脚本
+- [`gen_list_from_raw.py`](gen_list_from_raw.py) 是生成各个 CSV 和 JSON 列表的脚本
 
 如下所示，CSV 和 JSON 格式的列表，可以帮助开发者快速浏览和查询某合约地址存在哪些已知问题。
 
@@ -110,15 +110,15 @@ addr,category,name,symbol,info
 
 目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 文件添加。
 
-如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
+如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
 
 - 在 [`bug-list.md`](bug-list.md) 文件中添加漏洞名称和描述，附上引用出处地址
-- 在 [`raw`](raw) 文件夹中创建以漏洞名称命名的新文件，填入受影响的合约地址
+- 在 [`raw`](raw) 文件夹中创建以漏洞名称命名的新文件，填入受影响的合约地址
 - 在 [`issues.json`](issues.json) 中增加新漏洞的名称和序列号
 - 在项目根目录运行 `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
-- 检查更改的文件，提交更新
+- 检查更改的文件，提交更新
 
-如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
+如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
 
 ## Reference
 
