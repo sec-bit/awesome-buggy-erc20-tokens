@@ -4,20 +4,21 @@
 
 * 问题描述
 
-根据ERC20 合约规范，其中 transfer()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transfer()函数没有返回值。
-但若外部合约按照EIP20规范的ABI解析去调用 transfer()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transfer()函数调用将发生revert。
+    根据ERC20 合约规范，其中 transfer()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transfer()函数没有返回值。
+    但若外部合约按照EIP20规范的ABI解析去调用 transfer()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transfer()函数调用将发生revert。
 
 * 示例代码
-```js
-function transfer(address _to, uint256 _value) {
-    if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-    if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for 
-    
-    balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-    balanceOf[_to] += _value;                            // Add the same to the recipient
-    Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-}
-```
+
+    ```js
+    function transfer(address _to, uint256 _value) {
+        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for 
+        
+        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+        balanceOf[_to] += _value;                            // Add the same to the recipient
+        Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+    }
+    ```
 
 ## 2.approve-no-return
 
@@ -27,6 +28,7 @@ function transfer(address _to, uint256 _value) {
     但若外部合约按照EIP20规范的ABI解析去调用 approve()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，approve()函数调用将发生revert。
 
 * 示例代码
+
     ```js
     function approve(address _spender, uint _value) {
         allowed[msg.sender][_spender] = _value;
@@ -56,6 +58,7 @@ function transfer(address _to, uint256 _value) {
 ## 4.approveProxy-keccak256
 
 * 问题描述
+
     keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
     ```js
         bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
@@ -64,6 +67,7 @@ function transfer(address _to, uint256 _value) {
     当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，怎能通过校验。也就是说，任何人都可以获得 0x0地址的授权。
 
 * 示例代码
+
     ```js
     function approveProxy(address _from, address _spender, uint256 _value,
                         uint8 _v,bytes32 _r, bytes32 _s) public returns (bool success) {
@@ -122,6 +126,7 @@ function transfer(address _to, uint256 _value) {
 ## 7.totalsupply-overflow
 
 * 问题描述
+
     totalsupply 为合约中代币的总量。 在问题合约代码中，当token总量发生变化时，对totalSupply做加减运算，并没有校验也没有使用safeMath，从而造成了totalSupply溢出的漏洞。
 
 * 示例代码
@@ -138,6 +143,7 @@ function transfer(address _to, uint256 _value) {
 ## 8.transferProxy-keccak256
 
 * 问题描述
+
     keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
     ```js
         bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
@@ -146,30 +152,32 @@ function transfer(address _to, uint256 _value) {
     当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，怎能通过校验。也就是说，任何人都可以将 0x0 地址的余额转出。
 
 * 示例代码
+
     ```js
     function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
-            uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
+        uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
 
-            ...
-            
-            bytes32 h = keccak256(_from,_to,_value,_feeMesh,nonce,name);
-            if(_from != ecrecover(h,_v,_r,_s)) revert();
-            
-            ...
-            return true;
-        }
+        ...
+        
+        bytes32 h = keccak256(_from,_to,_value,_feeMesh,nonce,name);
+        if(_from != ecrecover(h,_v,_r,_s)) revert();
+        
+        ...
+        return true;
+    }
     ```
 
 ## 9.verify-reverse-in-transferFrom
 
 * 问题描述
+
     （**CVE-2018-10468**）
     转账时候对allownce值做校验的时候，将校验逻辑写反，从而使得合约代码的逻辑判断错误。
     有可能造成溢出或者任何人都能转出任何账户的余额
 
 * 示例代码
 
-示例代码1
+    示例代码1
 
     ```js
     //Function for transer the coin from one address to another
@@ -186,7 +194,7 @@ function transfer(address _to, uint256 _value) {
     }
     ```
 
-示例代码2
+    示例代码2
 
     ```js
     function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
@@ -210,6 +218,7 @@ function transfer(address _to, uint256 _value) {
 ## 10.pauseTransfer-anyone
 
 * 问题描述
+
     onlyFromWallet中的判断条件却写反了，使得除了walletAddress以外，所有账户都可以调用enableTokenTransfer和disableTokenTransfer函数。
 
 * 示例代码
@@ -247,10 +256,12 @@ function transfer(address _to, uint256 _value) {
 ## 11.verify-invalid-by-overflow
 
 * 问题描述
+
     合约中在进行转账等操作时候，会对余额做校验。黑客可以通过转出一个极大的值来制造溢出，从而绕开校验。
 
 
 * 示例代码
+
     ```js
         function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
             uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
@@ -265,10 +276,12 @@ function transfer(address _to, uint256 _value) {
 ## 12.owner-control-sell-price-for-overflow
 
 * 问题描述
+
     (**CVE-2018-11811**)
     部分合约中，用户在以太和token之间进行兑换，兑换的价格由owner完全控制，owner可以通过构造一个很大的兑换值，使得计算兑换出的以太时候发生溢出，将原本较大的一个eth数额转换为较小的值，从而使得用户只能拿到很少量的以太。
 
 * 示例代码
+
     ```js
     function sell(uint256 amount) public {
         require(this.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
@@ -280,6 +293,7 @@ function transfer(address _to, uint256 _value) {
 ## 13.owner-overweight-token-by-overflow
 
 * 问题描述
+
     (**CVE-2018-11687**)
     owner账户在向其它账户转账时候，通过制造下溢，实现对自身账户余额的任意增加。
 
@@ -298,6 +312,7 @@ function transfer(address _to, uint256 _value) {
 ## 14.owner-decrease-balance-by-mint-by-overflow
 
 * 问题描述
+
     （**CVE-2018-11812**）
     有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出成为一个很小的数字，从而任意控制这个账户的余额。
 
@@ -315,10 +330,12 @@ function transfer(address _to, uint256 _value) {
 ## 15.excess-allocation-by-overflow
 
 * 问题描述
+
     （**CVE-2018-11810**）
     owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token
 
 * 示例代码
+
     ```js
     function allocate(address _address, uint256 _amount, uint8 _type) public onlyOwner returns (bool success) {
 
@@ -346,6 +363,7 @@ function transfer(address _to, uint256 _value) {
 ## 16.excess-mint-token-by-overflow
 
 * 问题描述
+
     （**CVE-2018-11809**）
     owner可以通过溢出来绕开合约中铸币最大值的设置，来发行任意多的币。
 
@@ -366,6 +384,7 @@ function transfer(address _to, uint256 _value) {
 ## 17.excess-buy-token-by-overflow
 
 * 问题描述
+
     （**CVE-2018-11809**）
     在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。
 
@@ -391,8 +410,9 @@ function transfer(address _to, uint256 _value) {
 ## 18.centralAccount-transfer-anyone
 
 * 问题描述
-（**CVE-2018-1000203**）
-onlycentralAccount账户可以任意转出他人账户上的余额。
+
+    （**CVE-2018-1000203**）
+    onlycentralAccount账户可以任意转出他人账户上的余额。
 
 * 示例代码
 
@@ -418,6 +438,8 @@ onlycentralAccount账户可以任意转出他人账户上的余额。
 ## reference
 
 [1] https://nvd.nist.gov/vuln/detail/CVE-2018-10299 "CVE-2018-10299"
+
 [2] https://nvd.nist.gov/vuln/detail/CVE-2018-10468  "CVE-2018-10468"
+
 [3] https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 "CVE-2018-1000203"
 
