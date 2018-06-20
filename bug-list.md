@@ -2,7 +2,7 @@
 
 ## A. 漏洞问题列表
 
-###A1. batchTransfer-overflow
+### A1. batchTransfer-overflow
 
 * 问题描述
 
@@ -29,7 +29,7 @@
 
     [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
 
-###A2. totalsupply-overflow
+### A2. totalsupply-overflow
 
 * 问题描述
 
@@ -48,7 +48,7 @@
 
     [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
 
-###A3. verify-invalid-by-overflow
+### A3. verify-invalid-by-overflow
 
 * 问题描述
 
@@ -69,7 +69,7 @@
     ```
     [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
 
-###A4. owner-control-sell-price-for-overflow
+### A4. owner-control-sell-price-for-overflow
 
 * 问题描述
 
@@ -87,7 +87,7 @@
     ```
     [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
 
-###A5. owner-overweight-token-by-overflow
+### A5. owner-overweight-token-by-overflow
 
 * 问题描述
 
@@ -108,7 +108,7 @@
 
     [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
 
-###A6. owner-decrease-balance-by-mint-by-overflow
+### A6. owner-decrease-balance-by-mint-by-overflow
 
 * 问题描述
 
