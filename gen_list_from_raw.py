@@ -4,7 +4,7 @@ Use this script to generate token list in csv/json folder
 Workflow:
 
 1. Edit data in raw folder
-2. Run `python3 gen_list_from_raw.py -i raw/* -o badtop600token`
+2. Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
 3. Check output files: *.json *.csv
 
 This script need web3 package.
