@@ -81,7 +81,7 @@ addr,category,name,symbol,info
     "0x0aeF06DcCCC531e581f0440059E6FfCC206039EE": {
         "info": "_",
         "issues": {
-            "transfer-no-retrun": true
+            "transfer-no-return": true
         },
         "name": "Intelligent Trading Technologies",
         "rank": 551,
@@ -93,7 +93,7 @@ addr,category,name,symbol,info
             "owner-control-sell-price-for-overflow": true,
             "owner-decrease-balance-by-mint-by-overflow": true,
             "totalsupply-overflow": true,
-            "transfer-no-retrun": true
+            "transfer-no-return": true
         },
         "name": "Internet Node Token",
         "rank": 168,

@@ -1,6 +1,6 @@
 # Bug list
 
-## 1.transfer-no-retrun
+## 1.transfer-no-return
 
 * 问题描述
 
