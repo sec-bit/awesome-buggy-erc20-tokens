@@ -1,4 +1,4 @@
-# BUG detail
+# Bug list
 
 ## 1.transfer-no-retrun
 
@@ -174,14 +174,14 @@ function transfer(address _to, uint256 _value) {
     ```js
     //Function for transer the coin from one address to another
     function transferFrom(address from, address to, uint value) returns (bool success) {
-
+    
         ...
-
+    
         //checking for allowance
         if( allowed[from][msg.sender] >= value ) return false;
-
+    
         ...
-
+    
         return true;
     }
     ```
@@ -195,11 +195,11 @@ function transfer(address _to, uint256 _value) {
             
             uint256 fromBalance = balances[_from];
             uint256 allowance = allowed[_from][msg.sender];
-
+    
             bool sufficientFunds = fromBalance <= _value;
             bool sufficientAllowance = allowance <= _value;
             bool overflowed = balances[_to] + _value > balances[_to];
-
+    
             if (sufficientFunds && sufficientAllowance && !overflowed) {
                 ...
                 return true;
@@ -387,4 +387,37 @@ function transfer(address _to, uint256 _value) {
         LogBuy(msg.sender, newTokens);
     }
     ```
+
+## 18.centralAccount-transfer-anyone
+
+* 问题描述
+（**CVE-2018-1000203**）
+onlycentralAccount账户可以任意转出他人账户上的余额。
+
+* 示例代码
+
+    ```js
+    function zero_fee_transaction(
+    address _from,
+    address _to,
+    uint256 _amount
+    ) onlycentralAccount returns(bool success) {
+        if (balances[_from] >= _amount &&
+            _amount > 0 &&
+            balances[_to] + _amount > balances[_to]) {
+            balances[_from] -= _amount;
+            balances[_to] += _amount;
+            Transfer(_from, _to, _amount);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ```
+
+## reference
+
+[1]: https://nvd.nist.gov/vuln/detail/CVE-2018-10299 "CVE-2018-10299"
+[2]: https://nvd.nist.gov/vuln/detail/CVE-2018-10468  "CVE-2018-10468"
+[3]:  https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 "CVE-2018-1000203"
 
