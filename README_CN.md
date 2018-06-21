@@ -62,9 +62,9 @@ awesome-buggy-erc20-tokens
 
 ```csv
 addr,category,name,symbol,info
-0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[7],Dignity,DIG,_
-0x0aeF06DcCCC531e581f0440059E6FfCC206039EE,[1],Intelligent Trading Technologies,ITT,_
-0x0b76544F6C413a555F309Bf76260d1E02377c02A,[1][12][14][7],Internet Node Token,INT,_
+0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,_
+0x0aeF06DcCCC531e581f0440059E6FfCC206039EE,[B1],Intelligent Trading Technologies,ITT,_
+0x0b76544F6C413a555F309Bf76260d1E02377c02A,[A2][A4][A6][B1],Internet Node Token,INT,_
 ```
 
 ```json
