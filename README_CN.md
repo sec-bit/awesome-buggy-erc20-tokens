@@ -16,7 +16,7 @@
 
 ## 最近更新
 
--  [2018-06-16, ICX, pauseTransfer-anyone](bug-list.md#a11-pausetransfer-anyone)
+- [2018-06-16, ICX, pauseTransfer-anyone](bug-list.md#a11-pausetransfer-anyone)
 - [2018-06-12, PKT, excess-mint-token-by-overflow](bug-list.md#a8-excess-mint-token-by-overflow)
 - [2018-06-08, ITC, transfer-no-return](bug-list.md#b1-transfer-no-return)
 
