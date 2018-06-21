@@ -77,7 +77,7 @@ ERC20 标准中还规定了 Transfer 和 Approval 两个事件必须在特定场
 
 ## 为何要维护一个 token list
 
-在此之前，以太坊社区已有不少有助于智能合约生态发展的项目。如由 ConsenSys 维护的「以太坊智能合约 —— 最佳安全开发指南」[[17]](https://github.com/ConsenSys/smart-contract-best-practices)，以及由 OpenZeppelin 主导开发的 openzeppelin-solidity 安全智能合约代码库[[18]](https://github.com/OpenZeppelin/openzeppelin-solidity)。
+在此之前，以太坊社区已有不少有助于智能合约生态发展的项目。如由 ConsenSys 维护的「以太坊智能合约 —— 最佳安全开发指南」[[17]](https://github.com/ConsenSys/smart-contract-best-practices)，以及由 OpenZeppelin 主导开发的 openzeppelin-solidity 安全智能合约代码库 [[18]](https://github.com/OpenZeppelin/openzeppelin-solidity)。
 
 而我们发现，实际中很多问题 Token 漏洞来源于不严谨的代码参考、拷贝和修改，以及使用了不正确的模版代码。智能合约初学者和开发者很难迅速判断一份主网合约代码是否存在问题以及具体存在哪些问题。
 
