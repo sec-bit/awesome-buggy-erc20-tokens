@@ -28,7 +28,8 @@
 * 问题合约列表
 
     * BeautyChain (BEC)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
+        
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
 
 ### A2. totalsupply-overflow
 
@@ -52,7 +53,8 @@
     * FuturXE (FXE)
     * Amber Token (AMB)
     * Insights Network (INSTAR)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
 
 ### A3. verify-invalid-by-overflow
 
@@ -75,8 +77,9 @@
 
 * 问题合约列表
 
-    * SmartMesh Token (SMT)     
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
+    * SmartMesh Token (SMT)  
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
 
 ### A4. owner-control-sell-price-for-overflow
 
@@ -97,13 +100,14 @@
 * 问题合约列表   
     
     * Internet Node Token (INT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
 
 ### A5. owner-overweight-token-by-overflow
 
 * 问题描述
 
-    owner账户在向其它账户转账时候，通过制造下溢，实现对自身账户余额的任意增加。([CVE-2018-11687](https://nvd.nist.gov/vuln/detail/CVE-2018-11687))
+    owner账户在向其它账户转账时候，通过制造下溢，实现对自身账户余额的任意增加。(CVE-2018-11687)
 
 * 示例代码
 
@@ -119,13 +123,14 @@
 
 * 问题合约列表
     * Bitcoin Red (BTCR)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
 
 ### A6. owner-decrease-balance-by-mint-by-overflow
 
 * 问题描述
 
-    有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。([CVE-2018-11812](https://nvd.nist.gov/vuln/detail/CVE-2018-11812))
+    有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。(CVE-2018-11812)
 
 * 示例代码
 
@@ -142,13 +147,14 @@
     * SwftCoin (SWFTC)
     * Pylon Token (PYLNT)
     * Internet Node Token (INT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
+        
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
 
 ### A7. excess-allocation-by-overflow
 
 * 问题描述
 
-    owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。([CVE-2018-11810](https://nvd.nist.gov/vuln/detail/CVE-2018-11810))
+    owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。(CVE-2018-11810)
 
 * 示例代码
 
@@ -178,13 +184,14 @@
 
 * 问题合约列表
     * LGO Token (LGO)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
 
 ### A8. excess-mint-token-by-overflow
 
 * 问题描述
 
-    owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。([CVE-2018-11809](https://nvd.nist.gov/vuln/detail/CVE-2018-11809))
+    owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。(CVE-2018-11809)
 
 * 示例代码
 
@@ -202,13 +209,14 @@
 
 * 问题合约列表
     * Playkey Token (PKT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
 
 ### A9. excess-buy-token-by-overflow
 
 * 问题描述
 
-    在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。([CVE-2018-11809](https://nvd.nist.gov/vuln/detail/CVE-2018-11809))
+    在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。(CVE-2018-11809)
 
 * 示例代码
     ```js
@@ -231,121 +239,125 @@
 
 * 问题合约列表
     * EthLend Token (LEND) 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
 
 ### A10. verify-reverse-in-transferFrom
 
-- 问题描述
+* 问题描述
 
   在transferFrom()函数中，当对allownce值做校验的时，误将校验逻辑写反，从而使得合约代码的逻辑判断错误。有可能造成溢出或者任何人都能转出任何账户的余额。([CVE-2018-10468](https://nvd.nist.gov/vuln/detail/CVE-2018-10468))
 
-- 示例代码
+* 示例代码
 
   示例代码1
 
-  ```js
-  //Function for transer the coin from one address to another
-  function transferFrom(address from, address to, uint value) returns (bool success) {
-  
-      ...
-  
-      //checking for allowance
-      if( allowed[from][msg.sender] >= value ) return false;
-  
-      ...
-  
-      return true;
-  }
-  ```
+    ```js
+    //Function for transer the coin from one address to another
+    function transferFrom(address from, address to, uint value) returns (bool success) {
+    
+        ...
+    
+        //checking for allowance
+        if( allowed[from][msg.sender] >= value ) return false;
+    
+        ...
+    
+        return true;
+    }
+    ```
 
   示例代码2
 
-  ```js
-  function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-          // mitigates the ERC20 short address attack
-          ...
-          
-          uint256 fromBalance = balances[_from];
-          uint256 allowance = allowed[_from][msg.sender];
-  
-          bool sufficientFunds = fromBalance <= _value;
-          bool sufficientAllowance = allowance <= _value;
-          bool overflowed = balances[_to] + _value > balances[_to];
-  
-          if (sufficientFunds && sufficientAllowance && !overflowed) {
-              ...
-              return true;
-          } else { return false; }
-      }
-  ```
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            // mitigates the ERC20 short address attack
+            ...
+            
+            uint256 fromBalance = balances[_from];
+            uint256 allowance = allowed[_from][msg.sender];
+
+            bool sufficientFunds = fromBalance <= _value;
+            bool sufficientAllowance = allowance <= _value;
+            bool overflowed = balances[_to] + _value > balances[_to];
+
+            if (sufficientFunds && sufficientAllowance && !overflowed) {
+                ...
+                return true;
+            } else { return false; }
+        }
+    ```
 
 * 问题合约列表
     * FuturXE (FXE)
     * Useless Ethereum Token (UET)
     * Soarcoin (Soar)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
 
 ### A11. pauseTransfer-anyone
 
-- 问题描述
+* 问题描述
 
-  onlyFromWallet中的判断条件却写反了，使得除了walletAddress以外，所有账户都可以调用enableTokenTransfer 和 disableTokenTransfer 函数。
+    onlyFromWallet中的判断条件却写反了，使得除了walletAddress以外，所有账户都可以调用enableTokenTransfer 和 disableTokenTransfer 函数。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  // if Token transfer
-  modifier isTokenTransfer {
-      // if token transfer is not allow
-      if(!tokenTransfer) {
-          require(unlockaddress[msg.sender]);
-      }
-      _;
-  }
-  
-  modifier onlyFromWallet {
-      require(msg.sender != walletAddress);
-      _;
-  }
-  
-  function enableTokenTransfer()
-  external
-  onlyFromWallet {
-      tokenTransfer = true;
-      TokenTransfer();
-  }
-  
-  function disableTokenTransfer()
-  external
-  onlyFromWallet {
-      tokenTransfer = false;
-      TokenTransfer();
-  }
-  ```
+    ```js
+    // if Token transfer
+    modifier isTokenTransfer {
+        // if token transfer is not allow
+        if(!tokenTransfer) {
+            require(unlockaddress[msg.sender]);
+        }
+        _;
+    }
+
+    modifier onlyFromWallet {
+        require(msg.sender != walletAddress);
+        _;
+    }
+
+    function enableTokenTransfer()
+    external
+    onlyFromWallet {
+        tokenTransfer = true;
+        TokenTransfer();
+    }
+
+    function disableTokenTransfer()
+    external
+    onlyFromWallet {
+        tokenTransfer = false;
+        TokenTransfer();
+    }
+    ```
 
 * 问题合约列表
     * icon (ICX)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
 
 ### A12. setowner-anyone
 
-- 问题描述
+* 问题描述
 
-  setOwner()函数的作用是修改owner，通常情况下该函数只有当前 owner 可以调用。 但问题代码中，任何人都可以调用setOwner()函数，这就导致了任何人都可以修改合约的owner。
+    setOwner()函数的作用是修改owner，通常情况下该函数只有当前 owner 可以调用。 但问题代码中，任何人都可以调用setOwner()函数，这就导致了任何人都可以修改合约的owner。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  function setOwner(address _owner) returns (bool success) {
-      owner = _owner;
-      return true;
-  }
-  ```
+    ```js
+    function setOwner(address _owner) returns (bool success) {
+        owner = _owner;
+        return true;
+    }
+    ```
 
 * 问题合约列表
     * Aurora DAO (AURA)
     * idex-membership
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
 
 ### A13. centralAccount-transfer-anyone
 
@@ -376,54 +388,56 @@
 
 * 问题合约列表
     * Soarcoin (Soar)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv)
 
 ### A14. transferProxy-keccak256
 
-- 问题描述
+* 问题描述
 
-  keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
+    keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
 
-  ```js
-  bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
-  if(_from != ecrecover(hash,_v,_r,_s)) revert();
-  ```
+    ```js
+    bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
+    if(_from != ecrecover(hash,_v,_r,_s)) revert();
+    ```
 
-  当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以将 0x0 地址的余额转出。
+    当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以将 0x0 地址的余额转出。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
-      uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
-  
-      ...
-      
-      bytes32 h = keccak256(_from,_to,_value,_feeMesh,nonce,name);
-      if(_from != ecrecover(h,_v,_r,_s)) revert();
-      
-      ...
-      return true;
-  }
-  ```
+    ```js
+    function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
+        uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
+
+        ...
+        
+        bytes32 h = keccak256(_from,_to,_value,_feeMesh,nonce,name);
+        if(_from != ecrecover(h,_v,_r,_s)) revert();
+        
+        ...
+        return true;
+    }
+    ```
 * 问题合约列表
     * SmartMesh Token (SMT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
 
 ### A15. approveProxy-keccak256
 
-- 问题描述
+* 问题描述
 
-  keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
+    keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。
 
-  ```js
-  bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
-  if(_from != ecrecover(hash,_v,_r,_s)) revert();
-  ```
+    ```js
+    bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
+    if(_from != ecrecover(hash,_v,_r,_s)) revert();
+    ```
 
-  当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以获得 0x0地址的授权。
+    当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以获得 0x0地址的授权。
 
-- 示例代码
+* 示例代码
 
     ```js
     function approveProxy(address _from, address _spender, uint256 _value,
@@ -441,77 +455,85 @@
     
 * 问题合约列表
     * SmartMesh Token (SMT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
 
 
 ## B.不兼容问题列表
 
 ### B1. transfer-no-return
 
-- 问题描述
+* 问题描述
 
   根据ERC20 合约规范，其中 transfer()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transfer()函数没有返回值。
   但若外部合约按照EIP20规范的ABI解析去调用 transfer()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transfer()函数调用将发生revert。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  function transfer(address _to, uint256 _value) {
-      if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-      if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-      balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-      balanceOf[_to] += _value;                            // Add the same to the recipient
-      Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-  }
-  ```
+    ```js
+    function transfer(address _to, uint256 _value) {
+        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
+        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+        balanceOf[_to] += _value;                            // Add the same to the recipient
+        Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+    }
+    ```
 
 * 问题合约列表
     * IOT on Chain (ITC)
     * BNB (BNB)
     * loopring (LRC)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
 
 ### B2. approve-no-return
 
-- 问题描述
+* 问题描述
 
-  根据ERC20 合约规范，其中 approve()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，approve()函数没有返回值。
-  但若外部合约按照EIP20规范的ABI解析去调用 approve()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，approve()函数调用将发生revert。
+    根据ERC20 合约规范，其中 approve()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，approve()函数没有返回值。
+    但若外部合约按照EIP20规范的ABI解析去调用 approve()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，approve()函数调用将发生revert。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  function approve(address _spender, uint _value) {
-      allowed[msg.sender][_spender] = _value;
-      Approval(msg.sender, _spender, _value);
-  }
-  ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return_o.csv)
+    ```js
+    function approve(address _spender, uint _value) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+    }
+    ```
+* 问题合约列表
+    * loopring (LRC)
+    * Paymon Token (PMNT)
+    * Metal	MTL
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return_o.csv)
 
 ### B3. transferFrom-no-return
 
-- 问题描述
+* 问题描述
 
-  根据ERC20 合约规范，其中 transferFrom() 函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transferFrom() 函数没有返回值。
-  但若外部合约按照EIP20规范的ABI解析去调用 transferFrom() 函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transferFrom() 函数调用将发生revert。
+    根据ERC20 合约规范，其中 transferFrom() 函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transferFrom() 函数没有返回值。
+    但若外部合约按照EIP20规范的ABI解析去调用 transferFrom() 函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transferFrom() 函数调用将发生revert。
 
-- 示例代码
+* 示例代码
 
-  ```js
-  function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) {
-      var _allowance = allowed[_from][msg.sender];
-      balances[_to] = balances[_to].add(_value);
-      balances[_from] = balances[_from].sub(_value);
-      allowed[_from][msg.sender] = _allowance.sub(_value);
-      Transfer(_from, _to, _value);
-  }
-  ```
+    ```js
+    function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) {
+        var _allowance = allowed[_from][msg.sender];
+        balances[_to] = balances[_to].add(_value);
+        balances[_from] = balances[_from].sub(_value);
+        allowed[_from][msg.sender] = _allowance.sub(_value);
+        Transfer(_from, _to, _value);
+    }
+    ```
 
 * 问题合约列表
     * CUBE (AUTO)
     * loopring (LRC)
     * Paymon Token (PMNT)
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
 
 ## reference
 
