@@ -14,19 +14,25 @@
 
 ![以太坊主网上 ERC20 合约每日创建数量](img/erc20-creation.jpeg)
 
-ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。其中有不少 ERC20 智能合约出现过重大漏洞，造成难以估量的经济损失[2-5]。
+ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。其中有不少 ERC20 智能合约出现过重大漏洞，造成难以估量的经济损失[2-6]。
 
-此外，很多 Token 合约未参照 ERC20 标准实现，也给 DApp 开发带来很大的困扰[6-7]。
+此外，很多 Token 合约未参照 ERC20 标准实现，也给 DApp 开发带来很大的困扰[7-8]。
 
 在此，我们对已知的漏洞和缺陷做了一个汇总，收录的 Token 问题类型主要包括：
 
 1. Token 合约安全漏洞
 2. 不符合 ERC20 规范导致的兼容问题
-3. Token 合约管理员的权限过高
+3. Token 合约管理员的权限过高[9]
 
 ## 为何要维护一个 token list
 
-+ 列出常见的智能合约漏洞，为合约开发者提供学习细节素材
+在此之前，以太坊社区已有不少有助于智能合约生态发展的项目。如由 ConsenSys 维护的「以太坊智能合约 —— 最佳安全开发指南」[10]，以及由 OpenZeppelin 主导开发的 openzeppelin-solidity 安全智能合约代码库[11]。
+
+而我们发现，实际中很多问题 Token 漏洞来源于不严谨的代码参考、拷贝和修改，以及使用了不正确的模版代码。智能合约初学者和开发者很难迅速判断一份主网合约代码是否存在问题以及具体存在哪些问题。
+
+本项目通过维护一个 token list:
+
++ 列出常见的智能合约漏洞实例，为合约开发者提供学习细节素材
 + 列出问题 Token 合约，为基于 ERC20 的 DApp 开发者提供参考，提前规避问题 Token 引入的潜在安全风险
 + 便于交易所、项目方及 Token 投资者能够便利地查询到问题 Token，避免在交易中造成损失
 
@@ -127,9 +133,13 @@ Nov 19, 2015
 - [2] [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
 - [3] [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e), Apr 23, 2018
 - [4] [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
-- [5] [Bugged Smart Contract FuturXE: How Could Someone Mess up with Boolean? (CVE-2018–12025)](https://medium.com/secbit-media/bugged-smart-contract-f-e-how-could-someone-mess-up-with-boolean-d2251defd6ff), Jun 6, 2018
-- [6] [An Incompatibility in Ethereum Smart Contract Threatening dApp Ecosystem](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da), Jun 8, 2018
-- [7] [Redundant Check in ERC20 Smart Contracts’ approve()](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261), Jun 15, 2018
+- [5] [UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468)](https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e), May 3, 2018
+- [6] [Bugged Smart Contract FuturXE: How Could Someone Mess up with Boolean? (CVE-2018–12025)](https://medium.com/secbit-media/bugged-smart-contract-f-e-how-could-someone-mess-up-with-boolean-d2251defd6ff), Jun 6, 2018
+- [7] [An Incompatibility in Ethereum Smart Contract Threatening dApp Ecosystem](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da), Jun 8, 2018
+- [8] [Redundant Check in ERC20 Smart Contracts’ approve()](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261), Jun 15, 2018
+- [9] [Highly-Manipulatable ERC20 Tokens Identified in Multiple Top Exchanges](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a), Jun 9, 2018
+- [10] [A guide to smart contract security best practices](https://github.com/ConsenSys/smart-contract-best-practices)
+- [11] [OpenZeppelin, a framework to build secure smart contracts on Ethereum](https://github.com/OpenZeppelin/openzeppelin-solidity)
 
 ## 版权声明
 
