@@ -353,7 +353,7 @@
     }
     ```
 
-* 问题合约列表
+* 问题合约列表
     * Aurora DAO (AURA)
     * idex-membership
 
