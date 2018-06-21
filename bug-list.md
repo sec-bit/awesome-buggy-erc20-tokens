@@ -6,8 +6,7 @@
 
 * 问题描述
 
-    （**CVE-2018-10299**）
-    batchTransfer()函数的功能为批量转账。调用者可以传入若干个转账地址和转账金额，经过一些强制检查交易，再依次对balances进行增减操作，以实现 Token 的转移。当传入值_value过大时，uint256 amount = uint256(cnt) * _value会发生溢出（overflow），导致amount变量不等于cnt倍的_value，而是变成一个很小的值，从而使得后面的require对转账发起者的余额校验能够正常通过，继而可以转出超过余额的Token。
+    batchTransfer()函数的功能为批量转账。调用者可以传入若干个转账地址和转账金额，经过一些强制检查交易，再依次对balances进行增减操作，以实现 Token 的转移。当传入值_value过大时，uint256 amount = uint256(cnt) * _value会发生溢出（overflow），导致amount变量不等于cnt倍的_value，而是变成一个很小的值，从而使得后面的require对转账发起者的余额校验能够正常通过，继而可以转出超过余额的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
 
 * 示例代码
 
@@ -26,14 +25,16 @@
         return true;
     }
     ```
+* 问题合约列表
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
+    * BeautyChain (BEC)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
 
 ### A2. totalsupply-overflow
 
 * 问题描述
 
-    totalsupply 通常为合约中代币的总量。 在问题合约代码中，当token总量发生变化时，对totalSupply做加减运算，并没有校验也没有使用safeMath，从而导致了totalSupply发生溢出。
+    totalsupply 通常为合约中代币的总量。 在问题合约代码中，当 token 总量发生变化时，对 totalSupply 做加减运算，并没有校验也没有使用 safeMath，从而导致了totalSupply 发生溢出。
 
 * 示例代码
 
@@ -46,14 +47,18 @@
     }
     ```
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
+* 问题合约列表
+
+    * FuturXE (FXE)
+    * Amber Token (AMB)
+    * Insights Network (INSTAR)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
 
 ### A3. verify-invalid-by-overflow
 
 * 问题描述
 
     合约中在进行转账等操作时候，会对余额做校验。黑客可以通过转出一个极大的值来制造溢出，继而绕开校验。
-
 
 * 示例代码
 
@@ -67,14 +72,17 @@
         return true;
     }
     ```
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
+
+* 问题合约列表
+
+    * SmartMesh Token (SMT)     
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
 
 ### A4. owner-control-sell-price-for-overflow
 
 * 问题描述
 
-    (**CVE-2018-11811**)
-    部分合约中，用户在以太和token之间进行兑换，兑换的价格由owner完全控制，owner可以通过构造一个很大的兑换值，使得计算兑换出的以太时候发生溢出，将原本较大的一个eth数额转换为较小的值，从而使得用户只能拿到很少量的以太。
+    部分合约中，用户在以太和token之间进行兑换，兑换的价格由owner完全控制，owner可以通过构造一个很大的兑换值，使得计算兑换出的以太时候发生溢出，将原本较大的一个eth数额转换为较小的值，从而使得用户只能拿到很少量的以太。([CVE-2018-11811](https://nvd.nist.gov/vuln/detail/CVE-2018-11811))
 
 * 示例代码
 
@@ -85,14 +93,17 @@
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It's important to do this last to avoid recursion attacks
     }
     ```
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
+
+* 问题合约列表   
+    
+    * Internet Node Token (INT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
 
 ### A5. owner-overweight-token-by-overflow
 
 * 问题描述
 
-    (**CVE-2018-11687**)
-    owner账户在向其它账户转账时候，通过制造下溢，实现对自身账户余额的任意增加。
+    owner账户在向其它账户转账时候，通过制造下溢，实现对自身账户余额的任意增加。([CVE-2018-11687](https://nvd.nist.gov/vuln/detail/CVE-2018-11687))
 
 * 示例代码
 
@@ -106,14 +117,15 @@
     }
     ```
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
+* 问题合约列表
+    * Bitcoin Red (BTCR)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
 
 ### A6. owner-decrease-balance-by-mint-by-overflow
 
 * 问题描述
 
-    （**CVE-2018-11812**）
-    有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。
+    有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。([CVE-2018-11812](https://nvd.nist.gov/vuln/detail/CVE-2018-11812))
 
 * 示例代码
 
@@ -126,14 +138,17 @@
     }
     ```
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
+* 问题合约列表
+    * SwftCoin (SWFTC)
+    * Pylon Token (PYLNT)
+    * Internet Node Token (INT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
 
 ### A7. excess-allocation-by-overflow
 
 * 问题描述
 
-    (**CVE-2018-11810**)
-    owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token
+    owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。([CVE-2018-11810](https://nvd.nist.gov/vuln/detail/CVE-2018-11810))
 
 * 示例代码
 
@@ -161,14 +176,15 @@
     }
     ```
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
+* 问题合约列表
+    * LGO Token (LGO)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
 
 ### A8. excess-mint-token-by-overflow
 
 * 问题描述
 
-    (**CVE-2018-11809**)
-    owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。
+    owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。([CVE-2018-11809](https://nvd.nist.gov/vuln/detail/CVE-2018-11809))
 
 * 示例代码
 
@@ -184,14 +200,15 @@
     }
     ```
 
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
+* 问题合约列表
+    * Playkey Token (PKT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
 
 ### A9. excess-buy-token-by-overflow
 
 * 问题描述
 
-    (**CVE-2018-11809**)
-    在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。
+    在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。([CVE-2018-11809](https://nvd.nist.gov/vuln/detail/CVE-2018-11809))
 
 * 示例代码
     ```js
@@ -211,14 +228,16 @@
         LogBuy(msg.sender, newTokens);
     }
     ```
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
+
+* 问题合约列表
+    * EthLend Token (LEND) 
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
 
 ### A10. verify-reverse-in-transferFrom
 
 - 问题描述
 
-  (**CVE-2018-10468**)
-  在transferFrom()函数中，当对allownce值做校验的时，误将校验逻辑写反，从而使得合约代码的逻辑判断错误。有可能造成溢出或者任何人都能转出任何账户的余额。
+  在transferFrom()函数中，当对allownce值做校验的时，误将校验逻辑写反，从而使得合约代码的逻辑判断错误。有可能造成溢出或者任何人都能转出任何账户的余额。([CVE-2018-10468](https://nvd.nist.gov/vuln/detail/CVE-2018-10468))
 
 - 示例代码
 
@@ -259,7 +278,12 @@
           } else { return false; }
       }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
+
+* 问题合约列表
+    * FuturXE (FXE)
+    * Useless Ethereum Token (UET)
+    * Soarcoin (Soar)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
 
 ### A11. pauseTransfer-anyone
 
@@ -298,7 +322,10 @@
       TokenTransfer();
   }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
+
+* 问题合约列表
+    * icon (ICX)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
 
 ### A12. setowner-anyone
 
@@ -314,14 +341,17 @@
       return true;
   }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
+
+* 问题合约列表
+    * Aurora DAO (AURA)
+    * idex-membership
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
 
 ### A13. centralAccount-transfer-anyone
 
 * 问题描述
 
-    (**CVE-2018-1000203**)
-    onlycentralAccount账户可以任意转出他人账户上的余额。
+    onlycentralAccount账户可以任意转出他人账户上的余额。([CVE-2018-1000203](https://nvd.nist.gov/vuln/detail/CVE-2018-1000203))
 
 * 示例代码
 
@@ -343,7 +373,10 @@
         }
     }
     ```
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv)
+
+* 问题合约列表
+    * Soarcoin (Soar)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv)
 
 ### A14. transferProxy-keccak256
 
@@ -373,7 +406,9 @@
       return true;
   }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
+* 问题合约列表
+    * SmartMesh Token (SMT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
 
 ### A15. approveProxy-keccak256
 
@@ -403,7 +438,10 @@
         return true;
     }
     ```
-    [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
+    
+* 问题合约列表
+    * SmartMesh Token (SMT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
 
 
 ## B.不兼容问题列表
@@ -426,7 +464,12 @@
       Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
   }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
+
+* 问题合约列表
+    * IOT on Chain (ITC)
+    * BNB (BNB)
+    * loopring (LRC)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
 
 ### B2. approve-no-return
 
@@ -463,7 +506,12 @@
       Transfer(_from, _to, _value);
   }
   ```
-  [问题合约列表](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
+
+* 问题合约列表
+    * CUBE (AUTO)
+    * loopring (LRC)
+    * Paymon Token (PMNT)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
 
 ## reference
 
@@ -473,3 +521,19 @@
 
 [3] https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 CVE-2018-1000203
 
+[4] https://blog.csdn.net/Secbit/article/details/80045167
+SECBIT: 美链(BEC)合约安全事件分析全景,Apr 23, 2018.
+
+[5] https://www.secrss.com/articles/3289 ERC20智能合约整数溢出系列漏洞披露,June 12, 2018.
+
+[6] https://peckshield.com/2018/04/25/proxyOverflow/ New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376),Apr 25, 2018.
+
+[7] https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468),May 3, 2018.
+
+[8] https://mp.weixin.qq.com/s/hANqFGGS1ZwjdvFJFeHfoQ ERC20 Token合约F_E惊现毁灭级漏洞，账户余额可以随意转出 ,June 6, 2018.
+
+[9] https://mp.weixin.qq.com/s/HuJEQsst534vjK3yb7RcAQ ICX Token交易控制Bug深度分析, June 16, 2018.
+
+[10] https://peckshield.com/2018/05/03/ownerAnyone/ New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705),May 3, 2018.
+
+[11] https://mp.weixin.qq.com/s/1MB-t_yZYsJDTPRazD1zAA 数千份以太坊 Token 合约不兼容问题浮出水面，恐严重影响DAPP生态,June 8,2018.
