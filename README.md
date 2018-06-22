@@ -7,11 +7,23 @@
 
 A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
 
-Read the docs in Chinese: https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md
+Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md>
+
+## Navigation
+
+- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bad_top_tokens.csv) to search for bugs in a Token contract
+- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md) for a detailed description of all bugs and Token contracts affected
+- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md#%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) if you find a mistake or anything missed in this repo
+
+## Recent Updates
+
+- [2018-06-16, ICX, pauseTransfer-anyone](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, excess-mint-token-by-overflow](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, transfer-no-return](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#b1-transfer-no-return)
 
 ## Problems in ERC20 Token Contracts
 
-[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards[1]. As of June 20th, 2018, more than 90,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
+[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards[[1\]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). As of June 20th, 2018, more than 90,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
 
 ![ERC20 Contracts Created on main Ethereum network every day](img/erc20-creation.jpeg)
 
@@ -21,11 +33,11 @@ We made a collection of past bugs and vulnerabilities, including:
 
 1. vulnerabilities in Token contracts
 2. incompatibilities due to inconsistency with ERC20
-3. excessive authorities of Token administrators[9]
+3. excessive authorities of Token administrators [[16\]](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a)
 
 ## Why This Repo?
 
-There are many projects in Ethereum community contributing to the ecosystem of smart contracts, such as 'A guide to smart contract security best practices'[10] maintained by Consensys and 'OpenZeppelin, a framework to build secure smart contracts on Ethereum'[11] developer by OpenZeppelin.
+There are many projects in Ethereum community contributing to the ecosystem of smart contracts, such as 'A guide to smart contract security best practices' [[17\]](https://github.com/ConsenSys/smart-contract-best-practices) maintained by Consensys and 'OpenZeppelin, a framework to build secure smart contracts on Ethereum' [[18\]](https://github.com/OpenZeppelin/openzeppelin-solidity) developed by OpenZeppelin.
 
 However, we found the fact that a majority of issues in buggy Token contracts come from refering, copying and modifying code without caution. Also, using incorrect example code is a cause. It is difficult for beginners and developers of smart contracts to determine whether a contract snippet from main net contains bugs and identify these issues in seconds.
 
@@ -127,17 +139,24 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 ## References
 
-1. [ERC20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), Nov 19, 2015
-2. [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
-3. [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e), Apr 23, 2018
-4. [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
-5. [UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468)](https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e), May 3, 2018
-6. [Bugged Smart Contract FuturXE: How Could Someone Mess up with Boolean? (CVE-2018–12025)](https://medium.com/secbit-media/bugged-smart-contract-f-e-how-could-someone-mess-up-with-boolean-d2251defd6ff), Jun 6, 2018
-7. [An Incompatibility in Ethereum Smart Contract Threatening dApp Ecosystem](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da), Jun 8, 2018
-8. [Redundant Check in ERC20 Smart Contracts’ approve()](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261), Jun 15, 2018
-9. [Highly-Manipulatable ERC20 Tokens Identified in Multiple Top Exchanges](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a), Jun 9, 2018
-10. [A guide to smart contract security best practices](https://github.com/ConsenSys/smart-contract-best-practices)
-11. [OpenZeppelin, a framework to build secure smart contracts on Ethereum](https://github.com/OpenZeppelin/openzeppelin-solidity)
+- \[1\] [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), Nov 19, 2015
+- \[2\] [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
+- \[3\] [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e), Apr 23, 2018
+- \[4\] [SmartMesh Announcement on Ethereum Smart Contract Overflow Vulnerability](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)
+- [5] 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制, <https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ>
+- [6] 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？, <https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA>
+- [7] ERC20智能合约整数溢出系列漏洞披露, <https://www.secrss.com/articles/3289>
+- [8]【得得预警】ERC20智能合约又现大量整数溢出漏洞, <http://www.chaindd.com/3083754.html>
+- \[9\] [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
+- \[10\] [UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468)](https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e), May 3, 2018
+- \[11\] [Bugged Smart Contract FuturXE: How Could Someone Mess up with Boolean? (CVE-2018–12025)](https://medium.com/secbit-media/bugged-smart-contract-f-e-how-could-someone-mess-up-with-boolean-d2251defd6ff), Jun 6, 2018
+- \[12\] [An Incompatibility in Ethereum Smart Contract Threatening dApp Ecosystem](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da), Jun 8, 2018
+- \[13\] [Redundant Check in ERC20 Smart Contracts’ approve()](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261), Jun 15, 2018
+- \[14\] [token-erc20: add event Approval to follow eip20](https://github.com/ethereum/ethereum-org/pull/865)
+- \[15\] [DASP - Top 10 of 2018](https://www.dasp.co/)
+- \[16\] [Highly-Manipulatable ERC20 Tokens Identified in Multiple Top Exchanges](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a), Jun 9, 2018
+- \[17\] [A guide to smart contract security best practices](https://github.com/ConsenSys/smart-contract-best-practices)
+- \[18\] [OpenZeppelin, a framework to build secure smart contracts on Ethereum](https://github.com/OpenZeppelin/openzeppelin-solidity)
 
 ## License
 
