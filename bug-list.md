@@ -1,17 +1,22 @@
-# Token 合约常见安全问题汇总
+# Token 合约已揭露安全漏洞问题汇总
 
 以太坊平台上，在已部署的数以万计份合约中，Token合约占据了半壁江山，这些Token合约承载的价值更是不可估量。然而由于诸多因素的限制，智能合约的开发还存在很多的不足之处，接二连三爆出的安全事件就是最好的印证。
 
 安比（SECBIT）实验室收录了token合约中目前已披露的绝大部分安全问题，将问题分为三大类：
 
-* A类问题：合约漏洞，涵盖了所有合约代码功能实现和逻辑实现上的漏洞，如overflow。
-* B类问题：合约不兼容问题 ，涵盖了所有因版本不兼容而导致问题，如ERC20接口无返回值。
+* A类问题：合约漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。
+* B类问题：合约不兼容问题 ，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。
 * C类问题：权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。
+
+//目录
+
+//concensys
+
+//
 
 希望本文能够帮助大家快速了解这些安全漏洞，提高安全意识，避免重复踩坑，杜绝不必要的损失。
 
 对于新发现的Token合约安全问题，本文也将持续更新...
-
 
 
 ## A. 漏洞问题列表
@@ -20,9 +25,9 @@
 
 * 问题描述
 
-    batchTransfer()函数的功能是用来做批量转账。调用者可以传入若干个转账地址和转账金额，函数首先执行了一系列的检查，再依次对balances进行增减操作，以实现 Token 的转移。但是当传入值_value过大时，`uint256 amount = uint256(cnt) * _value` 会发生溢出（overflow），导致amount变量不等于cnt倍的 _value，而是变成一个很小的值，从而通过`require( _value > 0 && balances[msg.sender] >= amount)` 中对转账发起者的余额校验，继而实际转出超过 `balances[msg.sender]` 的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
+    batchTransfer()函数的功能是批量转账。调用者可以传入若干个转账地址和转账金额，函数首先执行了一系列的检查，再依次对balances进行增减操作，以实现 Token 的转移。但是当传入值_value过大时，`uint256 amount = uint256(cnt) * _value` 会发生溢出（overflow），导致amount变量不等于cnt倍的 _value，而是变成一个很小的值，从而通过`require( _value > 0 && balances[msg.sender] >= amount)` 中对转账发起者的余额校验，继而实际转出超过 `balances[msg.sender]` 的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
 
-* 示例代码
+* 问题代码
 
     ```js
     function batchTransfer(address[] _receivers, uint256 _value) public whenNotPaused returns (bool) {
@@ -40,7 +45,7 @@
     }
     ```
 
-* 规避方案
+* 正确的写法
 
     使用诸如safeMath的安全运算方式来运算。
 
@@ -467,14 +472,19 @@
     }
     ```
 
+* 规避方案
+
+    对0x0地址做特殊处理。
+
 * 问题合约列表
+
     * SmartMesh Token (SMT)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
 
 * 相关链接
 
-    - [New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376)](https://peckshield.com/2018/04/25/proxyOverflow/)
+    * [New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376)](https://peckshield.com/2018/04/25/proxyOverflow/)
 
 ### A13. approveProxy-keccak256
 
@@ -505,14 +515,57 @@
     }
     ```
 
+* 规避方案
+
+    对0x0地址做特殊处理。
+
 * 问题合约列表
+
     * SmartMesh Token (SMT)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
 
 * 相关链接
 
-    - [New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376)](https://peckshield.com/2018/04/25/proxyOverflow/)
+    * [New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376)](https://peckshield.com/2018/04/25/proxyOverflow/)
+
+### A14. constructor-case-insentive
+
+* 问题描述
+
+  合约开发过程中，误将构造函数的大小写写错，使得函数名称与合约名称不一致，因而任何人都可以调用这个函数。
+
+* 示例代码 
+
+  ```js
+  contract Owned {
+      address public owner;
+      function owned() public {
+          owner = msg.sender;
+      }
+      modifier onlyOwner {
+          require(msg.sender == owner);
+          _;
+      }
+      function transferOwnership(address newOwner) onlyOwner public {
+          owner = newOwner;
+      }
+  }
+  ```
+
+* 规避方案
+
+  把构造函数名写为constructor。
+
+* 问题合约列表
+
+  * MORPH (MORPH) 
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insentive_o.csv)
+
+* 相关链接
+
+  * [一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157&tag=1) 
 
 
 
@@ -626,7 +679,74 @@
 
     - [数千份以太坊 Token 合约不兼容问题浮出水面，恐严重影响DAPP生态](https://mp.weixin.qq.com/s/1MB-t_yZYsJDTPRazD1zAA)
 
+### B4. no-decimals
 
+- 问题描述
+
+  在token合约中通常使用decimals变量来表示token的小数点后的位数，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的decimals来命名，致使外部合约调用时无法兼容。
+
+- 示例代码
+
+  ```js
+  uint8 public DECIMALS;
+  ```
+
+- 问题合约列表 
+
+  - Loopring (LRC)
+
+  - ICON (ICX)
+
+  - HPBCoin (HPB)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals_o.csv)
+
+
+### B5. no-name
+
+- 问题描述
+
+  在token合约中通常使用name变量来表示token的名称，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的name，致使外部合约调用时无法兼容。
+
+- 示例代码
+
+  ```js
+  string public NAME;
+  ```
+
+- 问题合约列表 
+
+  - Loopring (LRC)
+
+  - ICON (ICX)
+
+  - HPBCoin (HPB)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name_o.csv)
+
+### B6. no-symbol 
+
+- 问题描述
+
+  在token合约中通常使用symbol变量来表示token的别名，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的symbol来命名，致使外部合约调用时无法兼容。
+
+- 示例代码
+
+  ```js
+  string public SYMBOL;
+  ```
+
+- 问题合约列表 
+
+  - Loopring (LRC)
+
+  - ICON (ICX)
+
+  - HPBCoin (HPB)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol_o.csv)
+
+    
 
 ## C. 权限管理问题列表
 
@@ -726,3 +846,5 @@ SECBIT: 美链(BEC)合约安全事件分析全景, Apr 23, 2018.
 [12] https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币, Jun 9,2018.
 
 [13] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
+
+[14] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
