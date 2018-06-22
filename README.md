@@ -7,6 +7,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
+
 Read the docs in Chinese: https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md
 
 ## Problems in ERC20 Token Contracts
