@@ -33,7 +33,7 @@ with open('issues.json', 'r') as f:
     issue_dict = json.load(f)
     print("issues.json loaded.")
 
-csv_header = "addr,category,name,symbol,info\n"
+csv_header = "addr,category,name,symbol,exchanges,info\n"
 
 write_csv = True
 
@@ -44,9 +44,16 @@ def export_data(output_file, data_dict):
     csv.write(csv_header)
     for addr in data_dict:
         detail = data_dict[addr]
+        print("export_data> addr in top token:", addr, "detail:", detail)
         name = detail['name']
         symbol = detail['symbol']
-        result = f"{addr},{issue_type},{name},{symbol},_\n"
+        exs = detail['exchanges']
+        exchanges = ""
+        if 'exchanges' in detail:
+            exs = detail['exchanges']
+            for ex in exs:
+                exchanges += f"@{ex}"
+        result = f"{addr},{issue_type},{name},{symbol},{exchanges},_\n"
         csv.write(result)
     csv.close()
     print("---\nsave to %s\n---" % csv_saved)
@@ -66,6 +73,13 @@ def export_data_summary(output_file, data_dict):
         name = detail['name']
         symbol = detail['symbol']
         issues = detail['issues']
+
+        exchanges = ""
+        if 'exchanges' in detail:
+            exs = detail['exchanges']
+            for ex in exs:
+                exchanges += f"@{ex}"
+
         issue_list = []
         for issue in issues:
             issue_list.append(issue_dict[issue])
@@ -73,7 +87,7 @@ def export_data_summary(output_file, data_dict):
         category = ""
         for issue in issue_list:
             category += f"[{issue}]"
-        result = f"{addr},{category},{name},{symbol},_\n"
+        result = f"{addr},{category},{name},{symbol},{exchanges},_\n"
         csv.write(result)
     csv.close()
     print("---\nsummary save to %s\n---" % csv_saved)
@@ -99,7 +113,7 @@ for input_file in input_files:
 
             if addr in TOKEN_DETAIL_DICT:
                 token_detail = copy.deepcopy(TOKEN_DETAIL_DICT[addr])
-                # print("addr in top token:", addr, "detail:", token_detail)
+                print("addr in top token:", addr, "detail:", token_detail)
                 
                 FINAL_DICT[addr] = token_detail
                 name = token_detail['name']
