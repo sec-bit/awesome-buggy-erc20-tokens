@@ -13,7 +13,7 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 - [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bad_top_tokens.csv) to search for bugs in a Token contract
 - [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md) for a detailed description of all bugs and Token contracts affected
-- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md#%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) if you find a mistake or anything missed in this repo
+- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens#how-to-contribute) if you find a mistake or anything missed in this repo
 
 ## Recent Updates
 
@@ -23,23 +23,64 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Problems in ERC20 Token Contracts
 
-[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards[[1\]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). As of June 20th, 2018, more than 90,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
+[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards[[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). As of June 20th, 2018, more than 90,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
 
 ![ERC20 Contracts Created on main Ethereum network every day](img/erc20-creation.jpeg)
 
-Though a huge amount of assets are managed by those ERC20 token contracts, the contracts by themselves are not always secure as supposed. Lots of critical security issues have been revealed,  some of which have led to severe financial losses [2-6]. Another type of problems is the incompatibility. Some ERC20 token contracts do not follow the ERC20 standard strictly, which is troublesome to developers of DApps on ERC20 tokens [7, 8]. Other types of problems do exist in ERC20 token contracts as well.
+### Security Incidents in Smart Contracts
+
+ERC20 Token specification has gone through challenges and improvements during its growth. Lots of critical security issues have been revealed,  some of which have led to severe financial losses [2-11] for developers, investors, even Ethereum community as well.
+
+On June 18th, 2016, the DAO hack caused a total loss of over 3,600,000 ethers(ETH) worth over a billion dollars, and the Ethereum hard-fork afterwards led to the Ethereum community breaking apart [[2]](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993).
+
+On April 22th, 2018, the attack on BeautyChain(BEC) contract hardly decreased the token price to zero via pouring astronomical tokens to exchanges through an integer overflow [[3]](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e).
+
+On April 25th, 2018, a similar integer overflow got uncovered in SMT. Hackers minted and dumped a tremendous amount of tokens, resulting in SMT's collapse [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/).
+
+On May 20th, 2018, another integer overflow problem was found in EDU along with other three Token contracts, causing that anyone could transfer out other accounts' balance [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ). After further analysis, SECBIT Lab caught this bug in at least 81 contracts (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA).
+
+On June 12, 2018, a team led by Professor Zhang from Tsinghua -360 Enterprise Security Research Center uncovered a series of overflow bug in ERC20 smart contracts (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289). SECBIT Lab has revealed more than 800 contracts with the same problem after scanning over 20,000 contracts deployed on Etherscan [[8]](http://www.chaindd.com/3083754.html).
+
+### Failure of Satisfying ERC20 in Many ERC20 contracts
+
+Lots of ERC20 token contracts do not follow the ERC20 standard strictly, which is troublesome to developers of DApps on ERC20 tokens [12-14].
+
+Thousands of deployed Token contracts referred to incorrect example code on Ethereum official website and OpenZeppelin, resulting in several functions failing to meet ERC20 standard. After upgrading Solidity compiler to 0.4.22, incompatibilities would arise and these contracts could not perform normal transactions on decentralized exchanges (DEX) or DApp in most cases [[12]](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da), whereas a majority of DApp developing teams were off guard and unaware of such a problem.
+
+Several Token contracts added redundant checks in standard approve(), requiring that the approved \_amount smaller or equal to the current balance. However, it makes DEX employing protocols like 0x hard to finish approve() in advance, asking the Token developing team transfer a huge amount of tokens to the exchange's intermediate account ahead which violates the target of employing ERC20 standard and brings about inconvenience.
+
+Since it is defined optional to set common querying interfaces like name(), symbol() and decimals() in ERC20 specification [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), many Token contracts left them out or named them differently, such as NAME(), SYMBOL() and DECIMALS(), making it harder for DEX and DApp developing.
+
+Another point worth mentioning is that two events - Transfer and Approval should get fired under certain circumstances described by ERC20 specification [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). In fact, many Token contracts omitted Approval event referring to Ethereum official website [[14]](https://github.com/ethereum/ethereum-org/pull/865). This omission causes great difficulty for developers listening to relevant events, undermining the development of DApp ecosystem.
+
+### One Solution: Collecting Buggy Token Contracts
+
+Statistical summaries from security organizations and experts indicate that critical vulnerabilities are hiding in smart contracts, taking the 'TOP 10' by NCC group [[15]](https://www.dasp.co/) as an example:
+
+- Reentrancy
+- Access Control
+- Integer Overflow
+- Unchecked Return Values For Low Level Calls
+- Denial of Service
+- Bad Randomness
+- Front-Running
+- Time manipulation
+- Short Address Attack
+- Unknown Unknowns
+
+These might be just the tip of an iceberg. Recent research together with the aforementioned point of view state clearly that the scale of problems in smart contracts deployed on Ethereum could go beyond our imagination.
 
 We made a collection of past bugs and vulnerabilities, including:
 
 1. vulnerabilities in Token contracts
 2. incompatibilities due to inconsistency with ERC20
-3. excessive authorities of Token administrators [[16\]](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a)
+3. excessive authorities of Token administrators [[16]](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a)
 
 ## Why This Repo?
 
-There are many projects in Ethereum community contributing to the ecosystem of smart contracts, such as 'A guide to smart contract security best practices' [[17\]](https://github.com/ConsenSys/smart-contract-best-practices) maintained by Consensys and 'OpenZeppelin, a framework to build secure smart contracts on Ethereum' [[18\]](https://github.com/OpenZeppelin/openzeppelin-solidity) developed by OpenZeppelin.
+There are many projects in Ethereum community contributing to the ecosystem of smart contracts, such as 'A guide to smart contract security best practices' [[17]](https://github.com/ConsenSys/smart-contract-best-practices) maintained by Consensys and 'OpenZeppelin, a framework to build secure smart contracts on Ethereum' [[18]](https://github.com/OpenZeppelin/openzeppelin-solidity) developed by OpenZeppelin.
 
-However, we found the fact that a majority of issues in buggy Token contracts come from refering, copying and modifying code without caution. Also, using incorrect example code is a cause. It is difficult for beginners and developers of smart contracts to determine whether a contract snippet from main net contains bugs and identify these issues in seconds.
+However, we found the fact that a majority of issues in buggy Token contracts come from refering, copying and modifying code without caution. Also, using incorrect example code is an origin of bugs. It is difficult for beginners and developers of smart contracts to determine whether a contract snippet from main net contains bugs and identify these issues in seconds.
 
 In the belief that human-beings are good at learning from mistakes, we created this repo and would keep collecting known bugs and vulnerabilities in ERC20 token contracts, along with those got affected.
 
