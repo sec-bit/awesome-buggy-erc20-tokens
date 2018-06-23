@@ -38,9 +38,9 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 2018 年 4 月 25 日，SMT 爆出类似的整数溢出漏洞，黑客通过漏洞制造和抛售了天文数字规模的 Token，导致 SMT 价格崩盘 [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)。
 
-2018 年 5 月 20 日，又是整数溢出漏洞导致任何人可以将任何用户的 EDU 账户转出，同时还有其它 3 个 Token 也出现了相同问题 [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。SECBIT 实验室对以太坊上所有的智能合约的进一步深入分析表明，至少有81个合约具有相同的漏洞 (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
+2018 年 5 月 20 日，又是整数溢出漏洞导致任何人可以将任何用户的 EDU 账户转出，同时还有其它 3 个 Token 也出现了相同问题 [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。我们对以太坊上所有的智能合约的进一步深入分析表明，至少有81个合约具有相同的漏洞 (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
 
-2018 年 6 月 12 日，某安全团队又发现了一系列 ERC20 智能合约整数溢出漏洞 (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289)。SECBIT 实验室在对以太坊上已部署的 2 万多个合约的分析检测后，发现有 800 多个合约受到这些漏洞影响 [[8]](http://www.chaindd.com/3083754.html)。
+2018 年 6 月 12 日，某安全团队又发现了一系列 ERC20 智能合约整数溢出漏洞 (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289)。我们对以太坊上已部署的 2 万多个合约的分析检测后，发现有 800 多个合约受到这些漏洞影响 [[8]](http://www.chaindd.com/3083754.html)。
 
 ### 众多 ERC20 Token 实现不规范
 
@@ -185,8 +185,8 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 - [2] [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
 - [3] [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e), Apr 23, 2018
 - [4] [SmartMesh Announcement on Ethereum Smart Contract Overflow Vulnerability](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)
-- [5] 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制, https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ
-- [6] 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？, https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA
+- [5] SECBIT: 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制, https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ
+- [6] SECBIT: 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？, https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA
 - [7] 清华-360企业安全联合研究中心：ERC20智能合约整数溢出系列漏洞披露, https://www.secrss.com/articles/3289
 - [8] 【得得预警】ERC20智能合约又现大量整数溢出漏洞, http://www.chaindd.com/3083754.html
 - [9] [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
