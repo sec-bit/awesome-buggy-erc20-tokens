@@ -94,7 +94,7 @@
 
 * 问题描述
 
-    batchTransfer()函数的功能是批量转账。调用者可以传入若干个转账地址和转账金额，函数首先执行了一系列的检查，再依次对balances进行增减操作，以实现 Token 的转移。但是当传入值_value过大时，`uint256 amount = uint256(cnt) * _value` 会发生溢出（overflow），导致amount变量不等于cnt倍的 _value，而是变成一个很小的值，从而通过`require( _value > 0 && balances[msg.sender] >= amount)` 中对转账发起者的余额校验，继而实际转出超过 `balances[msg.sender]` 的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
+    `batchTransfer()` 函数的功能是批量转账。调用者可以传入若干个转账地址和转账金额，函数首先执行了一系列的检查，再依次对 `balances` 进行增减操作，以实现 Token 的转移。但是当传入值 `_value` 过大时，`uint256 amount = uint256(cnt) * _value` 会发生溢出（overflow），导致 `amount` 变量不等于`cnt`倍的 `_value`，而是变成一个很小的值，从而通过`require( _value > 0 && balances[msg.sender] >= amount)` 中对转账发起者的余额校验，继而实际转出超过 `balances[msg.sender]` 的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
 
 * 错误的代码实现
 
@@ -116,7 +116,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -151,7 +151,7 @@
 
 * 问题描述
 
-    totalsupply 通常为合约中代币的总量。 在问题合约代码中，当 token 总量发生变化时，对 totalSupply 做加减运算，并没有校验也没有使用 safeMath，从而是的totalSupply 有可能发生溢出。
+    `totalsupply` 通常为合约中代币的总量。 在问题合约代码中，当 token 总量发生变化时，对 `totalSupply` 做加减运算，并没有校验也没有使用 `SafeMath`，从而使得 `totalSupply` 有可能发生溢出。
 
 * 错误的代码实现 
 
@@ -166,7 +166,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -214,7 +214,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -243,7 +243,7 @@
 
 * 问题描述
 
-    部分合约中，用户在以太和token之间进行兑换，兑换的价格由owner完全控制，若owner想要作恶，可以通过构造一个很大的兑换值，使得计算要兑换出的以太时发生溢出，将原本较大的一个eth数额变为较小的值，因而使得用户只能拿到很少量的以太。(CVE-2018-11811)
+    部分合约中，用户在以太和token之间进行兑换，兑换的价格由 `owner` 完全控制，若`owner` 想要作恶，可以通过构造一个很大的兑换值，使得计算要兑换出的以太时发生溢出，将原本较大的一个eth数额变为较小的值，因而使得用户只能拿到很少量的以太。(CVE-2018-11811)
 
 * 错误的代码实现
 
@@ -257,7 +257,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -289,7 +289,7 @@
 
 * 问题描述
 
-    owner账户在向其它账户转账时候，通过转出多于账户余额的Token数量，来给 `balances[owner]` 制造下溢，实现对自身账户余额的任意增加。(CVE-2018-11687)
+    `owner` 账户在向其它账户转账时候，通过转出多于账户余额的Token数量，来给 `balances[owner]` 制造下溢，实现对自身账户余额的任意增加。(CVE-2018-11687)
 
 * 错误的代码实现
 
@@ -305,7 +305,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -342,7 +342,7 @@
 
 * 问题描述
 
-    有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。(CVE-2018-11812)
+    有铸币权限的 `owner` 可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。(CVE-2018-11812)
 
 * 错误的代码实现
 
@@ -357,7 +357,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -392,7 +392,7 @@
 
 * 问题描述
 
-    owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。(CVE-2018-11810)
+    `owner` 在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。(CVE-2018-11810)
 
 * 错误的代码实现
 
@@ -421,7 +421,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -465,7 +465,7 @@
 
 * 问题描述
 
-    owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。(CVE-2018-11809)
+    `owner` 可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。(CVE-2018-11809)
 
 * 错误的代码实现
 
@@ -483,7 +483,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -540,7 +540,7 @@
 
 * 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    使用诸如 `SafeMath` 的安全运算方式来运算。
 
     ```js
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -580,7 +580,7 @@
 
 * 问题描述
 
-  在transferFrom()函数中，当对allownce值做校验的时，误将校验逻辑写反，从而使得合约代码的逻辑判断错误。有可能造成溢出或者任何人都能转出任何账户的余额。([CVE-2018-10468](https://nvd.nist.gov/vuln/detail/CVE-2018-10468))
+  在 `transferFrom()` 函数中，当对allownce值做校验的时，误将校验逻辑写反，从而使得合约代码的逻辑判断错误。有可能造成溢出或者任何人都能转出任何账户的余额。([CVE-2018-10468](https://nvd.nist.gov/vuln/detail/CVE-2018-10468))
 
 * 错误的代码实现
 
@@ -677,7 +677,7 @@
 
 - 问题描述
 
-  onlyFromWallet中的判断条件将 `==`  写反了，写成了`!=`，使得除了walletAddress以外，所有账户都可以调用enableTokenTransfer 和 disableTokenTransfer 函数。
+  `onlyFromWallet` 中的判断条件将 `==`  写反了，写成了`!=`，使得除了 `walletAddress` 以外，所有账户都可以调用 `enableTokenTransfer()` 和 `disableTokenTransfer()` 函数。
 
 - 错误的代码实现
 
@@ -735,14 +735,14 @@
 
 * 问题描述
 
-    keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。([CVE-2018-10376](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-10376))
+    `keccak256()` 和 `ecrecover()` 都是内嵌的函数， `keccak256()` 可以用于计算公钥的签名， `ecrecover()` 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。([CVE-2018-10376](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-10376))
 
     ```js
     bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
     if(_from != ecrecover(hash,_v,_r,_s)) revert();
     ```
 
-    当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以将 0x0 地址的余额转出。
+    当 `ecrecover()` 的参数错误时候，返回 `0x0` 地址，如果 `_from` 也传入 `0x0` 地址，就能通过校验。也就是说，任何人都可以将 `0x0` 地址的余额转出。
 
 * 错误的代码实现
 
@@ -762,7 +762,7 @@
 
 * 推荐的代码实现
 
-    对0x0地址做特殊处理。
+    对 `0x0` 地址做特殊处理。
 
     ```js
     function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
@@ -792,14 +792,14 @@
 
 * 问题描述
 
-    keccak256() 和 ecrecover() 都是内嵌的函数，keccak256 可以用于计算公钥的签名，ecrecover 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。([CVE-2018-10376](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-10376))
+    `keccak256()` 和 `ecrecover()` 都是内嵌的函数， `keccak256()` 可以用于计算公钥的签名， `ecrecover()` 可以用来恢复签名公钥。传值正确的情况下，可以利用这两者函数来验证地址。([CVE-2018-10376](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-10376))
 
     ```js
     bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
     if(_from != ecrecover(hash,_v,_r,_s)) revert();
     ```
 
-    当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以获得 0x0地址的授权。
+    当 `ecrecover()` 的参数错误时候，返回 `0x0` 地址，如果 `_from` 也传入 `0x0` 地址，就能通过校验。也就是说，任何人都可以获得 `0x0` 地址的授权。
 
 * 错误的代码实现
 
@@ -819,7 +819,7 @@
 
 * 推荐的代码实现
 
-    对0x0地址做特殊处理。
+    对 `0x0` 地址做特殊处理。
 
     ```js
     function approveProxy(address _from, address _spender, uint256 _value,
@@ -871,12 +871,12 @@
 
 * 推荐的代码实现
 
-  把构造函数名写为constructor。
+  把构造函数名写为 `constructor`。
 
   ```js
   contract Owned {
       address public owner;
-      function constructor() public {
+      constructor() public {
           owner = msg.sender;
       }
       modifier onlyOwner {
@@ -903,7 +903,7 @@
 
 * 问题描述
 
-    Token 合约同时使用了 ERC223 的 Recommended 分支代码和 ds-auth 合约库，黑客可利用 ERC223 合约可传入自定义回调函数与 ds-auth 库授权校验的特征，在 ERC223 合约回调函数发起时，调用合约自身从而造成内部权限控制失效。
+    Token 合约同时使用了 ERC223 的 Recommended 分支代码和 `ds-auth` 合约库，黑客可利用 ERC223 合约可传入自定义回调函数与 `ds-auth` 库授权校验的特征，在 ERC223 合约回调函数发起时，调用合约自身从而造成内部权限控制失效。
 
 * 错误的代码实现 
 
@@ -935,14 +935,14 @@
 
 * 推荐的代码实现
 
-  - 尽量不要使用 ERC223 带 _custom_fallback 参数的版本，使用 tokenFallback 完成类似功能：
+  - 尽量不要使用 ERC223 带 `_custom_fallback` 参数的版本，使用 `tokenFallback` 完成类似功能：
     
     ```js
         ERC223Receiver receiver = ERC223Receiver(_to);
         receiver.tokenFallback(msg.sender, _value, _data);
     ```
 
-  - ds-auth 合约在判断权限的时候，不要把合约自身加入白名单
+  - `ds-auth` 合约在判断权限的时候，不要把合约自身加入白名单
 
     ```js
     function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
@@ -973,8 +973,8 @@
 
 * 问题描述
 
-  根据ERC20 合约规范，其中 transfer()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transfer()函数没有返回值。
-  但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 transfer()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transfer()函数调用将直接revert。
+  根据ERC20 合约规范，其中 `transfer()` 函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现， `transfer()` 函数没有返回值。
+  但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 `transfer()` 函数，在Solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后， `transfer()` 函数调用将直接 `revert`。
 
 * 错误的代码实现
 
@@ -1021,8 +1021,8 @@
 
 * 问题描述 
 
-    根据ERC20 合约规范，其中 approve()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，approve()函数没有返回值。
-    但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 approve()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，approve()函数调用将直接revert。
+    根据ERC20 合约规范，其中 `approve()` 函数应返回一个 `bool` 值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现， `approve()` 函数没有返回值。
+    但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 `approve()` 函数，在Solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后， `approve()` 函数调用将直接 `revert`。
 
 * 错误的代码实现
 
@@ -1063,8 +1063,8 @@
 
 * 问题描述 
 
-    根据ERC20 合约规范，其中 transferFrom()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transferFrom()函数没有返回值。
-    但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 transferFrom()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transferFrom()函数调用将直接revert。
+    根据ERC20 合约规范，其中 `transferFrom()` 函数应返回一个 `bool` 值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现， `transferFrom()` 函数没有返回值。
+    但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 `transferFrom()` 函数，在Solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后， `transferFrom()` 函数调用将直接 `revert`。
 
 * 错误的代码实现
 
@@ -1111,7 +1111,7 @@
 
 - 问题描述
 
-  在token合约中通常使用decimals变量来表示token的小数点后的位数，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的decimals来命名，致使外部合约调用时无法兼容。
+  在token合约中通常使用 `decimals` 变量来表示token的小数点后的位数，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的 `decimals` 来命名，致使外部合约调用时无法兼容。
 
 - 错误的代码实现
 
@@ -1121,7 +1121,7 @@
 
 - 推荐的代码实现
 
-  - 将DECIMALS改为小写
+  - 将 `DECIMALS` 改为小写
 
     ```js
     uint8 public decimals;
@@ -1152,7 +1152,7 @@
 
 - 问题描述
 
-  在token合约中通常使用name变量来表示token的名称，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的name，致使外部合约调用时无法兼容。
+  在token合约中通常使用 `name` 变量来表示token的名称，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的 `name`，致使外部合约调用时无法兼容。
 
 - 错误的代码实现
 
@@ -1162,7 +1162,7 @@
 
 - 推荐的代码实现
 
-  - 将NAME改为小写
+  - 将 `NAME` 改为小写
 
     ```js
     string public name;
@@ -1191,7 +1191,7 @@
 
 - 问题描述
 
-  在token合约中通常使用symbol变量来表示token的别名，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的symbol来命名，致使外部合约调用时无法兼容。
+  在token合约中通常使用 `symbol` 变量来表示token的别名，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的 `symbol` 来命名，致使外部合约调用时无法兼容。
 
 - 错误的代码实现
 
@@ -1201,7 +1201,7 @@
 
 - 推荐的代码实现
 
-  - 将SYMBOL改为小写
+  - 将 `SYMBOL` 改为小写
 
     ```js
     string public symbol;
@@ -1233,7 +1233,7 @@
 
 - 问题描述
 
-  setOwner()函数的作用是修改owner，通常情况下该函数只有当前 owner 可以调用。 但问题代码中，任何人都可以调用setOwner()函数，这就导致了任何人都可以修改合约的owner。([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
+  `setOwner()` 函数的作用是修改 `owner`，通常情况下该函数只有当前 `owner` 可以调用。 但问题代码中，任何人都可以调用 `setOwner()` 函数，这就导致了任何人都可以修改合约的 `owner`。([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
 
 - 错误的代码实现
 
@@ -1273,7 +1273,7 @@
 
 - 问题描述
 
-  onlycentralAccount账户可以任意转出他人账户上的余额。([CVE-2018-1000203](https://nvd.nist.gov/vuln/detail/CVE-2018-1000203))
+  `onlycentralAccount`账户可以任意转出他人账户上的余额。([CVE-2018-1000203](https://nvd.nist.gov/vuln/detail/CVE-2018-1000203))
 
 - 错误的代码实现 
 
