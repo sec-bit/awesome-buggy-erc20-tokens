@@ -867,7 +867,73 @@
 
   * [一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157&tag=1) 
 
+### A15. custom-fallback-bypass-ds-auth
 
+* 问题描述
+
+    Token 合约同时使用了 ERC223 的 Recommended 分支代码和 ds-auth 合约库，黑客可利用 ERC223 合约可传入自定义回调函数与 ds-auth 库授权校验的特征，在 ERC223 合约回调函数发起时，调用合约自身从而造成内部权限控制失效。
+
+* 错误的代码实现 
+
+    ```js
+    function transferFrom(
+        address _from, 
+        address _to, 
+        uint256 _amount, 
+        bytes _data, 
+        string _custom_fallback
+        ) 
+        public returns (bool success)
+    {
+        ...
+        ERC223ReceivingContract receiver = ERC223ReceivingContract(_to);
+        receiving.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
+        ...
+    }
+
+    function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
+        if (src == address(this)) {
+            return true;
+        } else if (src == owner) {
+            return true;
+        }
+        ...
+    }
+    ```
+
+* 推荐的代码实现
+
+  - 尽量不要使用 ERC223 带 _custom_fallback 参数的版本，使用 tokenFallback 完成类似功能：
+    
+    ```js
+        ERC223Receiver receiver = ERC223Receiver(_to);
+        receiver.tokenFallback(msg.sender, _value, _data);
+    ```
+
+  - ds-auth 合约在判断权限的时候，不要把合约自身加入白名单
+
+    ```js
+    function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
+        if (src == address(this)) {
+            return true;
+        } else if (src == owner) {
+            return true;
+        }
+        ...
+    }
+    ```
+
+* 问题合约列表
+
+  * ATN (ATN) （官方已通过增加 Guard 合约的方式修复）
+
+    [more...](csv/custom-fallback-bypass-ds-auth_o.csv)
+
+* 相关链接
+
+  * [ATN抵御合约攻击的报告](https://atn.io/resource/aareport.pdf)
+  * [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
+  * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
 
 ## B.不兼容问题列表
 

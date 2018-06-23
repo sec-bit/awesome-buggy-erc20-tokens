@@ -17,6 +17,7 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Recent Updates
 
+- [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](issue-list.md#custom-fallback-bypass-ds-auth)
 - [2018-06-22, MORPH, a14-constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
 - [2018-06-16, ICX, a11-pausetransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
 - [2018-06-12, PKT, a8-excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
