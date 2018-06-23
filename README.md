@@ -106,8 +106,8 @@ awesome-buggy-erc20-tokens
 ├── TOKEN_DETAIL_DICT.json
 ├── ERC20_token_issue_list_CN.md
 ├── issues.json
-├── badtop600token.csv
-├── badtop600token.json
+├── bad_top_tokens.csv
+├── bad_top_tokens.json
 ├── raw/
 ├── csv/
 ├── json/
