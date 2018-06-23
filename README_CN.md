@@ -10,17 +10,17 @@
 ## 快速提示
 
 - 所有问题 Token 合约总表，[点此直达](bad_top_tokens.csv)
-- 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](issue-list.md)
+- 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](ERC20_token_issue_list_CN.md)
 - 本项目列表正在持续更新，如有遗漏和误报，[欢迎指正](#如何参与贡献)
 
 ## 最近更新
 
 - 各 Token 列表中加入 totalSupply、 decimals、已上交易所等信息
-- [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](issue-list.md#custom-fallback-bypass-ds-auth)
-- [2018-06-22, MORPH, a14-constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
-- [2018-06-16, ICX, a11-pausetransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
-- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
-- [2018-06-08, ITC, b1-transfer-no-return](issue-list.md#b1-transfer-no-return)
+- [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#custom-fallback-bypass-ds-auth)
+- [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list_CN.md#a14-constructor-case-insentive)
+- [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list_CN.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](ERC20_token_issue_list_CN.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, b1-transfer-no-return](ERC20_token_issue_list_CN.md#b1-transfer-no-return)
 
 ## ERC20 Token 面临的主要问题
 
@@ -101,7 +101,7 @@ ERC20 标准中还规定了 `Transfer` 和 `Approval` 两个事件必须在特�
 awesome-buggy-erc20-tokens
 ├── TOKEN_DICT.json
 ├── TOKEN_DETAIL_DICT.json
-├── issue-list.md
+├── ERC20_token_issue_list_CN.md
 ├── issues.json
 ├── badtop600token.csv
 ├── badtop600token.json
@@ -114,7 +114,7 @@ awesome-buggy-erc20-tokens
 
 - [`TOKEN_DICT.json`](TOKEN_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和基本信息
 - [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和详细信息
-- [`issue-list.md`](issue-list.md) 包含已知漏洞的详细描述
+- [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) 包含已知漏洞的详细描述
 - [`issues.json`](issues.json) 是已知漏洞和代号编码的映射
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) 和 [`bad_top_tokens.json`](bad_top_tokens.json) 是问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
 - [`raw/`](raw)、[`csv/`](csv) 和 [`json/`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
@@ -171,7 +171,7 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
 
-- 在 [`issue-list.md`](issue-list.md) 文件中添加漏洞名称和描述，附上引用出处地址
+- 在 [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) 文件中添加漏洞名称和描述，附上引用出处地址
 - 在 [`raw`](raw) 文件夹中创建以漏洞名称命名的新文件，填入受影响的合约地址
 - 在 [`issues.json`](issues.json) 中增加新漏洞的名称和序列号
 - 在项目根目录运行 `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
