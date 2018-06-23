@@ -9,7 +9,7 @@
 本文收录了token合约中目前已披露的安全风险问题，旨在帮助大家快速了解这些安全风险，提高安全意识，避免重复踩坑，杜绝不必要的损失。同时也建议大家在合约开发过程中参考安全标准的开发指导说明和规范源码，如「[以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices)」。
 
 ## 最近更新
-
+* 2018-06-23，添加如何参与贡献和版权声明
 * 2018-06-23，添加快速导航
 * 2018-06-22，新增问题分类：no-decimals，no-name，no-symbol
 * 2018-06-22，新增问题分类：constructor-case-insentive
@@ -1129,7 +1129,6 @@
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol_o.csv)
 
     
-
 ## C. 权限管理问题列表
 
 ### C1. setowner-anyone
