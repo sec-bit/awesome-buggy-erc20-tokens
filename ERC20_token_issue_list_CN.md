@@ -51,7 +51,41 @@
   - [B6. no-symbol](#b6-no-symbol)
 - [C. 权限管理问题列表](#c-权限管理问题列表)
   - [C1. setowner-anyone](#c1-setowner-anyone)
+
   - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
+
+    
+
+## 如何参与贡献
+
+我们希望通过此项目为以太坊生态做出一点贡献。
+
+我们会长期维护本文，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
+
+如果您发现了本文未收录的问题，欢迎按照以下流程贡献更新：
+
+- 对问题进行分类，编号(分类名+数字，如A1，B2)
+
+- 在对应问题列表中按照如下模板，添加问题的详细描述
+
+  ```makedown
+  ### 编号. 问题名称
+  * 问题描述
+  * 错误的代码实现
+  * 推荐的代码实现
+  * 问题合约列表
+  * 相关链接
+  ```
+
+- 补充 [快速导航](#快速导航)
+
+- 添加引用问题的出处
+
+- 补充`raw`，`issues.json`文件中该问题相应的内容，运行脚本[具体步骤](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md#%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE)
+
+- 检查更改的文件，提交更新
+
+如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
 
 
 
@@ -867,73 +901,7 @@
 
   * [一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157&tag=1) 
 
-### A15. custom-fallback-bypass-ds-auth
 
-* 问题描述
-
-    Token 合约同时使用了 ERC223 的 Recommended 分支代码和 ds-auth 合约库，黑客可利用 ERC223 合约可传入自定义回调函数与 ds-auth 库授权校验的特征，在 ERC223 合约回调函数发起时，调用合约自身从而造成内部权限控制失效。
-
-* 错误的代码实现 
-
-    ```js
-    function transferFrom(
-        address _from, 
-        address _to, 
-        uint256 _amount, 
-        bytes _data, 
-        string _custom_fallback
-        ) 
-        public returns (bool success)
-    {
-        ...
-        ERC223ReceivingContract receiver = ERC223ReceivingContract(_to);
-        receiving.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
-        ...
-    }
-
-    function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
-        if (src == address(this)) {
-            return true;
-        } else if (src == owner) {
-            return true;
-        }
-        ...
-    }
-    ```
-
-* 推荐的代码实现
-
-  - 尽量不要使用 ERC223 带 _custom_fallback 参数的版本，使用 tokenFallback 完成类似功能：
-    
-    ```js
-        ERC223Receiver receiver = ERC223Receiver(_to);
-        receiver.tokenFallback(msg.sender, _value, _data);
-    ```
-
-  - ds-auth 合约在判断权限的时候，不要把合约自身加入白名单
-
-    ```js
-    function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
-        if (src == address(this)) {
-            return true;
-        } else if (src == owner) {
-            return true;
-        }
-        ...
-    }
-    ```
-
-* 问题合约列表
-
-  * ATN (ATN) （官方已通过增加 Guard 合约的方式修复）
-
-    [more...](csv/custom-fallback-bypass-ds-auth_o.csv)
-
-* 相关链接
-
-  * [ATN抵御合约攻击的报告](https://atn.io/resource/aareport.pdf)
-  * [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
-  * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
 
 ## B.不兼容问题列表
 
@@ -1273,36 +1241,6 @@
 - 相关链接
 
   - [ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币](https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg)
-
-
-
-
-## 如何参与贡献
-
-我们希望通过此项目为以太坊生态做出一点贡献。
-
-我们会长期维护本文，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
-
-如果您发现了本文未收录的问题，欢迎按照以下流程贡献更新：
-
-* 对问题进行分类，编号(分类名+数字，如A1，B2)
-* 在对应问题列表中按照如下模板，添加问题的详细描述
-    ```makedown
-    ### 编号. 问题名称
-    * 问题描述
-    * 错误的代码实现
-    * 推荐的代码实现
-    * 问题合约列表
-    * 相关链接
-    ```
-* 补充 [快速导航](#快速导航)
-* 添加引用问题的出处
-* 补充`raw`，`issues.json`文件中该问题相应的内容，运行脚本[具体步骤](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md#%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE)
-* 检查更改的文件，提交更新
-
-如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
-
-
 
 ## Reference 
 
