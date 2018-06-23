@@ -171,13 +171,14 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 We hope this collection can contribute to the Ethereum ecosystem and definitely welcome contributions to this collection.
 
-- This collection only contains token contracts that have market caps on [CoinMarketCap](https://coinmarketcap.com/) for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
-- If you find other bugs not listed in this collection, please update in the following process.
-  1. Add the name and description of the bug with reference to [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md)
-  2. Create a new file with the bug name in [`raw`](raw) directory and fill in the address of affected contracts
-  3. Add the name and index of the new bug to [`issues.json`](issues.json)
-  4. Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens` in the repo root
-  5. Check the update and send us a pull request
+This collection only contains token contracts that have market caps on CoinMarketCap for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
+
+If you find other bugs not listed in this collection, please update in the following process.
+  - Add the name and description of the bug with reference to [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md)
+  - Create a new file with the bug name in [`raw`](raw) directory and fill in the address of affected contracts
+  - Add the name and index of the new bug to [`issues.json`](issues.json)
+  - Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens` in the repo root
+  - Check the update and send us a pull request
 
 If you have any questions or ideas, please join our discussion on [Gitter](https://gitter.im/sec-bit/Lobby).
 
