@@ -33,7 +33,7 @@ with open('issues.json', 'r') as f:
     issue_dict = json.load(f)
     print("issues.json loaded.")
 
-csv_header = "addr,category,name,symbol,exchanges,info\n"
+csv_header = "addr,category,name,symbol,exchanges,totalSupply,decimals,info\n"
 
 write_csv = True
 
@@ -48,12 +48,14 @@ def export_data(output_file, data_dict):
         name = detail['name']
         symbol = detail['symbol']
         exs = detail['exchanges']
+        totalSupply = detail['totalSupply']
+        decimals = detail['decimals']
         exchanges = ""
         if 'exchanges' in detail:
             exs = detail['exchanges']
             for ex in exs:
                 exchanges += f"@{ex}"
-        result = f"{addr},{issue_type},{name},{symbol},{exchanges},_\n"
+        result = f"{addr},{issue_type},{name},{symbol},{exchanges},{totalSupply},{decimals},_\n"
         csv.write(result)
     csv.close()
     print("---\nsave to %s\n---" % csv_saved)
@@ -73,7 +75,8 @@ def export_data_summary(output_file, data_dict):
         name = detail['name']
         symbol = detail['symbol']
         issues = detail['issues']
-
+        totalSupply = detail['totalSupply']
+        decimals = detail['decimals']
         exchanges = ""
         if 'exchanges' in detail:
             exs = detail['exchanges']
@@ -87,7 +90,7 @@ def export_data_summary(output_file, data_dict):
         category = ""
         for issue in issue_list:
             category += f"[{issue}]"
-        result = f"{addr},{category},{name},{symbol},{exchanges},_\n"
+        result = f"{addr},{category},{name},{symbol},{exchanges},{totalSupply},{decimals},_\n"
         csv.write(result)
     csv.close()
     print("---\nsummary save to %s\n---" % csv_saved)
