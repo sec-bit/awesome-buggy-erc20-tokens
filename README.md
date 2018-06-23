@@ -11,15 +11,16 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Navigation
 
-- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bad_top_tokens.csv) to search for bugs in a Token contract
-- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md) for a detailed description of all bugs and Token contracts affected
-- [Click here](https://github.com/sec-bit/awesome-buggy-erc20-tokens#how-to-contribute) if you find a mistake or anything missed in this repo
+- [Click here](bad_top_tokens.csv) to search for bugs in a Token contract
+- [Click here](issue-list.md) for a detailed description of all bugs and Token contracts affected
+- [Click here](#how-to-contribute) if you find a mistake or anything missed in this repo
 
 ## Recent Updates
 
-- [2018-06-16, ICX, pauseTransfer-anyone](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#a11-pausetransfer-anyone)
-- [2018-06-12, PKT, excess-mint-token-by-overflow](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#a8-excess-mint-token-by-overflow)
-- [2018-06-08, ITC, transfer-no-return](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/bug-list.md#b1-transfer-no-return)
+- [2018-06-22, MORPH, a14-constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
+- [2018-06-16, ICX, a11-pausetransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, b1-transfer-no-return](issue-list.md#b1-transfer-no-return)
 
 ## Problems in ERC20 Token Contracts
 
@@ -102,64 +103,65 @@ We created and would maintain this collection with good intentions, including bu
 
 ```bash
 awesome-buggy-erc20-tokens
+├── TOKEN_DICT.json
 ├── TOKEN_DETAIL_DICT.json
-├── bug-list.md
+├── issue-list.md
 ├── issues.json
 ├── badtop600token.csv
 ├── badtop600token.json
 ├── raw/
 ├── csv/
 ├── json/
+├── gen_token_detail_dict.py
 └── gen_list_from_raw.py
 ```
-
-- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
-- [`bug-list.md`](bug-list.md) lists detailed descriptions of known bugs.
+- [`TOKEN_DICT.json`](TOKEN_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and detailed information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`issue-list.md`](issue-list.md) lists detailed descriptions of known bugs.
 - [`issues.json`](issues.json) maps between known bugs and indexes.
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) along with [`bad_top_tokens.json`](bad_top_tokens.json) are lists of buggy Token contracts in CSV and JSON formats.
 -  [`raw/`](raw), [`csv/`](csv) and [`json/`](json) list all known bugs and addresses of affected contracts in formats of plain text, CSV and JSON.
+- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) is a script to update [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json)
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) is a script to generate ```.csv``` and ```.json``` lists above.
 
 As shown below, lists in CSV and JSON help developers to browse and search for addresses of given contracts with known vulnerabilities.
 
 ```csv
-addr,category,name,symbol,info
-0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[7],Dignity,DIG,_
-0x0aeF06DcCCC531e581f0440059E6FfCC206039EE,[1],Intelligent Trading Technologies,ITT,_
-0x0b76544F6C413a555F309Bf76260d1E02377c02A,[1][12][14][7],Internet Node Token,INT,_
+addr,category,name,symbol,exchanges,totalSupply,decimals,info
+0x014B50466590340D41307Cc54DCee990c8D58aa8,[B6],ICOS,ICOS,@HitBTC@Tidex,560417,6,_
+0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,@Livecoin,3000000000,8,_
 ```
 
 ```json
 {
+    "0x014B50466590340D41307Cc54DCee990c8D58aa8": {
+        "decimals": 6,
+        "exchanges": [
+            "HitBTC",
+            "Tidex"
+        ],
+        "info": "_",
+        "issues": {
+            "no-symbol": true
+        },
+        "name": "ICOS",
+        "rank": 316,
+        "symbol": "ICOS",
+        "totalSupply": 560417
+    },
     "0x093e5C256Ff8B32c7F1377f4C20e331674C77F00": {
+        "decimals": 8,
+        "exchanges": [
+            "Livecoin"
+        ],
         "info": "_",
         "issues": {
             "totalsupply-overflow": true
         },
         "name": "Dignity",
         "rank": 613,
-        "symbol": "DIG"
-    },
-    "0x0aeF06DcCCC531e581f0440059E6FfCC206039EE": {
-        "info": "_",
-        "issues": {
-            "transfer-no-return": true
-        },
-        "name": "Intelligent Trading Technologies",
-        "rank": 551,
-        "symbol": "ITT"
-    },
-    "0x0b76544F6C413a555F309Bf76260d1E02377c02A": {
-        "info": "_",
-        "issues": {
-            "owner-control-sell-price-for-overflow": true,
-            "owner-decrease-balance-by-mint-by-overflow": true,
-            "totalsupply-overflow": true,
-            "transfer-no-return": true
-        },
-        "name": "Internet Node Token",
-        "rank": 168,
-        "symbol": "INT"
+        "symbol": "DIG",
+        "totalSupply": 3000000000
     }
 }
 ```
@@ -168,9 +170,9 @@ addr,category,name,symbol,info
 
 We hope this collection can contribute to the Ethereum ecosystem and definitely welcome contributions to this collection.
 
-- This collection only contains token contracts that have market caps on [CoinMarketCap](https://coinmarketcap.com/) for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) and send us a pull request.
+- This collection only contains token contracts that have market caps on [CoinMarketCap](https://coinmarketcap.com/) for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
 - If you find other bugs not listed in this collection, please update in the following process.
-  1. Add the name and description of the bug with reference to [`bug-list.md`](bug-list.md)
+  1. Add the name and description of the bug with reference to [`issue-list.md`](issue-list.md)
   2. Create a new file with the bug name in [`raw`](raw) directory and fill in the address of affected contracts
   3. Add the name and index of the new bug to [`issues.json`](issues.json)
   4. Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens` in the repo root

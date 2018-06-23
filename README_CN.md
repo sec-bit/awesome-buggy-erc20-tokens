@@ -10,14 +10,15 @@
 ## 快速提示
 
 - 想快速查询某 Token 合约代码是否存在问题，[点此直达](bad_top_tokens.csv)
-- 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](bug-list.md)
+- 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](issue-list.md)
 - 本项目列表正在持续更新，如有遗漏和误报，[欢迎指正](#如何参与贡献)
 
 ## 最近更新
 
-- [2018-06-16, ICX, pauseTransfer-anyone](bug-list.md#a11-pausetransfer-anyone)
-- [2018-06-12, PKT, excess-mint-token-by-overflow](bug-list.md#a8-excess-mint-token-by-overflow)
-- [2018-06-08, ITC, transfer-no-return](bug-list.md#b1-transfer-no-return)
+- [2018-06-22, MORPH, constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
+- [2018-06-16, ICX, pauseTransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, transfer-no-return](issue-list.md#b1-transfer-no-return)
 
 ## ERC20 Token 面临的主要问题
 
@@ -96,64 +97,66 @@ ERC20 标准中还规定了 Transfer 和 Approval 两个事件必须在特定场
 
 ```bash
 awesome-buggy-erc20-tokens
+├── TOKEN_DICT.json
 ├── TOKEN_DETAIL_DICT.json
-├── bug-list.md
+├── issue-list.md
 ├── issues.json
 ├── badtop600token.csv
 ├── badtop600token.json
-├── raw
-├── csv
-├── json
+├── raw/
+├── csv/
+├── json/
+├── gen_token_detail_dict.py
 └── gen_list_from_raw.py
 ```
 
-- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和基本信息
-- [`bug-list.md`](bug-list.md) 包含已知漏洞的详细描述
+- [`TOKEN_DICT.json`](TOKEN_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和基本信息
+- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和详细信息
+- [`issue-list.md`](issue-list.md) 包含已知漏洞的详细描述
 - [`issues.json`](issues.json) 是已知漏洞和代号编码的映射
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) 和 [`bad_top_tokens.json`](bad_top_tokens.json) 是问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
-- [`raw`](raw)、[`csv`](csv) 和 [`json`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
+- [`raw/`](raw)、[`csv/`](csv) 和 [`json/`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
+- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 是生成 Token 详细信息列表的脚本
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) 是生成各个 CSV 和 JSON 列表的脚本
 
 如下所示，CSV 和 JSON 格式的列表，可以帮助开发者快速浏览和查询某合约地址存在哪些已知问题。
 
 ```csv
-addr,category,name,symbol,info
-0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,_
-0x0aeF06DcCCC531e581f0440059E6FfCC206039EE,[B1],Intelligent Trading Technologies,ITT,_
-0x0b76544F6C413a555F309Bf76260d1E02377c02A,[A2][A4][A6][B1],Internet Node Token,INT,_
+addr,category,name,symbol,exchanges,totalSupply,decimals,info
+0x014B50466590340D41307Cc54DCee990c8D58aa8,[B6],ICOS,ICOS,@HitBTC@Tidex,560417,6,_
+0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,@Livecoin,3000000000,8,_
 ```
 
 ```json
 {
+    "0x014B50466590340D41307Cc54DCee990c8D58aa8": {
+        "decimals": 6,
+        "exchanges": [
+            "HitBTC",
+            "Tidex"
+        ],
+        "info": "_",
+        "issues": {
+            "no-symbol": true
+        },
+        "name": "ICOS",
+        "rank": 316,
+        "symbol": "ICOS",
+        "totalSupply": 560417
+    },
     "0x093e5C256Ff8B32c7F1377f4C20e331674C77F00": {
+        "decimals": 8,
+        "exchanges": [
+            "Livecoin"
+        ],
         "info": "_",
         "issues": {
             "totalsupply-overflow": true
         },
         "name": "Dignity",
         "rank": 613,
-        "symbol": "DIG"
-    },
-    "0x0aeF06DcCCC531e581f0440059E6FfCC206039EE": {
-        "info": "_",
-        "issues": {
-            "transfer-no-return": true
-        },
-        "name": "Intelligent Trading Technologies",
-        "rank": 551,
-        "symbol": "ITT"
-    },
-    "0x0b76544F6C413a555F309Bf76260d1E02377c02A": {
-        "info": "_",
-        "issues": {
-            "owner-control-sell-price-for-overflow": true,
-            "owner-decrease-balance-by-mint-by-overflow": true,
-            "totalsupply-overflow": true,
-            "transfer-no-return": true
-        },
-        "name": "Internet Node Token",
-        "rank": 168,
-        "symbol": "INT"
+        "symbol": "DIG",
+        "totalSupply": 3000000000
     }
 }
 ```
@@ -164,11 +167,11 @@ addr,category,name,symbol,info
 
 我们会长期维护此列表，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
 
-目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 文件添加。
+目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DICT.json`](TOKEN_DICT.json) 文件添加，并使用 [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 脚本更新。
 
 如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
 
-- 在 [`bug-list.md`](bug-list.md) 文件中添加漏洞名称和描述，附上引用出处地址
+- 在 [`issue-list.md`](issue-list.md) 文件中添加漏洞名称和描述，附上引用出处地址
 - 在 [`raw`](raw) 文件夹中创建以漏洞名称命名的新文件，填入受影响的合约地址
 - 在 [`issues.json`](issues.json) 中增加新漏洞的名称和序列号
 - 在项目根目录运行 `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
