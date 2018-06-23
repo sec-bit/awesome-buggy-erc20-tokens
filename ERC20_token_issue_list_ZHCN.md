@@ -1251,11 +1251,11 @@
 * [9] https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？Jun 3, 2018.
 * [10] https://mp.weixin.qq.com/s/HuJEQsst534vjK3yb7RcAQ ICX Token交易控制Bug深度分析, Jun 16, 2018.
 * [11] https://peckshield.com/2018/05/03/ownerAnyone/ New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705), May 3, 2018.
-* [11] https://mp.weixin.qq.com/s/1MB-t_yZYsJDTPRazD1zAA 数千份以太坊 Token 合约不兼容问题浮出水面，恐严重影响DAPP生态, Jun 8,2018.
-* [12] https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币, Jun 9,2018.
-* [13] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
-* [14] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
-* [15] https://github.com/ConsenSys/smart-contract-best-practices 以太坊智能合约 —— 最佳安全开发指南.
+* [12] https://mp.weixin.qq.com/s/1MB-t_yZYsJDTPRazD1zAA 数千份以太坊 Token 合约不兼容问题浮出水面，恐严重影响DAPP生态, Jun 8,2018.
+* [13] https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币, Jun 9,2018.
+* [14] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
+* [15] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
+* [16] https://github.com/ConsenSys/smart-contract-best-practices 以太坊智能合约 —— 最佳安全开发指南.
 
  
 
