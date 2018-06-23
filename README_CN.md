@@ -9,16 +9,18 @@
 
 ## 快速提示
 
-- 想快速查询某 Token 合约代码是否存在问题，[点此直达](bad_top_tokens.csv)
+- 所有问题 Token 合约总表，[点此直达](bad_top_tokens.csv)
 - 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](issue-list.md)
 - 本项目列表正在持续更新，如有遗漏和误报，[欢迎指正](#如何参与贡献)
 
 ## 最近更新
 
-- [2018-06-22, MORPH, constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
-- [2018-06-16, ICX, pauseTransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
-- [2018-06-12, PKT, excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
-- [2018-06-08, ITC, transfer-no-return](issue-list.md#b1-transfer-no-return)
+- 各 Token 列表中加入 totalSupply、 decimals、已上交易所等信息
+- [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](issue-list.md#custom-fallback-bypass-ds-auth)
+- [2018-06-22, MORPH, a14-constructor-case-insentive](issue-list.md#a14-constructor-case-insentive)
+- [2018-06-16, ICX, a11-pausetransfer-anyone](issue-list.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](issue-list.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, b1-transfer-no-return](issue-list.md#b1-transfer-no-return)
 
 ## ERC20 Token 面临的主要问题
 
@@ -38,7 +40,7 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 2018 年 5 月 20 日，又是整数溢出漏洞导致任何人可以将任何用户的 EDU 账户转出，同时还有其它 3 个 Token 也出现了相同问题 [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。SECBIT 实验室对以太坊上所有的智能合约的进一步深入分析表明，至少有81个合约具有相同的漏洞 (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
 
-2018 年 6 月 12 日，清华-360企业安全联合研究中心的张超教授团队又发现了一系列 ERC20 智能合约整数溢出漏洞 (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289)。SECBIT 实验室在对以太坊上已部署的 2 万多个合约的分析检测后，发现有 800 多个合约受到这些漏洞影响 [[8]](http://www.chaindd.com/3083754.html)。
+2018 年 6 月 12 日，某安全团队又发现了一系列 ERC20 智能合约整数溢出漏洞 (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289)。SECBIT 实验室在对以太坊上已部署的 2 万多个合约的分析检测后，发现有 800 多个合约受到这些漏洞影响 [[8]](http://www.chaindd.com/3083754.html)。
 
 ### 众多 ERC20 Token 实现不规范
 
@@ -46,15 +48,15 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 数以千计的已部署 Token 合约参考了以太坊官网以及 OpenZeppelin 的错误模版代码，多个函数实现没有遵循 ERC20 规范，导致 Solidity 编译器升级至 0.4.22 后出现严重的兼容性问题，恐无法与去中心化交易所（DEX）和 DApp 完成正常转账 [[12]](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da)。而大多数的 DApp 开发团队对此了解甚少，也缺乏对该问题的安全警惕意识。
 
-若干 Token 合约自行在标准 approve() 函数中添加了多余的对当前账户余额校验逻辑，要求授权的 _amount 小于或等于当前余额 [[13]](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261)。这导致采用类似 0x 协议的 DEX 无法正常提前完成 approve()，而需要 Token 项目方先行转账一笔数额巨大的 Token 至交易所中间账户，违背了 ERC20 标准设计的初衷，带来诸多不便。
+若干 Token 合约自行在标准 `approve()` 函数中添加了多余的对当前账户余额校验逻辑，要求授权的 _amount 小于或等于当前余额 [[13]](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261)。这导致采用类似 0x 协议的 DEX 无法正常提前完成 `approve()`，而需要 Token 项目方先行转账一笔数额巨大的 Token 至交易所中间账户，违背了 ERC20 标准设计的初衷，带来诸多不便。
 
-由于 ERC20 规范中对几个通用查询接口如 name()、symbol()、decimals() 的要求为可选 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)，致使大量 Token 合约未提供这些接口，甚至不少采用 NAME()、SYMBOL()、DECIMALS() 等不一致的写法。这也直接加大了 DEX 和 DApp 的开发难度。
+由于 ERC20 规范中对几个通用查询接口如 `name()`、`symbol()`、`decimals()` 的要求为可选 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)，致使大量 Token 合约未提供这些接口，甚至不少采用 `NAME()`、`SYMBOL()`、`DECIMALS()` 等不一致的写法。这也直接加大了 DEX 和 DApp 的开发难度。
 
-ERC20 标准中还规定了 Transfer 和 Approval 两个事件必须在特定场景下触发 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)。事实上，很多 Token 的实现参考了以太坊官网的不标准代码，漏掉实现 Approval 事件 [[14]](https://github.com/ethereum/ethereum-org/pull/865)。这对 DApp 生态发展也十分不利，开发者面对这些 Token 无法方便的监听相关事件。
+ERC20 标准中还规定了 `Transfer` 和 `Approval` 两个事件必须在特定场景下触发 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)。事实上，很多 Token 的实现参考了以太坊官网的不标准代码，漏掉实现 `Approval` 事件 [[14]](https://github.com/ethereum/ethereum-org/pull/865)。这对 DApp 生态发展也十分不利，开发者面对这些 Token 无法方便的监听相关事件。
 
 ### 应对之策之一：收集问题 Token 列表
 
-来自安全组织和专家的统计和汇总同样表明目前智能合约中存在着触目惊心的安全问题，例如以下由 NCC Group 总结的智能合约中出现频率最高的10类安全问题 [[15]](https://www.dasp.co/)：
+来自安全组织和专家的统计和汇总同样表明目前智能合约中存在着触目惊心的安全问题，例如以下由 NCC Group 总结的智能合约中出现频率最高的 10 类安全问题 [[15]](https://www.dasp.co/)：
 
 - Reentrancy
 - Access Control
@@ -163,8 +165,6 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 ## 如何参与贡献
 
-我们希望通过此项目为以太坊生态做出一点贡献。
-
 我们会长期维护此列表，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
 
 目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DICT.json`](TOKEN_DICT.json) 文件添加，并使用 [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 脚本更新。
@@ -181,14 +181,13 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 ## Reference
 
-- [1] [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), 
-Nov 19, 2015
+- [1] [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), Nov 19, 2015
 - [2] [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
 - [3] [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e), Apr 23, 2018
 - [4] [SmartMesh Announcement on Ethereum Smart Contract Overflow Vulnerability](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)
 - [5] 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制, https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ
 - [6] 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？, https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA
-- [7] ERC20智能合约整数溢出系列漏洞披露, https://www.secrss.com/articles/3289
+- [7] 清华-360企业安全联合研究中心：ERC20智能合约整数溢出系列漏洞披露, https://www.secrss.com/articles/3289
 - [8] 【得得预警】ERC20智能合约又现大量整数溢出漏洞, http://www.chaindd.com/3083754.html
 - [9] [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
 - [10] [UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468)](https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e), May 3, 2018
@@ -197,9 +196,13 @@ Nov 19, 2015
 - [13] [Redundant Check in ERC20 Smart Contracts’ approve()](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261), Jun 15, 2018
 - [14] [token-erc20: add event Approval to follow eip20](https://github.com/ethereum/ethereum-org/pull/865)
 - [15] [DASP - Top 10 of 2018](https://www.dasp.co/)
-- [16] [Highly-Manipulatable ERC20 Tokens Identified in Multiple Top Exchanges](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a), Jun 9, 2018
+- [16] [PeckShield: Highly-Manipulatable ERC20 Tokens Identified in Multiple Top Exchanges](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a), Jun 9, 2018
 - [17] [A guide to smart contract security best practices](https://github.com/ConsenSys/smart-contract-best-practices)
 - [18] [OpenZeppelin, a framework to build secure smart contracts on Ethereum](https://github.com/OpenZeppelin/openzeppelin-solidity)
+- [19] [360 0KEE Team: 以太坊智能合约Hexagon存在溢出漏洞](https://www.jianshu.com/p/c5363ffad6a7)
+- [20] [慢雾科技：ATN 披露特殊场景下的以太坊合约重大漏洞](https://mp.weixin.qq.com/s/S5Oq4TxxW5OgEkOmy8ZSzQ)
+- [21] [BCSEC: 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157)
+- [22] [链安科技：小心！智能合约再爆高危漏洞，两大加密货币直接变废纸！](https://mp.weixin.qq.com/s/qDTrZPy5f4_-V2F4DpzoNA)
 
 ## 版权声明
 
