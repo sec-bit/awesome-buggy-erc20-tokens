@@ -122,43 +122,41 @@ awesome-buggy-erc20-tokens
 如下所示，CSV 和 JSON 格式的列表，可以帮助开发者快速浏览和查询某合约地址存在哪些已知问题。
 
 ```csv
-addr,category,name,symbol,info
-0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,_
-0x0aeF06DcCCC531e581f0440059E6FfCC206039EE,[B1],Intelligent Trading Technologies,ITT,_
-0x0b76544F6C413a555F309Bf76260d1E02377c02A,[A2][A4][A6][B1],Internet Node Token,INT,_
+addr,category,name,symbol,exchanges,totalSupply,decimals,info
+0x014B50466590340D41307Cc54DCee990c8D58aa8,[B6],ICOS,ICOS,@HitBTC@Tidex,560417,6,_
+0x093e5C256Ff8B32c7F1377f4C20e331674C77F00,[A2],Dignity,DIG,@Livecoin,3000000000,8,_
 ```
 
 ```json
 {
+    "0x014B50466590340D41307Cc54DCee990c8D58aa8": {
+        "decimals": 6,
+        "exchanges": [
+            "HitBTC",
+            "Tidex"
+        ],
+        "info": "_",
+        "issues": {
+            "no-symbol": true
+        },
+        "name": "ICOS",
+        "rank": 316,
+        "symbol": "ICOS",
+        "totalSupply": 560417
+    },
     "0x093e5C256Ff8B32c7F1377f4C20e331674C77F00": {
+        "decimals": 8,
+        "exchanges": [
+            "Livecoin"
+        ],
         "info": "_",
         "issues": {
             "totalsupply-overflow": true
         },
         "name": "Dignity",
         "rank": 613,
-        "symbol": "DIG"
-    },
-    "0x0aeF06DcCCC531e581f0440059E6FfCC206039EE": {
-        "info": "_",
-        "issues": {
-            "transfer-no-return": true
-        },
-        "name": "Intelligent Trading Technologies",
-        "rank": 551,
-        "symbol": "ITT"
-    },
-    "0x0b76544F6C413a555F309Bf76260d1E02377c02A": {
-        "info": "_",
-        "issues": {
-            "owner-control-sell-price-for-overflow": true,
-            "owner-decrease-balance-by-mint-by-overflow": true,
-            "totalsupply-overflow": true,
-            "transfer-no-return": true
-        },
-        "name": "Internet Node Token",
-        "rank": 168,
-        "symbol": "INT"
+        "symbol": "DIG",
+        "totalSupply": 3000000000
     }
 }
 ```
