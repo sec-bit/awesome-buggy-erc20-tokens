@@ -1,20 +1,22 @@
 # Token 合约已揭露安全漏洞问题汇总
 
-以太坊平台上，在已部署的数以万计份合约中，Token合约占据了半壁江山，这些Token合约承载的价值更是不可估量。然而由于诸多因素的限制，智能合约的开发还存在很多的不足之处，接二连三爆出的安全事件就是最好的印证。
 
-安比（SECBIT）实验室收录了token合约中目前已披露的绝大部分安全问题，将问题分为三大类：
 
-* A类问题：合约漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。
-* B类问题：合约不兼容问题 ，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。
-* C类问题：权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。
+以太坊平台上，在已部署的数以万计份合约中，Token合约占据了半壁江山，这些Token合约承载的价值更是不可估量。然而由于诸多因素的限制，智能合约的开发还存在很多的不足之处，接二连三爆出的安全事件就是最好的印证。本文收录了token合约中目前已披露的绝大部分安全问题，旨在帮助大家快速了解这些安全漏洞，提高安全意识，避免重复踩坑，杜绝不必要的损失。
 
-//目录
 
-//concensys
 
-//
+## 问题总览
 
-希望本文能够帮助大家快速了解这些安全漏洞，提高安全意识，避免重复踩坑，杜绝不必要的损失。
+本文将所有的问题大致分为三大类：
+
+* A类问题：代码实现漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。
+
+* B类问题：不兼容问题 ，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。
+
+* C类问题：权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。 
+
+  
 
 对于新发现的Token合约安全问题，本文也将持续更新...
 
@@ -27,7 +29,7 @@
 
     batchTransfer()函数的功能是批量转账。调用者可以传入若干个转账地址和转账金额，函数首先执行了一系列的检查，再依次对balances进行增减操作，以实现 Token 的转移。但是当传入值_value过大时，`uint256 amount = uint256(cnt) * _value` 会发生溢出（overflow），导致amount变量不等于cnt倍的 _value，而是变成一个很小的值，从而通过`require( _value > 0 && balances[msg.sender] >= amount)` 中对转账发起者的余额校验，继而实际转出超过 `balances[msg.sender]` 的Token。([CVE-2018-10299](https://nvd.nist.gov/vuln/detail/CVE-2018-10299))
 
-* 问题代码
+* 错误的代码实现
 
     ```js
     function batchTransfer(address[] _receivers, uint256 _value) public whenNotPaused returns (bool) {
@@ -45,9 +47,28 @@
     }
     ```
 
-* 正确的写法
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        if (a == 0) {
+            return 0;
+        }
+        uint256 c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+    
+    function batchTransfer(address[] _receivers, uint256 _value) public whenNotPaused returns (bool) {
+        uint cnt = _receivers.length;
+        uint256 amount = mul(uint256(cnt), _value);
+       	
+        ...
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -65,7 +86,9 @@
 
     totalsupply 通常为合约中代币的总量。 在问题合约代码中，当 token 总量发生变化时，对 totalSupply 做加减运算，并没有校验也没有使用 safeMath，从而是的totalSupply 有可能发生溢出。
 
-* 示例代码
+* 错误的代码实现
+
+    使用诸如safeMath的安全运算方式来运算。
 
     ```js
     function mintToken(address target, uint256 mintedAmount) onlyOwner public {
@@ -76,9 +99,22 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
-    使用诸如safeMath的安全运算方式来运算。
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function mintToken(address target, uint256 mintedAmount) onlyOwner public {
+        balanceOf[target] =add(balanceOf[target], mintedAmount);
+        totalSupply = add(totalSupply, mintedAmount);
+        Transfer(0, this, mintedAmount);
+        Transfer(this, target, mintedAmount);
+    }
+    ```
 
 * 问题合约列表
 
@@ -96,7 +132,7 @@
 
     合约中在进行转账等操作时候，会对余额做校验。黑客可以通过转出一个极大的值来制造溢出，继而绕开校验。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
@@ -109,9 +145,26 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
+                            uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
+    
+        if(balances[_from] < add(_feeMesh, _value)) revert();
+    
+        ...
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -125,7 +178,7 @@
 
     部分合约中，用户在以太和token之间进行兑换，兑换的价格由owner完全控制，若owner想要作恶，可以通过构造一个很大的兑换值，使得计算要兑换出的以太时发生溢出，将原本较大的一个eth数额变为较小的值，因而使得用户只能拿到很少量的以太。(CVE-2018-11811)
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function sell(uint256 amount) public {
@@ -135,9 +188,25 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        if (a == 0) {
+            return 0;
+        }
+        uint256 c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+    function sell(uint256 amount) public {
+        require(this.balance >= mul(amount, sellPrice));      // checks if the contract has enough ether to buy
+        _transfer(msg.sender, this, amount);              // makes the transfers
+        msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It's important to do this last to avoid recursion attacks
+    }
+    ```
 
 * 问题合约列表   
 
@@ -155,7 +224,7 @@
 
     owner账户在向其它账户转账时候，通过转出多于账户余额的Token数量，来给 `balances[owner]` 制造下溢，实现对自身账户余额的任意增加。(CVE-2018-11687)
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function distributeBTR(address[] addresses) onlyOwner {
@@ -167,9 +236,30 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+    
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function distributeBTR(address[] addresses) onlyOwner {
+        for (uint i = 0; i < addresses.length; i++) {
+            balances[owner] = sub(balances[owner],2000 * 10**8);
+            balances[addresses[i]] = add(balances[addresses[i]],2000 * 10**8);
+            Transfer(owner, addresses[i], 2000 * 10**8);
+        }
+    }
+    ```
 
 * 问题合约列表
 
@@ -187,7 +277,7 @@
 
     有铸币权限的owner可以通过给某一账户增发数量极大的token，使得这个账户的余额溢出为一个很小的数字，从而任意控制这个账户的余额。(CVE-2018-11812)
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function mintToken(address target, uint256 mintedAmount) onlyOwner {
@@ -198,9 +288,24 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function mintToken(address target, uint256 mintedAmount) onlyOwner {
+        balanceOf[target] = add(balanceOf[target],mintedAmount);
+        totalSupply = add(totalSupply,mintedAmount);
+        Transfer(0, this, mintedAmount);
+        Transfer(this, target, mintedAmount);
+    }
+    ```
 
 * 问题合约列表
 
@@ -222,13 +327,12 @@
 
     owner在给账户分配token时候，可以通过溢出绕开上限，从而给指定的地址分配更多的token。(CVE-2018-11810)
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function allocate(address _address, uint256 _amount, uint8 _type) public onlyOwner returns (bool success) {
     
         require(allocations[_address] == 0);
-    
         if (_type == 0) { // advisor
             ...
         } else if (_type == 1) { // founder
@@ -248,9 +352,38 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function allocate(address _address, uint256 _amount, uint8 _type) public onlyOwner returns (bool success) {
+    
+        require(allocations[_address] == 0);
+        if (_type == 0) { // advisor
+            ...
+        } else if (_type == 1) { // founder
+            ...
+        } else {
+            require(holdersAllocatedAmount + _amount <= HOLDERS_AMOUNT + RESERVE_AMOUNT);
+            holdersAllocatedAmount = add(holdersAllocatedAmount,_amount);
+        }
+        allocations[_address] = _amount;
+        initialAllocations[_address] = _amount;
+    
+        balances[_address] = add(balances[_address],_amount);
+    
+        ...
+    
+        return true;
+    }
+    ```
 
 * 问题合约列表
     * LGO Token (LGO)
@@ -267,7 +400,7 @@
 
     owner可以通过传入一个极大的值来制造溢出来，进而绕开合约中铸币最大值的设置，来发行任意多的币。(CVE-2018-11809)
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function mint(address _holder, uint256 _value) external icoOnly {
@@ -281,9 +414,27 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function mint(address _holder, uint256 _value) external icoOnly {
+        require(_holder != address(0));
+        require(_value != 0);
+        require(add(totalSupply,_value) <= tokenLimit);
+    
+        balances[_holder] = add(balances[_holder],_value);
+        totalSupply =add(totalSupply, _value);
+        Transfer(0x0, _holder, _value);
+    }
+    ```
 
 * 问题合约列表
 
@@ -301,7 +452,7 @@
 
     在用eth兑换token的时候，用户若拥有足够的eth，可以通过购买足够大量的token来制造溢出，从而绕过发币上限，以此来获得更多的token。(CVE-2018-11809)
 
-* 示例代码
+* 错误的代码实现
     ```js
     function buyTokensICO() public payable onlyInState(State.ICORunning)
     {
@@ -320,9 +471,33 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     使用诸如safeMath的安全运算方式来运算。
+
+    ```js
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+    
+    function buyTokensICO() public payable onlyInState(State.ICORunning)
+    {
+        // min - 0.01 ETH
+        require(msg.value >= ((1 ether / 1 wei) / 100));
+        uint newTokens = msg.value * getPrice();
+    
+        require(add(totalSoldTokens, newTokens) <= TOTAL_SOLD_TOKEN_SUPPLY_LIMIT);
+    
+        balances[msg.sender] =add(balances[msg.sender],newTokens);
+        supply=add(supply,newTokens);
+        icoSoldTokens = add(icoSoldTokens,newTokens);
+        totalSoldTokens = add(totalSoldTokens,newTokens);
+    
+        LogBuy(msg.sender, newTokens);
+    }
+    ```
 
 * 问题合约列表
 
@@ -345,39 +520,39 @@
   示例代码1
 
     ```js
-    //Function for transer the coin from one address to another
-    function transferFrom(address from, address to, uint value) returns (bool success) {
-    
-        ...
-    
-        //checking for allowance
-        if( allowed[from][msg.sender] >= value ) return false;
-    
-        ...
-    
-        return true;
-    }
+  //Function for transer the coin from one address to another
+  function transferFrom(address from, address to, uint value) returns (bool success) {
+  
+      ...
+  
+      //checking for allowance
+      if( allowed[from][msg.sender] >= value ) return false;
+  
+      ...
+  
+      return true;
+  }
     ```
 
   示例代码2
 
     ```js
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            // mitigates the ERC20 short address attack
-            ...
-            
-            uint256 fromBalance = balances[_from];
-            uint256 allowance = allowed[_from][msg.sender];
+  function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+      // mitigates the ERC20 short address attack
+      ...
   
-            bool sufficientFunds = fromBalance <= _value;
-            bool sufficientAllowance = allowance <= _value;
-            bool overflowed = balances[_to] + _value > balances[_to];
+      uint256 fromBalance = balances[_from];
+      uint256 allowance = allowed[_from][msg.sender];
   
-            if (sufficientFunds && sufficientAllowance && !overflowed) {
-                ...
-                return true;
-            } else { return false; }
-        }
+      bool sufficientFunds = fromBalance <= _value;
+      bool sufficientAllowance = allowance <= _value;
+      bool overflowed = balances[_to] + _value > balances[_to];
+  
+      if (sufficientFunds && sufficientAllowance && !overflowed) {
+          ...
+          return true;
+      } else { return false; }
+  }
     ```
 
 * 问题合约列表
@@ -400,7 +575,7 @@
 
   onlyFromWallet中的判断条件将 `==`  写反了，写成了`!=`，使得除了walletAddress以外，所有账户都可以调用enableTokenTransfer 和 disableTokenTransfer 函数。
 
-- 示例代码
+- 错误的代码实现
 
   ```js
   // if Token transfer
@@ -432,6 +607,15 @@
   }
   ```
 
+- 推荐的代码实现
+
+  ```js
+  modifier onlyFromWallet {
+      require(msg.sender == walletAddress);
+      _;
+  }
+  ```
+
 - 问题合约列表
 
   - icon (ICX)
@@ -456,7 +640,7 @@
 
     当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以将 0x0 地址的余额转出。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
@@ -472,9 +656,25 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     对0x0地址做特殊处理。
+
+    ```js
+    function transferProxy(address _from, address _to, uint256 _value, uint256 _feeMesh,
+        uint8 _v,bytes32 _r, bytes32 _s) public transferAllowed(_from) returns (bool){
+    
+        ...
+        require(_from != 0x0);
+        bytes32 h = keccak256(_from,_to,_value,_feeMesh,nonce,name);
+        if(_from != ecrecover(h,_v,_r,_s)) revert();
+        
+        ...
+        return true;
+    }
+    ```
+
+    
 
 * 问题合约列表
 
@@ -499,7 +699,7 @@
 
     当ecrecover()的参数错误时候，返回0x0地址，如果 `_from` 也传入0x0地址，就能通过校验。也就是说，任何人都可以获得 0x0地址的授权。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function approveProxy(address _from, address _spender, uint256 _value,
@@ -515,9 +715,23 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     对0x0地址做特殊处理。
+
+    ```js
+    function approveProxy(address _from, address _spender, uint256 _value,
+                        uint8 _v,bytes32 _r, bytes32 _s) public returns (bool success) {
+    	require(_from != 0x0);
+        uint256 nonce = nonces[_from];
+        bytes32 hash = keccak256(_from,_spender,_value,nonce,name);
+        if(_from != ecrecover(hash,_v,_r,_s)) revert();
+        allowed[_from][_spender] = _value;
+        Approval(_from, _spender, _value);
+        nonces[_from] = nonce + 1;
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -535,7 +749,7 @@
 
   合约开发过程中，误将构造函数的大小写写错，使得函数名称与合约名称不一致，因而任何人都可以调用这个函数。
 
-* 示例代码 
+* 错误的代码实现 
 
   ```js
   contract Owned {
@@ -553,9 +767,25 @@
   }
   ```
 
-* 规避方案
+* 推荐的代码实现
 
   把构造函数名写为constructor。
+
+  ```js
+  contract Owned {
+      address public owner;
+      function constructor() public {
+          owner = msg.sender;
+      }
+      modifier onlyOwner {
+          require(msg.sender == owner);
+          _;
+      }
+      function transferOwnership(address newOwner) onlyOwner public {
+          owner = newOwner;
+      }
+  }
+  ```
 
 * 问题合约列表
 
@@ -578,7 +808,7 @@
   根据ERC20 合约规范，其中 transfer()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transfer()函数没有返回值。
   但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 transfer()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transfer()函数调用将直接revert。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function transfer(address _to, uint256 _value) {
@@ -590,9 +820,20 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
     合约开发严格按照规范标准来实现
+
+    ```js
+    function transfer(address _to, uint256 _value) returns (bool success){
+        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
+        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+        balanceOf[_to] += _value;                            // Add the same to the recipient
+        Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -615,7 +856,7 @@
     根据ERC20 合约规范，其中 approve()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，approve()函数没有返回值。
     但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 approve()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，approve()函数调用将直接revert。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function approve(address _spender, uint _value) {
@@ -624,9 +865,17 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现
 
-    合约开发严格按照规范标准来实现
+    合约开发严格按照规范标准来实现。
+
+    ```js
+    function approve(address _spender, uint _value) returns (bool success){
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -649,7 +898,7 @@
     根据ERC20 合约规范，其中 transferFrom()函数应返回一个bool值。但是大量实际部署的Token合约，并没有严格按照 EIP20 规范来实现，transferFrom()函数没有返回值。
     但若外部合约按照EIP20规范的ABI接口（即包含返回值）去调用无返回值 transferFrom()函数，在solidity编译器升级至0.4.22版本以前，合约调用也不会出现异常。但当合约升级至0.4.22后，transferFrom()函数调用将直接revert。
 
-* 示例代码
+* 错误的代码实现
 
     ```js
     function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) {
@@ -661,9 +910,20 @@
     }
     ```
 
-* 规避方案
+* 推荐的代码实现 
 
-    合约开发严格按照规范标准来实现
+    合约开发严格按照规范标准来实现。
+
+    ```js
+    function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) returns (bool success){
+        var _allowance = allowed[_from][msg.sender];
+        balances[_to] = balances[_to].add(_value);
+        balances[_from] = balances[_from].sub(_value);
+        allowed[_from][msg.sender] = _allowance.sub(_value);
+        Transfer(_from, _to, _value);
+        return true;
+    }
+    ```
 
 * 问题合约列表
 
@@ -685,11 +945,29 @@
 
   在token合约中通常使用decimals变量来表示token的小数点后的位数，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的decimals来命名，致使外部合约调用时无法兼容。
 
-- 示例代码
+- 错误的代码实现
 
   ```js
   uint8 public DECIMALS;
   ```
+
+- 推荐的代码实现
+
+  - 将DECIMALS改为小写
+
+    ```js
+    uint8 public decimals;
+    ```
+
+  - 增加查询接口
+
+    ```js
+    uint8 public DECIMALS;
+    
+    function decimals() view returns (uint8 decimals){
+        return DECIMALS;
+    }
+    ```
 
 - 问题合约列表 
 
@@ -708,11 +986,28 @@
 
   在token合约中通常使用name变量来表示token的名称，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的name，致使外部合约调用时无法兼容。
 
-- 示例代码
+- 错误的代码实现
 
   ```js
   string public NAME;
   ```
+
+- 推荐的代码实现
+
+  - 将NAME改为小写
+
+    ```js
+    string public name;
+    ```
+
+  - 增加查询接口
+
+    ```js
+    string public NAME;
+    function name() view returns (string name){
+        return NAME;
+    }
+    ```
 
 - 问题合约列表 
 
@@ -730,11 +1025,28 @@
 
   在token合约中通常使用symbol变量来表示token的别名，但在部分合约中，未定义该变量或者该变量没有严格按照规范命名，使用诸如大小写不敏感的symbol来命名，致使外部合约调用时无法兼容。
 
-- 示例代码
+- 错误的代码实现
 
   ```js
   string public SYMBOL;
   ```
+
+- 推荐的代码实现
+
+  - 将SYMBOL改为小写
+
+    ```js
+    string public symbol;
+    ```
+
+  - 增加查询接口
+
+    ```js
+    string public SYMBOL;
+    function symbol() view returns (string symbol){
+        return SYMBOL;
+    }
+    ```
 
 - 问题合约列表 
 
@@ -756,10 +1068,23 @@
 
   setOwner()函数的作用是修改owner，通常情况下该函数只有当前 owner 可以调用。 但问题代码中，任何人都可以调用setOwner()函数，这就导致了任何人都可以修改合约的owner。([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
 
-- 示例代码
+- 错误的代码实现
 
   ```js
   function setOwner(address _owner) returns (bool success) {
+      owner = _owner;
+      return true;
+  }
+  ```
+
+- 推荐的代码实现
+
+  ```js
+  modifier onlyOwner() {
+      require(msg.sender == owner);
+      _;
+  }
+  function setOwner(address _owner) onlyOwner returns (bool success) {
       owner = _owner;
       return true;
   }
@@ -783,7 +1108,7 @@
 
   onlycentralAccount账户可以任意转出他人账户上的余额。([CVE-2018-1000203](https://nvd.nist.gov/vuln/detail/CVE-2018-1000203))
 
-- 示例代码
+- 错误的代码实现 
 
   ```js
   function zero_fee_transaction(
