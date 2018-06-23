@@ -1,4 +1,4 @@
-# Token 合约已揭露安全风险问题汇总
+# ERC20 Token 合约安全风险问题汇总
 
 [![Join the chat at https://gitter.im/sec-bit/Lobby](https://badges.gitter.im/sec-bit/Lobby.svg)](https://gitter.im/sec-bit/Lobby)
 
@@ -8,7 +8,7 @@
 
 本文收录了token合约中目前已披露的安全风险问题，旨在帮助大家快速了解这些安全风险，提高安全意识，避免重复踩坑，杜绝不必要的损失。同时也建议大家在合约开发过程中参考安全标准的开发指导说明和规范源码，如「[以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices)」。
 
-### 最近更新
+## 最近更新
 
 * 2018-06-23，添加快速导航
 * 2018-06-22，新增问题分类：no-decimals，no-name，no-symbol
@@ -17,11 +17,13 @@
 
 ## 问题分类
 
-本文共收录了22种问题，大致分为三大类：
+本文共收录了22种问题，大致分为下表所述三大类：
 
-* A类问题：代码实现漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。
-* B类问题：不兼容问题 ，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。
-* C类问题：权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。 
+| 分类 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| A    | 代码实现漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。 |
+| B    | 不兼容问题，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。 |
+| C    | 权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。 |
 
 #### 快速导航
 
@@ -51,8 +53,7 @@
   - [C1. setowner-anyone](#c1-setowner-anyone)
   - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
 
-如有遗漏和误报，欢迎指正。
-对于后续披露的Token合约安全问题，本文也将持续更新...
+
 
 
 ## A. 代码实现漏洞问题列表
@@ -1208,13 +1209,47 @@
 
   - [ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币](https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg)
 
-    
 
-## reference
 
-* [1] https://nvd.nist.gov/vuln/detail/CVE-2018-10299 CVE-2018-10299
-* [2] https://nvd.nist.gov/vuln/detail/CVE-2018-10468  CVE-2018-10468
-* [3] https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 CVE-2018-1000203
+
+## 如何参与贡献
+
+我们希望通过此项目为以太坊生态做出一点贡献。
+
+我们会长期维护本文，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
+
+如果您发现了本文未收录的问题，欢迎按照以下流程贡献更新：
+
+* 对问题进行分类，编号(分类名+数字，如A1，B2)
+
+* 在对应问题列表中按照如下模板，添加问题的详细描述
+
+  ```makedown
+  ### 编号. 问题名称
+  * 问题描述
+  * 错误的代码实现
+  * 推荐的代码实现
+  * 问题合约列表
+  * 相关链接
+  ```
+
+* 补充 [快速导航](#快速导航)
+
+* 添加引用问题的出处
+
+* 补充`raw`，`issues.json`文件中该问题相应的内容，运行脚本[具体步骤](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md#%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE)
+
+* 检查更改的文件，提交更新
+
+如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
+
+
+
+## Reference 
+
+* [1] https://nvd.nist.gov/vuln/detail/CVE-2018-10299 CVE-2018-10299.
+* [2] https://nvd.nist.gov/vuln/detail/CVE-2018-10468  CVE-2018-10468.
+* [3] https://nvd.nist.gov/vuln/detail/CVE-2018-1000203 CVE-2018-1000203.
 * [4] https://blog.csdn.net/Secbit/article/details/80045167 SECBIT: 美链(BEC)合约安全事件分析全景, Apr 23, 2018.
 * [5] https://www.secrss.com/articles/3289 ERC20智能合约整数溢出系列漏洞披露, Jun 12, 2018.
 * [6] https://peckshield.com/2018/04/25/proxyOverflow/ New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376), Apr 25, 2018.
@@ -1227,4 +1262,10 @@
 * [12] https://mp.weixin.qq.com/s/LvLMJHUg-O5G37TQ9y4Gxg ERC20代币Soarcoin (SOAR) 存在后门，合约所有者可任意转移他人代币, Jun 9,2018.
 * [13] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
 * [14] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
-* [15] https://github.com/ConsenSys/smart-contract-best-practices 以太坊智能合约 —— 最佳安全开发指南
+* [15] https://github.com/ConsenSys/smart-contract-best-practices 以太坊智能合约 —— 最佳安全开发指南.
+
+ 
+
+## 版权声明
+
+[![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
