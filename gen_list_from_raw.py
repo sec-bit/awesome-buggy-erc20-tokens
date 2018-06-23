@@ -7,7 +7,7 @@ Workflow:
 2. Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
 3. Check output files: *.json *.csv
 
-This script need web3 package.
+This script needs web3 package.
 `pip3 install web3` before use.
 """
 from web3 import Web3
