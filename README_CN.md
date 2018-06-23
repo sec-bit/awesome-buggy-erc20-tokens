@@ -96,22 +96,26 @@ ERC20 标准中还规定了 Transfer 和 Approval 两个事件必须在特定场
 
 ```bash
 awesome-buggy-erc20-tokens
+├── TOKEN_DICT.json
 ├── TOKEN_DETAIL_DICT.json
 ├── bug-list.md
 ├── issues.json
 ├── badtop600token.csv
 ├── badtop600token.json
-├── raw
-├── csv
-├── json
+├── raw/
+├── csv/
+├── json/
+├── gen_token_detail_dict.py
 └── gen_list_from_raw.py
 ```
 
-- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和基本信息
+- [`TOKEN_DICT.json`](TOKEN_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和基本信息
+- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和详细信息
 - [`bug-list.md`](bug-list.md) 包含已知漏洞的详细描述
 - [`issues.json`](issues.json) 是已知漏洞和代号编码的映射
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) 和 [`bad_top_tokens.json`](bad_top_tokens.json) 是问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
-- [`raw`](raw)、[`csv`](csv) 和 [`json`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
+- [`raw/`](raw)、[`csv/`](csv) 和 [`json/`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
+- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 是生成 Token 详细信息列表的脚本
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) 是生成各个 CSV 和 JSON 列表的脚本
 
 如下所示，CSV 和 JSON 格式的列表，可以帮助开发者快速浏览和查询某合约地址存在哪些已知问题。
@@ -164,7 +168,7 @@ addr,category,name,symbol,info
 
 我们会长期维护此列表，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
 
-目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 文件添加。
+目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DICT.json`](TOKEN_DICT.json) 文件添加，并使用 [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 脚本更新。
 
 如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
 

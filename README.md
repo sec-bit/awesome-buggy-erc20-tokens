@@ -102,6 +102,7 @@ We created and would maintain this collection with good intentions, including bu
 
 ```bash
 awesome-buggy-erc20-tokens
+├── TOKEN_DICT.json
 ├── TOKEN_DETAIL_DICT.json
 ├── bug-list.md
 ├── issues.json
@@ -110,14 +111,16 @@ awesome-buggy-erc20-tokens
 ├── raw/
 ├── csv/
 ├── json/
+├── gen_token_detail_dict.py
 └── gen_list_from_raw.py
 ```
-
-- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`TOKEN_DICT.json`](TOKEN_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and detailed information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
 - [`bug-list.md`](bug-list.md) lists detailed descriptions of known bugs.
 - [`issues.json`](issues.json) maps between known bugs and indexes.
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) along with [`bad_top_tokens.json`](bad_top_tokens.json) are lists of buggy Token contracts in CSV and JSON formats.
 -  [`raw/`](raw), [`csv/`](csv) and [`json/`](json) list all known bugs and addresses of affected contracts in formats of plain text, CSV and JSON.
+- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) is a script to update [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json)
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) is a script to generate ```.csv``` and ```.json``` lists above.
 
 As shown below, lists in CSV and JSON help developers to browse and search for addresses of given contracts with known vulnerabilities.
@@ -168,7 +171,7 @@ addr,category,name,symbol,info
 
 We hope this collection can contribute to the Ethereum ecosystem and definitely welcome contributions to this collection.
 
-- This collection only contains token contracts that have market caps on [CoinMarketCap](https://coinmarketcap.com/) for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) and send us a pull request.
+- This collection only contains token contracts that have market caps on [CoinMarketCap](https://coinmarketcap.com/) for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
 - If you find other bugs not listed in this collection, please update in the following process.
   1. Add the name and description of the bug with reference to [`bug-list.md`](bug-list.md)
   2. Create a new file with the bug name in [`raw`](raw) directory and fill in the address of affected contracts
