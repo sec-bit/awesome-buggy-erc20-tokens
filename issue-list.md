@@ -1,5 +1,7 @@
 # Token 合约已揭露安全风险问题汇总
 
+[![Join the chat at https://gitter.im/sec-bit/Lobby](https://badges.gitter.im/sec-bit/Lobby.svg)](https://gitter.im/sec-bit/Lobby)
+
 
 
 在以太坊平台已部署的数以万计份合约中，Token合约占据了半壁江山，这些Token合约承载的价值更是不可估量。然而由于诸多因素的限制，智能合约的开发还存在很多的不足之处，接二连三爆出的安全事件就是最好的印证。
@@ -8,13 +10,10 @@
 
 ### 最近更新
 
-* 2018-06-23，添加目录快速导航
-
+* 2018-06-23，添加快速导航
 * 2018-06-22，新增问题分类：no-decimals，no-name，no-symbol
-
 * 2018-06-22，新增问题分类：constructor-case-insentive
 
-  
 
 ## 问题分类
 
@@ -52,12 +51,8 @@
   - [C1. setowner-anyone](#c1-setowner-anyone)
   - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
 
-
-
 如有遗漏和误报，欢迎指正。
-
-对于新发现的Token合约安全问题，本文也将持续更新...
-
+对于后续披露的Token合约安全问题，本文也将持续更新...
 
 
 ## A. 代码实现漏洞问题列表
