@@ -9,8 +9,8 @@
 
 ## 快速提示
 
-- 所有问题 Token 合约总表，[点此直达](bad_top_tokens.csv)
-- 想了解各类合约漏洞细节讲解以及受影响 Token，[点此直达](ERC20_token_issue_list_CN.md)
+- 所有问题 Token 合约总表，请访问[`bad_top_tokens.csv`](bad_top_tokens.csv)
+- 想了解各类合约漏洞细节讲解以及受影响 Token，请访问[`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md)
 - 本项目列表正在持续更新，如有遗漏和误报，[欢迎指正](#如何参与贡献)
 
 ## 最近更新

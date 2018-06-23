@@ -11,8 +11,8 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Navigation
 
-- [Click here](bad_top_tokens.csv) to search for bugs in a Token contract
-- [Click here](ERC20_token_issue_list_CN.md) for a detailed description of all bugs and Token contracts affected
+- Visit [`bad_top_tokens.csv`](bad_top_tokens.csv) for a summary of Token contracts affected
+- Visit [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) for a detailed description of all bugs and Token contracts affected
 - [Click here](#how-to-contribute) if you find a mistake or anything missed in this repo
 
 ## Recent Updates
