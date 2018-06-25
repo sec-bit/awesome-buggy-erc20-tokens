@@ -41,7 +41,7 @@ On April 25th, 2018, a similar integer overflow got uncovered in SMT. Hackers mi
 
 On May 20th, 2018, another integer overflow problem was found in EDU along with other three Token contracts, causing that anyone could transfer out other accounts' balance [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ). After further analysis, we caught this bug in at least 81 contracts (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA).
 
-On June 12, 2018, a security analyzing team uncovered a series of overflow bug in ERC20 smart contracts (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289). We have revealed more than 800 contracts with the same problem after scanning over 20,000 contracts deployed on Etherscan [[8]](http://www.chaindd.com/3083754.html).
+On June 12, 2018, a series of overflow bug in ERC20 smart contracts got uncovered (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) [[7]](https://www.secrss.com/articles/3289). We have revealed more than 800 contracts with the same problem after scanning over 20,000 contracts deployed on Etherscan [[8]](http://www.chaindd.com/3083754.html).
 
 ### Failure of Satisfying ERC20 in Many ERC20 contracts
 
