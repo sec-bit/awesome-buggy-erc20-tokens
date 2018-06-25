@@ -43,6 +43,7 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [A13. approveProxy-keccak256](#a13-approveproxy-keccak256)
   - [A14. constructor-case-insensitive](#a14-constructor-case-insensitive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
+  - [A16. custom-call-abuse](#a16-custom-call-abuse)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -958,6 +959,60 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
   - ATN (ATN) （Fixed officially by adding Guard contract)
 
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/custom-fallback-bypass-ds-auth_o.csv)
+
+- Link
+
+    * [ATN抵御合约攻击的报告](https://atn.io/resource/aareport.pdf)
+    * [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
+    * [New evilReflex Bug Identified in Multiple ERC20 Smart Contracts](https://peckshield.com/2018/06/23/evilReflex/)
+    * [ERC223及ERC827实现代码欠缺安全考虑 —— ATN Token中的CUSTOM_CALL漏洞深入分析](https://zhuanlan.zhihu.com/p/38465008)
+    * [Discussion about ERC827 Proposal Implementation](https://github.com/ethereum/EIPs/issues/827#issuecomment-399776972)
+    * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
+
+### A16. custom-call-abuse
+
+- Description
+
+    It is a really bad practice to allow the abuse of `CUSTOM_CALL` in token standard.
+
+    Attackers could call any contract **in the name of vulnerable contract** with CUSTOM_CALL.
+
+    This vulnerability will make these attacking scenarios possible:
+
+    - Attackers could steal almost each kind of tokens belong to the vulnerable contract
+
+    - Attackers could steal almost each kind of tokens `approved` to the vulnerable contract
+
+    - Attackers could bypass the auth check in vulnerable contract by proxy of contract itself in special situation
+
+    - Attackers could pass fake values as parameter to cheat with receiver contract
+
+- Problematic Implementation
+
+    ```js
+    <receiver>.call.value(msg.value)(_data)
+    ```
+
+    ```js
+    receiver.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
+    ```
+
+    Current contract implementation of ERC223 and ERC827 are affected.
+
+- Recommended Implementation
+
+    Use **fixed function signature** for receiver notifying. Do not abuse **CUSTOM_CALL**.
+
+    - https://github.com/svenstucki/ERC677
+    - https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC721/ERC721BasicToken.sol#L349
+    - https://github.com/ConsenSys/Token-Factory/blob/master/contracts/HumanStandardToken.sol
+    - https://github.com/ethereum/ethereum-org/blob/b46095815f52cf328ecf7676b2b38284d48fba58/solidity/token-advanced.sol#L138
+
+- List of Buggy Contracts
+
+    * TE-FOOD (TFD)
+
+        [more...](csv/custom-call-abuse_o.csv)  
 
 - Link
 

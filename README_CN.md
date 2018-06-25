@@ -14,8 +14,9 @@
 
 ## 最近更新
 
+- [2018-06-25, TFD, a16-custom-call-abuse](ERC20_token_issue_list_CN.md#a16-custom-call-abuse)
 - 各 Token 列表中加入 totalSupply、decimals、已上交易所等信息
-- [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#custom-fallback-bypass-ds-auth)
+- [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#a15-custom-fallback-bypass-ds-auth)
 - [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list_CN.md#a14-constructor-case-insentive)
 - [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list_CN.md#a11-pausetransfer-anyone)
 - [2018-06-12, PKT, a8-excess-mint-token-by-overflow](ERC20_token_issue_list_CN.md#a8-excess-mint-token-by-overflow)

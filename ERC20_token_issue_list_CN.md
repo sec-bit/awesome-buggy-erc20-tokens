@@ -43,6 +43,7 @@
   - [A13. approveProxy-keccak256](#a13-approveproxy-keccak256)
   - [A14. constructor-case-insentive](#a14-constructor-case-insentive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
+  - [A16. custom-call-abuse](#a16-custom-call-abuse)
 - [B.不兼容问题列表](#b不兼容问题列表)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -966,6 +967,55 @@
   * [ATN抵御合约攻击的报告](https://atn.io/resource/aareport.pdf)
   * [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
   * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
+
+### A16. custom-call-abuse
+
+* 问题描述
+
+    与[a15-custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth) 类似，Token 合约设计或实现上允许用户自定义 call() 任意地址上任意函数来实现“接收通知调用”功能，攻击者可以很容易地借用当前合约的身份来进行任何操作。
+
+    这通常会导致以下危险的后果：
+
+    - 后果一：允许攻击者以缺陷合约身份来盗走其它 Token 合约中的 Token
+    - 后果二：与 ds-auth 之类的鉴权机制结合，绕过合约自身的权限检查
+    - 后果三：允许攻击者以缺陷合约身份来盗走其它 Token 账户所授权（Approve）的 Token
+    - 后果四：攻击者可传入虚假数据欺骗 Receiver 合约
+
+* 错误的代码实现
+
+    ```js
+    <receiver>.call.value(msg.value)(_data)
+    ```
+
+    ```js
+    receiver.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
+    ```
+
+    ERC223, ERC827 的部分实现代码均引入了任意函数调用缺陷，可能会对使用这部分代码的合约带来安全漏洞。
+
+* 推荐的代码实现
+
+    正确的代码实现中，对于“接收通知调用”的处理应该将被通知函数的签名（signature）写死为固定值，避免由攻击者来任意指定的任何可能性。
+
+    - https://github.com/svenstucki/ERC677
+    - https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC721/ERC721BasicToken.sol#L349
+    - https://github.com/ConsenSys/Token-Factory/blob/master/contracts/HumanStandardToken.sol
+    - https://github.com/ethereum/ethereum-org/blob/b46095815f52cf328ecf7676b2b38284d48fba58/solidity/token-advanced.sol#L138
+
+* 问题合约列表
+
+    * TE-FOOD (TFD)
+
+        [more...](csv/custom-call-abuse_o.csv)    
+
+* 相关链接
+
+    * [ATN抵御合约攻击的报告](https://atn.io/resource/aareport.pdf)
+    * [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
+    * [New evilReflex Bug Identified in Multiple ERC20 Smart Contracts](https://peckshield.com/2018/06/23/evilReflex/)
+    * [ERC223及ERC827实现代码欠缺安全考虑 —— ATN Token中的CUSTOM_CALL漏洞深入分析](https://zhuanlan.zhihu.com/p/38465008)
+    * [Discussion about ERC827 Proposal Implementation](https://github.com/ethereum/EIPs/issues/827#issuecomment-399776972)
+    * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
 
 ## B.不兼容问题列表
 
