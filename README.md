@@ -16,8 +16,8 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 ## Recent Updates
 
 - Add info of totalSupply, decimals, exchanges into Token lists
-- [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list.md#custom-fallback-bypass-ds-auth)
-- [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list.md#a14-constructor-case-insentive)
+- [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list.md#a15-custom-fallback-bypass-ds-auth)
+- [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list.md#a14-constructor-case-insensitive)
 - [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list.md#a11-pausetransfer-anyone)
 - [2018-06-12, PKT, a8-excess-mint-token-by-overflow](ERC20_token_issue_list.md#a8-excess-mint-token-by-overflow)
 - [2018-06-08, ITC, b1-transfer-no-return](ERC20_token_issue_list.md#b1-transfer-no-return)
