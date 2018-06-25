@@ -10,17 +10,17 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 ## Navigation
 
 - Visit [`bad_top_tokens.csv`](bad_top_tokens.csv) for a summary of Token contracts affected
-- Visit [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) for a detailed description of all bugs and Token contracts affected
+- Visit [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md) for a detailed description of all bugs and Token contracts affected
 - [Click here](#how-to-contribute) if you find a mistake or anything missed in this repo
 
 ## Recent Updates
 
 - Add info of totalSupply, decimals, exchanges into Token lists
-- [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#custom-fallback-bypass-ds-auth)
-- [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list_CN.md#a14-constructor-case-insentive)
-- [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list_CN.md#a11-pausetransfer-anyone)
-- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](ERC20_token_issue_list_CN.md#a8-excess-mint-token-by-overflow)
-- [2018-06-08, ITC, b1-transfer-no-return](ERC20_token_issue_list_CN.md#b1-transfer-no-return)
+- [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list.md#custom-fallback-bypass-ds-auth)
+- [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list.md#a14-constructor-case-insentive)
+- [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list.md#a11-pausetransfer-anyone)
+- [2018-06-12, PKT, a8-excess-mint-token-by-overflow](ERC20_token_issue_list.md#a8-excess-mint-token-by-overflow)
+- [2018-06-08, ITC, b1-transfer-no-return](ERC20_token_issue_list.md#b1-transfer-no-return)
 
 ## Problems in ERC20 Token Contracts
 
@@ -116,7 +116,7 @@ awesome-buggy-erc20-tokens
 ```
 - [`TOKEN_DICT.json`](TOKEN_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
 - [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and detailed information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
-- [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) lists detailed descriptions of known bugs.
+- [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md) lists detailed descriptions of known bugs.
 - [`issues.json`](issues.json) maps between known bugs and indexes.
 - [`bad_top_tokens.csv`](bad_top_tokens.csv) along with [`bad_top_tokens.json`](bad_top_tokens.json) are lists of buggy Token contracts in CSV and JSON formats.
 -  [`raw/`](raw), [`csv/`](csv) and [`json/`](json) list all known bugs and addresses of affected contracts in formats of plain text, CSV and JSON.
@@ -172,7 +172,7 @@ We hope this collection can contribute to the Ethereum ecosystem and definitely 
 This collection only contains token contracts that have market caps on CoinMarketCap for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
 
 If you find other bugs not listed in this collection, please update in the following process.
-  - Add the name and description of the bug with reference to [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md)
+  - Add the name and description of the bug with reference to [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md)
   - Create a new file with the bug name in [`raw`](raw) directory and fill in the address of affected contracts
   - Add the name and index of the new bug to [`issues.json`](issues.json)
   - Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens` in the repo root
