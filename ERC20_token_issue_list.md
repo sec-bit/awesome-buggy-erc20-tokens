@@ -27,7 +27,7 @@ This article includes 22 types of issue, and we can generally divide them into 3
 
 #### Navigation
 
-- [A. List of Bugs in Implementation](#a-List-of-Bugs-in-Implementation)
+- [A. List of Bugs in Implementation](#a-list-of-bugs-in-implementation)
   - [A1. batchTransfer-overflow](#a1-batchtransfer-overflow)
   - [A2. totalsupply-overflow](#a2-totalsupply-overflow)
   - [A3. verify-invalid-by-overflow](#a3-verify-invalid-by-overflow)
@@ -43,16 +43,15 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [A13. approveProxy-keccak256](#a13-approveproxy-keccak256)
   - [A14. constructor-case-insensitive](#a14-constructor-case-insensitive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
-- [B.List of Incompatibilities](#b-List-of-Incompatibilities)
+- [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
   - [B3. transferFrom-no-return](#b3-transferfrom-no-return)
   - [B4. no-decimals](#b4-no-decimals)
   - [B5. no-name](#b5-no-name)
   - [B6. no-symbol](#b6-no-symbol)
-- [C. List of Excessive Authorities](#c-List-of-Excessive-Authorities)
+- [C. List of Excessive Authorities](#c-list-of-excessive-authorities)
   - [C1. setowner-anyone](#c1-setowner-anyone)
-
   - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
 
     
