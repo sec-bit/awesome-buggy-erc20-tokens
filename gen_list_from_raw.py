@@ -4,7 +4,7 @@ Use this script to generate token list in csv/json folder
 Workflow:
 
 1. Edit data in raw folder
-2. Run `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
+2. Run `python3 gen_list_from_raw.py -i raw/* -o bad_tokens`
 3. Check output files: *.json *.csv
 
 This script needs web3 package.
@@ -45,12 +45,17 @@ def export_data(output_file, data_dict):
     for addr in data_dict:
         detail = data_dict[addr]
         print("export_data> addr in top token:", addr, "detail:", detail)
-        name = detail['name']
-        symbol = detail['symbol']
-        exs = detail['exchanges']
-        totalSupply = detail['totalSupply']
-        decimals = detail['decimals']
-        exchanges = ""
+        name, symbol, exchanges, totalSupply, decimals = "", "", "", "", ""
+        if 'name' in detail:
+            name = detail['name']
+        if 'symbol' in detail:
+            symbol = detail['symbol']
+        if 'exchanges' in detail:
+            exs = detail['exchanges']
+        if 'totalSupply' in detail:
+            totalSupply = detail['totalSupply']
+        if 'decimals' in detail:
+            decimals = detail['decimals']
         if 'exchanges' in detail:
             exs = detail['exchanges']
             for ex in exs:
@@ -72,17 +77,22 @@ def export_data_summary(output_file, data_dict):
     csv.write(csv_header)
     for addr in data_dict:
         detail = data_dict[addr]
-        name = detail['name']
-        symbol = detail['symbol']
-        issues = detail['issues']
-        totalSupply = detail['totalSupply']
-        decimals = detail['decimals']
-        exchanges = ""
+        name, symbol, exchanges, totalSupply, decimals = "", "", "", "", ""
+        if 'name' in detail:
+            name = detail['name']
+        if 'symbol' in detail:
+            symbol = detail['symbol']
+        issues = []
+        if 'issues' in detail:
+            issues = detail['issues']
+        if 'totalSupply' in detail:
+            totalSupply = detail['totalSupply']
+        if 'decimals' in detail:
+            decimals = detail['decimals']
         if 'exchanges' in detail:
             exs = detail['exchanges']
             for ex in exs:
                 exchanges += f"@{ex}"
-
         issue_list = []
         for issue in issues:
             issue_list.append(issue_dict[issue])
@@ -100,11 +110,14 @@ def export_data_summary(output_file, data_dict):
         json.dump(data_dict, outfile, sort_keys=True, indent=4)
     print("---\nsummary save to %s\n---" % json_saved)
 
+
 cnt = 0
+TOP_ONLY_ALL_IN_ONE_DICT = {}
 ALL_IN_ONE_DICT = {}
 
 for input_file in input_files:
     FINAL_DICT = {}
+    TOP_ONLY_FINAL_DICT = {}
     issue_type = input_file.split('.')[0].replace("raw/", "")
     print("issue_type:", issue_type)
     with open(input_file) as f:
@@ -118,7 +131,7 @@ for input_file in input_files:
                 token_detail = copy.deepcopy(TOKEN_DETAIL_DICT[addr])
                 print("addr in top token:", addr, "detail:", token_detail)
                 
-                FINAL_DICT[addr] = token_detail
+                TOP_ONLY_FINAL_DICT[addr] = token_detail
                 name = token_detail['name']
                 symbol = token_detail['symbol']
                 token_detail['info'] = "_"
@@ -126,14 +139,34 @@ for input_file in input_files:
                 cnt += 1
                 print(f"{cnt}: {addr},{issue_type},{name},{symbol},_")
 
+                FINAL_DICT[addr] = TOP_ONLY_FINAL_DICT[addr]
+
+                try:
+                    old_issues = TOP_ONLY_ALL_IN_ONE_DICT[addr]['issues']
+                    TOP_ONLY_ALL_IN_ONE_DICT[addr]['issues'] = {**old_issues, **token_detail['issues']}
+                except KeyError:
+                    TOP_ONLY_ALL_IN_ONE_DICT[addr] = token_detail
+
                 try:
                     old_issues = ALL_IN_ONE_DICT[addr]['issues']
                     ALL_IN_ONE_DICT[addr]['issues'] = {**old_issues, **token_detail['issues']}
                 except KeyError:
                     ALL_IN_ONE_DICT[addr] = token_detail
 
+            else:
+                FINAL_DICT[addr] = {'issues': {issue_type: True}}
+
+                try:
+                    old_issues = ALL_IN_ONE_DICT[addr]['issues']
+                    ALL_IN_ONE_DICT[addr]['issues'] = {**old_issues, **token_detail['issues']}
+                except KeyError:
+                    ALL_IN_ONE_DICT[addr] = {'issues': {issue_type: True}}
+
     FINAL_DICT_SORTED = dict(sorted(FINAL_DICT.items(), key=lambda x: x[0]))
     export_data(issue_type, FINAL_DICT_SORTED)
 
+TOP_ONLY_ALL_IN_ONE_DICT_SORTED = dict(sorted(TOP_ONLY_ALL_IN_ONE_DICT.items(), key=lambda x: x[0]))
+export_data_summary(final_output + "_top", TOP_ONLY_ALL_IN_ONE_DICT_SORTED)
+
 ALL_IN_ONE_DICT_SORTED = dict(sorted(ALL_IN_ONE_DICT.items(), key=lambda x: x[0]))
-export_data_summary(final_output, ALL_IN_ONE_DICT_SORTED)
+export_data_summary(final_output + "_all", ALL_IN_ONE_DICT_SORTED)

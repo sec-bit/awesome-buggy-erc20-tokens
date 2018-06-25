@@ -7,13 +7,14 @@
 
 ## 快速提示
 
-- 所有问题 Token 合约总表，请访问[`bad_top_tokens.csv`](bad_top_tokens.csv)
+- 所有问题 Token 合约总表，请访问[`bad_tokens_all.csv`](bad_tokens_all.csv)
+- 排名靠前的问题 Token 合约总表，请访问[`bad_tokens_top.csv`](bad_tokens_top.csv)
 - 想了解各类合约漏洞细节讲解以及受影响 Token，请访问[`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md)
 - 本项目列表正在持续更新，如有遗漏和误报，[欢迎指正](#如何参与贡献)
 
 ## 最近更新
 
-- 各 Token 列表中加入 totalSupply、 decimals、已上交易所等信息
+- 各 Token 列表中加入 totalSupply、decimals、已上交易所等信息
 - [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#custom-fallback-bypass-ds-auth)
 - [2018-06-22, MORPH, a14-constructor-case-insentive](ERC20_token_issue_list_CN.md#a14-constructor-case-insentive)
 - [2018-06-16, ICX, a11-pausetransfer-anyone](ERC20_token_issue_list_CN.md#a11-pausetransfer-anyone)
@@ -101,8 +102,10 @@ awesome-buggy-erc20-tokens
 ├── TOKEN_DETAIL_DICT.json
 ├── ERC20_token_issue_list_CN.md
 ├── issues.json
-├── bad_top_tokens.csv
-├── bad_top_tokens.json
+├── bad_tokens_all.csv
+├── bad_tokens_all.json
+├── bad_tokens_top.csv
+├── bad_tokens_top.json
 ├── raw/
 ├── csv/
 ├── json/
@@ -114,7 +117,8 @@ awesome-buggy-erc20-tokens
 - [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) 收集了被 [CoinMarketCap](https://coinmarketcap.com/tokens/) 收录的 ERC20 合约主网地址和详细信息
 - [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) 包含已知漏洞的详细描述
 - [`issues.json`](issues.json) 是已知漏洞和代号编码的映射
-- [`bad_top_tokens.csv`](bad_top_tokens.csv) 和 [`bad_top_tokens.json`](bad_top_tokens.json) 是问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
+- [`bad_tokens_all.csv`](bad_tokens_all.csv) 和 [`bad_tokens_all.json`](bad_tokens_all.json) 是**所有**问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
+- [`bad_tokens_top.csv`](bad_tokens_top.csv) 和 [`bad_tokens_top.json`](bad_tokens_top.json) 是**市值排名靠前**的问题 Token 的汇总列表，分别以 CSV 和 JSON 形式展示
 - [`raw/`](raw)、[`csv/`](csv) 和 [`json/`](json) 文件夹是各已知漏洞和受影响的合约地址，分别以纯文本、CSV、JSON 形式展示
 - [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 是生成 Token 详细信息列表的脚本
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) 是生成各个 CSV 和 JSON 列表的脚本
@@ -165,14 +169,14 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 我们会长期维护此列表，并对其进行持续地更新。也欢迎大家共同参与进来，共同推进以太坊生态健康发展。
 
-目前我们仅收录在 CoinMarketCap 有过市值显示的 Token 合约。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DICT.json`](TOKEN_DICT.json) 文件添加，并使用 [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 脚本更新。
+目前我们仅维护被 CoinMarketCap 所收录 Token 合约的详细信息（totalSupply、decimals、exchanges）。如果你觉得我们有所遗漏，欢迎编辑 [`TOKEN_DICT.json`](TOKEN_DICT.json) 文件添加，并使用 [`gen_token_detail_dict.py`](gen_token_detail_dict.py) 脚本更新。
 
 如果你发现了我们未收录的漏洞，欢迎按照以下流程贡献更新：
 
 - 在 [`ERC20_token_issue_list_CN.md`](ERC20_token_issue_list_CN.md) 文件中添加漏洞名称和描述，附上引用出处地址
 - 在 [`raw`](raw) 文件夹中创建以漏洞名称命名的新文件，填入受影响的合约地址
 - 在 [`issues.json`](issues.json) 中增加新漏洞的名称和序列号
-- 在项目根目录运行 `python3 gen_list_from_raw.py -i raw/* -o bad_top_tokens`
+- 在项目根目录运行 `python3 gen_list_from_raw.py -i raw/* -o bad_tokens`
 - 检查更改的文件，提交更新
 
 如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
