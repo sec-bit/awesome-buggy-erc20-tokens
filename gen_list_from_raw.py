@@ -44,7 +44,6 @@ def export_data(output_file, data_dict):
     csv.write(csv_header)
     for addr in data_dict:
         detail = data_dict[addr]
-        print("export_data> addr in top token:", addr, "detail:", detail)
         name, symbol, exchanges, totalSupply, decimals = "", "", "", "", ""
         if 'name' in detail:
             name = detail['name']
