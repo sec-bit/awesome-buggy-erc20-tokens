@@ -125,7 +125,11 @@ for input_file in input_files:
             addr = line.split('_')[0].strip('\n')
             if addr == "":
                 continue
-            addr = Web3.toChecksumAddress(addr)
+            try:
+                addr = Web3.toChecksumAddress(addr)
+            except Exception as err:
+                print(f"Web3.toChecksumAddress failed, check raw input in {input_file}, err = {err}, addr = {addr}")
+                exit()
 
             if addr in TOKEN_DETAIL_DICT:
                 token_detail = copy.deepcopy(TOKEN_DETAIL_DICT[addr])
