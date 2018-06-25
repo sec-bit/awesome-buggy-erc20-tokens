@@ -75,7 +75,7 @@ If you find issues not listed in the article, please update in the following pro
   * Link
   ```
 
-- Put the issue into [Navigation](#Navigation)
+- Put the issue into [Navigation](#navigation)
 
 - Append a reference to the issue
 
