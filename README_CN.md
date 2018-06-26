@@ -56,7 +56,7 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 很多 Token 合约未参照 ERC20 标准实现，也给 DApp 开发带来很大的困扰 [12-14]。
 
-数以千计的已部署 Token 合约参考了以太坊官网以及 OpenZeppelin 的错误模版代码，多个函数实现没有遵循 ERC20 规范，导致 Solidity 编译器升级至 0.4.22 后出现严重的兼容性问题，恐无法与去中心化交易所（DEX）和 DApp 完成正常转账 [[12]](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da)。而大多数的 DApp 开发团队对此了解甚少，也缺乏对该问题的安全警惕意识。
+数以千计的已部署 Token 合约曾经参考了以太坊官网（现已修复）以及 OpenZeppelin（52120a8c42 [2017年3月21日] ~ 6331dd125d [2017年7月13日]) 给出的不规范模版代码，多个函数实现没有遵循 ERC20 规范，导致 Solidity 编译器升级至 0.4.22 后出现严重的兼容性问题，恐无法与去中心化交易所（DEX）和 DApp 完成正常转账 [[12]](https://medium.com/loopring-protocol/an-incompatibility-in-smart-contract-threatening-dapp-ecosystem-72b8ca5db4da)。而大多数的 DApp 开发团队对此了解甚少，也缺乏对该问题的安全警惕意识。
 
 若干 Token 合约自行在标准 `approve()` 函数中添加了多余的对当前账户余额校验逻辑，要求授权的 _amount 小于或等于当前余额 [[13]](https://medium.com/secbit-media/redundant-check-in-erc20-smart-contracts-approve-5a675bb88261)。这导致采用类似 0x 协议的 DEX 无法正常提前完成 `approve()`，而需要 Token 项目方先行转账一笔数额巨大的 Token 至交易所中间账户，违背了 ERC20 标准设计的初衷，带来诸多不便。
 
@@ -196,6 +196,13 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 - Loopring https://loopring.io/
 - Dex.top https://dex.top/
+
+## Todo
+
+- [ ] 补充收录更多管理员权限过高的问题，如:
+    - [ ] 增发代币
+    - [ ] 设置交易价格
+    - [ ] 控制其他账号操作
 
 ## Reference
 
