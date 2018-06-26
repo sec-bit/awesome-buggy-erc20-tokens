@@ -192,7 +192,7 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
 
-## Todos
+## TODO
 
 - [ ] 补充收录更多管理员权限过高的问题，如:
     - [ ] 增发代币
