@@ -34,7 +34,7 @@
 
 ## ERC20 Token 面临的主要问题
 
-以太坊 ERC20 Token 标准自 2015 年 11 月 19 日诞生以来 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)，为智能合约、以太坊生态以及区块链应用的发展产生了巨大的贡献。据 Etherscan 网站[数据显示](https://etherscan.io/tokens)，截止 2018 年 6 月 20 日，以太坊主网上 ERC20 Token 数量已超过 90000。下图是我们统计的 ERC20 每日创建数量趋势图。
+以太坊 ERC20 Token 标准自 2015 年 11 月 19 日诞生以来 [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)，为智能合约、以太坊生态以及区块链应用的发展产生了巨大的贡献。据 Etherscan 网站[数据显示](https://etherscan.io/tokens)，截止 2018 年 6 月 26 日，以太坊主网上 ERC20 Token 数量已超过 95000。下图是我们统计的 ERC20 每日创建数量趋势图。
 
 ![以太坊主网上 ERC20 合约每日创建数量](img/erc20-creation.jpeg)
 

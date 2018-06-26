@@ -26,7 +26,7 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Problems in ERC20 Token Contracts
 
-[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). As of June 20th, 2018, more than 90,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
+[ERC20 standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md) is one of the most popular Ethereum token standards [[1]](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). As of June 26th, 2018, more than 95,000 ERC20 token smart contracts have been deployed according to [statistics from Etherscan](https://etherscan.io/tokens). Here is a daily trend chart of ERC20 contracts created according to our statistics:
 
 ![ERC20 Contracts Created on main Ethereum network every day](img/erc20-creation.jpeg)
 
