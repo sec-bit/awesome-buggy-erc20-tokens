@@ -174,7 +174,7 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 We hope this collection can contribute to the Ethereum ecosystem and definitely welcome contributions to this collection.
 
-We only maintained the detailed information of token contracts (totalSupply, decimals, exchanges) that have market caps on CoinMarketCap for now. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
+For now we only maintain detailed information of token contracts (totalSupply, decimals, exchanges) that have market caps on CoinMarketCap. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
 
 If you find other bugs not listed in this collection, please update in the following process.
   - Add the name and description of the bug with reference to [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md)
