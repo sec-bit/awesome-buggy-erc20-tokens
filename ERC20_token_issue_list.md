@@ -144,7 +144,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 * Link
 
-    * [SECBIT: 美链(BEC)合约安全事件分析全景](https://blog.csdn.net/Secbit/article/details/80045167)
+    * [A disastrous vulnerability found in smart contracts of BeautyChain (BEC)](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e)
 
 ### A2. totalsupply-overflow
 
