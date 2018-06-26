@@ -193,8 +193,8 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - \[4\] [SmartMesh Announcement on Ethereum Smart Contract Overflow Vulnerability](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)
 - [5] SECBIT: 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制, <https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ>
 - [6] SECBIT: 围观！81个智能合约惊现同一漏洞，是巧合？还是另有玄机？, <https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA>
-- [7] 清华-360企业安全联合研究中心: ERC20智能合约整数溢出系列漏洞披露, <https://www.secrss.com/articles/3289>
-- [8]【得得预警】ERC20智能合约又现大量整数溢出漏洞, <http://www.chaindd.com/3083754.html>
+- [7] Tsinghua-360 Research Center of Enterprise Security: ERC20智能合约整数溢出系列漏洞披露, <https://www.secrss.com/articles/3289>
+- [8]【ChainDD】ERC20智能合约又现大量整数溢出漏洞, <http://www.chaindd.com/3083754.html>
 - \[9\] [Alert! Another integer overflow vulnerability just found in HXG smart contract](https://medium.com/secbit-media/alert-another-integer-overflow-vulnerability-just-found-in-hxg-smart-contract-ff2f69fdd242), May 19, 2018
 - \[10\] [UselessEthereumToken(UET), ERC20 token, allows attackers to steal all victim’s balances (CVE-2018–10468)](https://medium.com/coinmonks/uselessethereumtoken-uet-erc20-token-allows-attackers-to-steal-all-victims-balances-543d42ac808e), May 3, 2018
 - \[11\] [Bugged Smart Contract FuturXE: How Could Someone Mess up with Boolean? (CVE-2018–12025)](https://medium.com/secbit-media/bugged-smart-contract-f-e-how-could-someone-mess-up-with-boolean-d2251defd6ff), Jun 6, 2018
@@ -206,9 +206,9 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - \[17\] [A guide to smart contract security best practices](https://github.com/ConsenSys/smart-contract-best-practices)
 - \[18\] [OpenZeppelin, a framework to build secure smart contracts on Ethereum](https://github.com/OpenZeppelin/openzeppelin-solidity)
 - \[19\] [360 0KEE Team: 以太坊智能合约Hexagon存在溢出漏洞](https://www.jianshu.com/p/c5363ffad6a7), May 18, 2018
-- \[20\] [慢雾科技：ATN 披露特殊场景下的以太坊合约重大漏洞](https://mp.weixin.qq.com/s/S5Oq4TxxW5OgEkOmy8ZSzQ), Jun 20, 2018
+- \[20\] [SlowMist：ATN 披露特殊场景下的以太坊合约重大漏洞](https://mp.weixin.qq.com/s/S5Oq4TxxW5OgEkOmy8ZSzQ), Jun 20, 2018
 - \[21\] [BCSEC: 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157), Jun 22, 2018
-- \[22\] [链安科技：小心！智能合约再爆高危漏洞，两大加密货币直接变废纸！](https://mp.weixin.qq.com/s/qDTrZPy5f4_-V2F4DpzoNA), Jun 6, 2018
+- \[22\] [LianAn：小心！智能合约再爆高危漏洞，两大加密货币直接变废纸！](https://mp.weixin.qq.com/s/qDTrZPy5f4_-V2F4DpzoNA), Jun 6, 2018
 
 ## License
 
