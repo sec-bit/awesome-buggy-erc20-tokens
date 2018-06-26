@@ -36,9 +36,9 @@ ERC20 Token specification has gone through challenges and improvements during it
 
 On June 18th, 2016, the DAO hack caused a total loss of over 3,600,000 ethers(ETH) worth over a billion dollars, and the Ethereum hard-fork afterwards led to the Ethereum community breaking apart [[2]](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993).
 
-On April 22th, 2018, the attack on BeautyChain(BEC) contract hardly decreased the token price to zero via pouring astronomical tokens to exchanges through an integer overflow [[3]](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e).
+On April 22th, 2018, the attack on BeautyChain(BEC) contract hardly decreased the token price to zero via pouring astronomical tokens to exchanges through an integer overflow [[3]](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e). There are 10 other contracts at least containing this problem.
 
-On April 25th, 2018, a similar integer overflow got uncovered in SMT. Hackers minted and dumped a tremendous amount of tokens, resulting in SMT's collapse [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/).
+On April 25th, 2018, a similar integer overflow got uncovered in SMT. Hackers minted and dumped a tremendous amount of tokens, resulting in SMT's collapse [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/). There is one other contract at least containing this problem.
 
 On May 20th, 2018, another integer overflow problem was found in EDU along with other three Token contracts, causing that anyone could transfer out other accounts' balance [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ). After further analysis, we caught this bug in at least 81 contracts (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA).
 
@@ -98,7 +98,7 @@ We created and would maintain this collection to:
 
 + Descriptions of common vulnerabilities
 + List of deployed buggy token contracts
-+ List of incompatible token contracts
++ List of nonstandard token contracts
 
 ## Repo Structure
 
