@@ -44,6 +44,10 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [A14. constructor-case-insensitive](#a14-constructor-case-insensitive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
   - [A16. custom-call-abuse](#a16-custom-call-abuse)
+  - [A17. setowner-anyone](#a17-setowner-anyone)
+  - [A18. allowAnyone](#a18-allowanyone)
+  - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
+  - [A20. re-approve](#a20-re-approve)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -1020,6 +1024,192 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
   - [以太坊智能合约call注入攻击](https://blog.csdn.net/u011721501/article/details/80757811)
   - [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
 
+### A17. setowner-anyone
+
+- Description
+
+  `setOwner()` could change `owner` and only the current `owner` may call it usually. However, the snippet below allows anyone calling `setOwner()` to set contract's `owner`. ([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
+
+- Problematic Implementation
+
+  ```js
+  function setOwner(address _owner) returns (bool success) {
+      owner = _owner;
+      return true;
+  }
+  ```
+
+- Recommended Implementation
+
+  ```js
+  modifier onlyOwner() {
+      require(msg.sender == owner);
+      _;
+  }
+  function setOwner(address _owner) onlyOwner returns (bool success) {
+      owner = _owner;
+      return true;
+  }
+  ```
+
+- List of Buggy Contracts
+
+  - Aurora DAO (AURA)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv)
+
+- Link
+
+  - [New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705)](https://peckshield.com/2018/05/03/ownerAnyone/)
+
+### A18. allowAnyone
+
+* Description
+  `transferFrom()` missed a check on `allowed`, then anyone could transfer balances from any accounts. A hacker could make use of it to grab others' tokens. In the mean time, if the transferred sum surpasses `allowed`, `allowed[_from][msg.sender] -= _value;` would lead to an underflow.
+
+* Problematic Implementation
+
+  ```js
+  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+      /// same as above
+      require(_to != 0x0);
+      require(balances[_from] >= _value);
+      require(balances[_to] + _value > balances[_to]);
+  
+      uint previousBalances = balances[_from] + balances[_to];
+      balances[_from] -= _value;
+      balances[_to] += _value;
+      allowed[_from][msg.sender] -= _value;
+      Transfer(_from, _to, _value);
+      assert(balances[_from] + balances[_to] == previousBalances);
+  
+      return true;
+  }
+  ```
+
+* Recommended Implementation
+
+  Add `allowed` checking or compute by secure mathematical operations such as `SafeMath`.
+
+  ```js
+  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+      /// same as above
+      require(_to != 0x0);
+      require(balances[_from] >= _value);
+      require(balances[_to] + _value > balances[_to]);
+  	  require(allowed[_from][msg.sender] >= _value);
+      
+      uint previousBalances = balances[_from] + balances[_to];
+      balances[_from] -= _value;
+      balances[_to] += _value;
+      allowed[_from][msg.sender] -= _value;
+      Transfer(_from, _to, _value);
+      assert(balances[_from] + balances[_to] == previousBalances);
+  
+      return true;
+  }
+  ```
+
+* List of Buggy Contracts
+
+  * EDUCoin
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/allowAnyone.o.csv )
+
+* Link
+
+  [智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ )
+
+ ### A19. approve-with-balance-verify
+
+* Description
+
+  Several Token contracts add balance check in standard `approve()` requiring `_amount` not greater than the current balance.
+
+  In one way, this check cannot assure that the approved account would transfer out tokens of this amount:
+
+  * The token holder transfers out tokens after approval, making the balance smaller than `allowance`.
+  * After approving multiple users, one of them calls `transferFrom()` and the balance could be smaller than the approved value.
+
+  On the another way, this check might prevent external contracts(e.g. decentralized exchanges based on 0x protocol) from normal calling, before the Token developing team transferring a tremendous amount of tokens to the intermediate account.
+
+* Problematic Implementation
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      // approval amount cannot exceed the balance
+      require ( balances[msg.sender] >= _amount );
+      // update allowed amount
+      allowed[msg.sender][_spender] = _amount;
+      // log event
+      Approval(msg.sender, _spender, _amount);
+      return true;
+  }
+  ```
+
+* Recommended Implementation
+
+  Delete balance checking.
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      // update allowed amount
+      allowed[msg.sender][_spender] = _amount;
+      // log event
+      Approval(msg.sender, _spender, _amount);
+      return true;
+  }
+  ```
+
+* List of Buggy Contracts
+
+  * Saint Coins (SAINT) 
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-with-balance-verify.o.csv )
+
+* Link
+
+  [ERC20智能合约的approve千万别这样写](https://mp.weixin.qq.com/s/hYE4nu7FCD_nJH5WMRrXMA)
+
+### A20. re-approve
+
+- Description
+
+  `approve()` allows the spender account using a given number of tokens by updating the value of `allowance`.
+
+  Suppose the spender account is able to control miners' confirming order of transferring, then spender could use up all `allowance` before approve comes into effect. After `approve()` is effective, spender has access to the new allowance, causing total tokens spent greater than expected and resulting in Re-approve attack.
+
+  This attack is only possible when the spender has approval, the approved account changes the approved amount, the balance is sufficient and the spender could control confirming order of transferring.
+
+  It would only cause the spender using more tokens than expected or the approved tokens less than expectation, not affecting the account balance and sum of tokens.
+  
+- Recommended Implementation
+
+  This issue originates from vulnerabilities in ERC20 and could be found in most contracts(List of Buggy Contracts is omitted). Please use `increaseApprove()` and `decreaseApprove()` to avoid it.
+
+  ```js
+  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+      allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+      emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+      return true;
+  }
+  
+  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+      uint oldValue = allowed[msg.sender][_spender];
+      if (_subtractedValue > oldValue) {
+          allowed[msg.sender][_spender] = 0;
+      } else {
+          allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+      }
+      emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+      return true;
+  }
+  ```
+
+- Link
+
+  - [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/)
+
 ## B. List of Incompatibilities
 
 ### B1. transfer-no-return
@@ -1282,47 +1472,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
     
 ## C. List of Excessive Authorities
 
-### C1. setowner-anyone
-
-- Description
-
-  `setOwner()` could change `owner` and only the current `owner` may call it usually. However, the snippet below allows anyone calling `setOwner()` to set contract's `owner`. ([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
-
-- Problematic Implementation
-
-  ```js
-  function setOwner(address _owner) returns (bool success) {
-      owner = _owner;
-      return true;
-  }
-  ```
-
-- Recommended Implementation
-
-  ```js
-  modifier onlyOwner() {
-      require(msg.sender == owner);
-      _;
-  }
-  function setOwner(address _owner) onlyOwner returns (bool success) {
-      owner = _owner;
-      return true;
-  }
-  ```
-
-- List of Buggy Contracts
-
-  - Aurora DAO (AURA)
-
-  - idex-membership
-
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv)
-
-- Link
-
-  - [New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705)](https://peckshield.com/2018/05/03/ownerAnyone/)
-
-### C2. centralAccount-transfer-anyone
+### C1. centralAccount-transfer-anyone
 
 - Description
 
@@ -1377,8 +1527,10 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * [14] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
 * [15] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
 * [16] https://github.com/ConsenSys/smart-contract-best-practices Smart Contract Best Practices
+* [17] https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制. May 24, 2018.
+* [18] https://mp.weixin.qq.com/s/hYE4nu7FCD_nJH5WMRrXMA ERC20智能合约的approve千万别这样写. Jun 15,2018.
+* [19] https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/ ERC20 API: An Attack Vector on Approve/TransferFrom Methods.
 
- 
 
 ## License
 
