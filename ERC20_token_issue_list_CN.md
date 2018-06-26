@@ -9,6 +9,7 @@
 本文收录了token合约中目前已披露的安全风险问题，旨在帮助大家快速了解这些安全风险，提高安全意识，避免重复踩坑，杜绝不必要的损失。同时也建议大家在合约开发过程中参考安全标准的开发指导说明和规范源码，如「[以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices)」。
 
 ## 最近更新
+* 2018-06-26，新增问题分类：allowAnyone，no-allowance-verify，re-approve，no-Approval
 * 2018-06-23，添加如何参与贡献和版权声明
 * 2018-06-23，添加快速导航
 * 2018-06-22，新增问题分类：no-decimals，no-name，no-symbol
@@ -21,13 +22,14 @@
 
 | 分类 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
-| A    | 代码实现漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如overflow。 |
-| B    | 不兼容问题，涵盖了因版本不兼容或者外部合约调用时的不兼容导致问题，如ERC20接口无返回值。 |
-| C    | 权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如任何人都可以修改owner。 |
+| A    | 代码实现漏洞，涵盖了合约代码功能实现和逻辑实现上的漏洞，如整数溢出 |
+| B    | 不规范问题，涵盖了因代码实现不规范导致版本不兼容或者外部合约调用时的无法不兼容问题，如 ERC20 接口无返回值 |
+| C    | 权限管理问题，涵盖了所有因管理权限设置不当而引发的问题，如owner可以操作任何人账户上的余额 |
 
 #### 快速导航
 
 - [A. 代码实现漏洞问题列表](#a-代码实现漏洞问题列表)
+
   - [A1. batchTransfer-overflow](#a1-batchtransfer-overflow)
   - [A2. totalsupply-overflow](#a2-totalsupply-overflow)
   - [A3. verify-invalid-by-overflow](#a3-verify-invalid-by-overflow)
@@ -44,18 +46,26 @@
   - [A14. constructor-case-insentive](#a14-constructor-case-insentive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
   - [A16. custom-call-abuse](#a16-custom-call-abuse)
-- [B.不兼容问题列表](#b不兼容问题列表)
+  - [A17. setowner-anyone](#a17-setowner-anyone)
+  - [A18. allowAnyone](#a18-allowanyone)
+  - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
+  - [A20. re-approve](#a20-re-approve)
+
+- [B.不规范问题列表](#b不规范问题列表)
+
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
   - [B3. transferFrom-no-return](#b3-transferfrom-no-return)
   - [B4. no-decimals](#b4-no-decimals)
   - [B5. no-name](#b5-no-name)
   - [B6. no-symbol](#b6-no-symbol)
-- [C. 权限管理问题列表](#c-权限管理问题列表)
-  - [C1. setowner-anyone](#c1-setowner-anyone)
-  - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
+  - [B7. no-Approval](#b7-no-approval)
 
-    
+- [C. 权限管理问题列表](#c-权限管理问题列表)
+
+  - [C1. centralAccount-transfer-anyone](#c1-centralaccount-transfer-anyone)
+
+  
 
 ## 如何参与贡献
 
@@ -142,7 +152,7 @@
 
     * BeautyChain (BEC)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow.o.csv)
 
 * 相关链接
 
@@ -186,13 +196,9 @@
 
 * 问题合约列表
 
-    * FuturXE (FXE)
+    * FuturXE (FXE) 
 
-    * Amber Token (AMB)
-
-    * Insights Network (INSTAR)
-
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow.o.csv) 
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow.o.csv ) 
 
 ### A3. verify-invalid-by-overflow
 
@@ -238,7 +244,7 @@
 
     * SmartMesh Token (SMT)  
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow.o.csv)
 
 ### A4. owner-control-sell-price-for-overflow
 
@@ -280,7 +286,7 @@
 
     * Internet Node Token (INT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow.o.csv)
 
 * 相关链接
 
@@ -333,7 +339,7 @@
 
     * Bitcoin Red (BTCR)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow.o.csv)
+       [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow.o.csv)
 
 * 相关链接
 
@@ -377,13 +383,9 @@
 
 * 问题合约列表
 
-    * SwftCoin (SWFTC)
+    * SwftCoin (SWFTC) 
 
-    * Pylon Token (PYLNT)
-
-    * Internet Node Token (INT)
-
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow.o.csv)
 
 * 相关链接
 
@@ -456,7 +458,7 @@
 * 问题合约列表
     * LGO Token (LGO)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow.o.csv)
 
 * 相关链接
 
@@ -508,7 +510,7 @@
 
     * Playkey Token (PKT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow.o.csv )
 
 * 相关链接
 
@@ -569,9 +571,9 @@
 
 * 问题合约列表
 
-    * EthLend Token (LEND) 
+    * EthLend Token (LEND)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow.o.csv ) 
 
 * 相关链接
 
@@ -663,11 +665,7 @@
 
     * FuturXE (FXE)
 
-    * Useless Ethereum Token (UET)
-
-    * Soarcoin (Soar)
-
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom.o.csv)
+    ​        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom.o.csv )
 
 * 相关链接
 
@@ -783,7 +781,7 @@
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256.o.csv)
 
 * 相关链接
 
@@ -840,7 +838,7 @@
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256.o.csv)
 
 * 相关链接
 
@@ -923,7 +921,7 @@
         receiving.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
         ...
     }
-
+    
     function isAuthorized(address src, bytes4 sig) internal view returns (bool) {
         if (src == address(this)) {
             return true;
@@ -1006,7 +1004,7 @@
 
     * TE-FOOD (TFD)
 
-        [more...](csv/custom-call-abuse.o.csv)    
+      [more...](csv/custom-call-abuse.o.csv) 
 
 * 相关链接
 
@@ -1017,7 +1015,194 @@
     * [Discussion about ERC827 Proposal Implementation](https://github.com/ethereum/EIPs/issues/827#issuecomment-399776972)
     * [ERC-223 Token Standard Proposal Draft](https://github.com/ethereum/EIPs/issues/223)
 
-## B.不兼容问题列表
+### A17. setowner-anyone
+
+- 问题描述
+
+  `setOwner()` 函数的作用是修改 `owner`，通常情况下该函数只有当前 `owner` 可以调用。 但问题代码中，任何人都可以调用 `setOwner()` 函数，这就导致了任何人都可以修改合约的 `owner`。([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
+
+- 错误的代码实现
+
+  ```js
+  function setOwner(address _owner) returns (bool success) {
+      owner = _owner;
+      return true;
+  }
+  ```
+
+- 推荐的代码实现
+
+  ```js
+  modifier onlyOwner() {
+      require(msg.sender == owner);
+      _;
+  }
+  function setOwner(address _owner) onlyOwner returns (bool success) {
+      owner = _owner;
+      return true;
+  }
+  ```
+
+- 问题合约列表
+
+  - Aurora DAO (AURA) 
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv )
+
+- 相关链接
+
+  - [New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705)](https://peckshield.com/2018/05/03/ownerAnyone/)
+
+### A18. allowAnyone
+
+* 问题描述
+
+  在`transferFrom`函数中，由于缺少了对`allowed`的校验， 任何账户都可以对某一账户上的余额随意进行转账，黑客就可以利用这个漏洞将他人账户上的余额转入自己的账户中，从而获益。同时若转账金额超出了`allowed` 的限制，`allowed[_from][msg.sender] -= _value;`这段代码将导致的溢出。
+
+* 错误的代码实现
+
+  ```js
+  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+      /// same as above
+      require(_to != 0x0);
+      require(balances[_from] >= _value);
+      require(balances[_to] + _value > balances[_to]);
+  
+      uint previousBalances = balances[_from] + balances[_to];
+      balances[_from] -= _value;
+      balances[_to] += _value;
+      allowed[_from][msg.sender] -= _value;
+      Transfer(_from, _to, _value);
+      assert(balances[_from] + balances[_to] == previousBalances);
+  
+      return true;
+  }
+  ```
+
+* 推荐的代码实现
+
+  增加allowed的校验或者使用safeMath进行运算。
+
+  ```js
+  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+      /// same as above
+      require(_to != 0x0);
+      require(balances[_from] >= _value);
+      require(balances[_to] + _value > balances[_to]);
+  	require(allowed[_from][msg.sender] >= _value);
+      
+      uint previousBalances = balances[_from] + balances[_to];
+      balances[_from] -= _value;
+      balances[_to] += _value;
+      allowed[_from][msg.sender] -= _value;
+      Transfer(_from, _to, _value);
+      assert(balances[_from] + balances[_to] == previousBalances);
+  
+      return true;
+  }
+  ```
+
+* 问题合约列表
+
+  * EDUCoin
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/allowAnyone.o.csv )
+
+* 相关链接
+
+  [智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ )
+
+ ### A19. approve-with-balance-verify
+
+* 问题描述
+
+  部分合约在函数approve()中，增加对被授权账户余额的校验，要求授权的_amount小于或等于当前余额。
+
+  一方面对余额的校验并不能保证被授权账户一定可以转出这个数量的金额:
+
+  * 在approve之后，token的所有者自己通过transfer函数，把token转走，导致余额小于allowance。
+  * approve给多个人，其中一个人进行transferFrom操作后，可能导致余额小于之前给其他人approve过的值。
+
+  另一方面这个校验可能导致外部合约（如以0x协议为基础的去中心化交易所）无法正常调用，必须由 Token 项目方提前转入一笔数额巨大的 Token 至中间账户才能继续执行。
+
+* 错误的代码实现
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      // approval amount cannot exceed the balance
+      require ( balances[msg.sender] >= _amount );
+      // update allowed amount
+      allowed[msg.sender][_spender] = _amount;
+      // log event
+      Approval(msg.sender, _spender, _amount);
+      return true;
+  }
+  ```
+
+* 推荐的代码实现
+
+  去掉balance的校验
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      // update allowed amount
+      allowed[msg.sender][_spender] = _amount;
+      // log event
+      Approval(msg.sender, _spender, _amount);
+      return true;
+  }
+  ```
+
+* 问题合约列表
+
+  * Saint Coins (SAINT) 
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-with-balance-verify.o.csv )
+
+* 相关链接
+
+  [ERC20智能合约的approve千万别这样写](https://mp.weixin.qq.com/s/hYE4nu7FCD_nJH5WMRrXMA)
+
+### A20. re-approve
+
+- 问题描述
+
+  approve函数执行时，通过直接修改allowance为新的值，授权spender账户花费新的指定金额。
+
+  如果spender在有能力操纵交易被矿工确认的顺序，那么spender可以在approve函数调用生效前，花费现有的所有的allowance，等到approve生效，spender便可以花费新的allowance，使得总花费大于预想的数量，从而导致Re-approve攻击。
+
+  当spender账户已获得approve权限，被授权账户修改approve金额，并且账户余额充足时，若spender有能力操作交易的打包顺序时情况下才能够发动改类攻击。
+
+  此类攻击仅会造成spender账户可以使用比被授权账户预期更多的代币，或者可以使用的代币不足预期，并不会对账户余额和代币总量造成实质性的影响。
+
+- 推荐的代码实现 
+
+  该问题是由于ERC20规范的漏洞引发的问题，目前大部分合约都存在该问题（问题合约不再专门列出）。建议使用increaseApprove()和decreaseApprove()进行授权来规避。
+
+  ```js
+  function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+      allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+      emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+      return true;
+  }
+  
+  function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+      uint oldValue = allowed[msg.sender][_spender];
+      if (_subtractedValue > oldValue) {
+          allowed[msg.sender][_spender] = 0;
+      } else {
+          allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+      }
+      emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+      return true;
+  }
+  ```
+
+- 相关链接
+
+  - [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/)
+
+## B.不规范问题列表
 
 ### B1. transfer-no-return
 
@@ -1053,15 +1238,11 @@
     }
     ```
 
-* 问题合约列表
+* 问题合约列表 
 
-    * IOT on Chain (ITC)
+    * UNetworkToken (UUU)
 
-    * BNB (BNB)
-
-    * loopring (LRC)
-
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return.o.csv)
+      ​    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return.o.csv)
 
 * 相关链接
 
@@ -1095,15 +1276,11 @@
     }
     ```
 
-* 问题合约列表
-
-    * loopring (LRC)
-
-    * Paymon Token (PMNT)
+* 问题合约列表 
 
     * Metal(MTL)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return.o.csv)
+       [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return.o.csv )
 
 * 相关链接
 
@@ -1145,13 +1322,9 @@
 
 * 问题合约列表
 
-    * CUBE (AUTO)
+    * CUBE (AUTO) 
 
-    * loopring (LRC)
-
-    * Paymon Token (PMNT)
-
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
 
 * 相关链接
 
@@ -1187,17 +1360,11 @@
     }
     ```
 
-- 问题合约列表 
+- 问题合约列表  
 
-  - Loopring (LRC)
+    - ICON (ICX) 
 
-  - ICON (ICX)
-
-  - HPBCoin (HPB)
-
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals.o.csv)
-
-
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals.o.csv )
 ### B5. no-name
 
 - 问题描述
@@ -1227,15 +1394,11 @@
     }
     ```
 
-- 问题合约列表 
+- 问题合约列表  
 
-  - Loopring (LRC)
+  - ICON (ICX) 
 
-  - ICON (ICX)
-
-  - HPBCoin (HPB)
-
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name.o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name.o.csv )
 
 ### B6. no-symbol 
 
@@ -1266,60 +1429,47 @@
     }
     ```
 
-- 问题合约列表 
-
-  - Loopring (LRC)
+- 问题合约列表  
 
   - ICON (ICX)
 
-  - HPBCoin (HPB)
-
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol.o.csv)
 
-    
+### B7. no-Approval
+
+* 问题描述
+
+  ERC20 标准中还规定了 `Transfer` 和 `Approval` 事件必须在特定场景下触发。很多 Token 的实现参考了以太坊官网的不标准代码(已修复)，漏掉触发 `Approval` 事件的操作。
+
+* 错误代码实现
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      allowed[msg.sender][_spender] = _amount;
+      return true;
+  }
+  ```
+
+* 推荐的代码实现
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      allowed[msg.sender][_spender] = _amount;
+      Approval(msg.sender, _spender, _amount);
+      return true;
+  }
+  ```
+
+* 问题合约列表
+
+  * JEX Token (JEX)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-Approval.o.csv )
+
+
 ## C. 权限管理问题列表
 
-### C1. setowner-anyone
-
-- 问题描述
-
-  `setOwner()` 函数的作用是修改 `owner`，通常情况下该函数只有当前 `owner` 可以调用。 但问题代码中，任何人都可以调用 `setOwner()` 函数，这就导致了任何人都可以修改合约的 `owner`。([CVE-2018-10705](https://nvd.nist.gov/vuln/detail/CVE-2018-10705))
-
-- 错误的代码实现
-
-  ```js
-  function setOwner(address _owner) returns (bool success) {
-      owner = _owner;
-      return true;
-  }
-  ```
-
-- 推荐的代码实现
-
-  ```js
-  modifier onlyOwner() {
-      require(msg.sender == owner);
-      _;
-  }
-  function setOwner(address _owner) onlyOwner returns (bool success) {
-      owner = _owner;
-      return true;
-  }
-  ```
-
-- 问题合约列表
-
-  - Aurora DAO (AURA)
-
-  - idex-membership
-
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv)
-
-- 相关链接
-
-  - [New ownerAnyone Bug Allows For Anyone to ''Own'' Certain ERC20-Based Smart Contracts (CVE-2018-10705)](https://peckshield.com/2018/05/03/ownerAnyone/)
-
-### C2. centralAccount-transfer-anyone
+### C1. centralAccount-transfer-anyone
 
 - 问题描述
 
@@ -1350,7 +1500,7 @@
 
   - Soarcoin (Soar)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone.o.csv) 
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone.o.csv ) 
 
 - 相关链接
 
@@ -1374,6 +1524,9 @@
 * [14] https://github.com/icon-foundation/ico/issues/3 Bug in ERC20 contract, transfers can be disabled, Jun 16,2018.
 * [15] https://bcsec.org/index/detail?id=157&tag=1 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！Jun 22,2018.
 * [16] https://github.com/ConsenSys/smart-contract-best-practices 以太坊智能合约 —— 最佳安全开发指南.
+* [17] https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ 智能合约红色预警：四个Token惊爆逻辑漏洞，归零风险或源于代码复制. May 24, 2018.
+* [18] https://mp.weixin.qq.com/s/hYE4nu7FCD_nJH5WMRrXMA ERC20智能合约的approve千万别这样写. Jun 15,2018.
+* [19] https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/ ERC20 API: An Attack Vector on Approve/TransferFrom Methods.
 
  
 
