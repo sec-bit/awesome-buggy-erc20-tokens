@@ -34,9 +34,9 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 2016 年 6 月 18 日，针对 DAO 合约的攻击导致超过 3,600,000 个以太币 (ETH) 的损失，这些以太币以今天的市价计算总值超过 10 亿美元，这次攻击之后的以太坊硬分叉导致了以太坊社区的分裂 [[2]](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993)。
 
-2018 年 4 月 22 日，黑客攻击了美链 (BEC) 的 Token 合约，通过一个整数溢出安全漏洞，将天量的 Token 砸向交易所，导致 BEC 的价格几乎归零 [[3]](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e)。
+2018 年 4 月 22 日，黑客攻击了美链 (BEC) 的 Token 合约，通过一个整数溢出安全漏洞，将天量的 Token 砸向交易所，导致 BEC 的价格几乎归零 [[3]](https://medium.com/secbit-media/a-disastrous-vulnerability-found-in-smart-contracts-of-beautychain-bec-dbf24ddbc30e)。至少还有 10 份合约存在同样问题。
 
-2018 年 4 月 25 日，SMT 爆出类似的整数溢出漏洞，黑客通过漏洞制造和抛售了天文数字规模的 Token，导致 SMT 价格崩盘 [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)。
+2018 年 4 月 25 日，SMT 爆出类似的整数溢出漏洞，黑客通过漏洞制造和抛售了天文数字规模的 Token，导致 SMT 价格崩盘 [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)。至少还有 1 份合约存在同样问题。
 
 2018 年 5 月 20 日，又是整数溢出漏洞导致任何人可以将任何用户的 EDU 账户转出，同时还有其它 3 个 Token 也出现了相同问题 [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。我们对以太坊上所有的智能合约的进一步深入分析表明，至少有81个合约具有相同的漏洞 (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
 
@@ -73,9 +73,9 @@ ERC20 标准中还规定了 `Transfer` 和 `Approval` 两个事件必须在特�
 
 在此，我们对已知的漏洞和缺陷做了一个汇总，收录的 Token 问题类型主要包括：
 
-1. Token 合约安全漏洞
+1. Token 代码实现漏洞
 2. 不符合 ERC20 规范导致的兼容问题
-3. Token 合约管理员的权限过高 [[16]](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a)
+3. Token 合约权限管理问题 [[16]](https://medium.com/@peckshield/highly-manipulatable-erc20-tokens-identified-in-multiple-top-exchanges-including-binance-d158deab4b9a)
 
 ## 为何要维护一个 token list
 
@@ -93,7 +93,7 @@ ERC20 标准中还规定了 `Transfer` 和 `Approval` 两个事件必须在特�
 
 + 常见安全漏洞描述
 + 已部署的漏洞合约 Token 列表
-+ 不兼容的合约 Token 列表
++ 不规范的合约 Token 列表
 
 ## 项目各部分说明
 
