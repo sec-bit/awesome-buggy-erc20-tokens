@@ -195,7 +195,8 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 ## 技术合作
 
 - Loopring https://loopring.io/
-- Dex.top https://dex.top/
+- DEx.top https://dex.top/
+- ConsenSys 中国
 
 ## Todos
 
