@@ -5,6 +5,16 @@
 
 以太坊 ERC20 智能合约风险问题及影响 Token 汇总
 
+## 声明
+
+- 本项目旨在通过收录已披露的智能合约漏洞，提升社区安全开发意识
+- 本项目全部信息来源于公开资料，部分分析结果由程序自动生成，辅以人工校对
+- 本项目收集的部分信息可能不准确，如有问题，请直接提交更改请求或联系我们更正
+- 本项目不包含未公开漏洞
+- 本项目中列出的 Token 名字或缩写可能会与知名项目重复，请勿过分解读
+- 本项目中列出的部分 Token 仅存在不规范问题，并无致命漏洞
+- 本项目中列出的部分问题 Token 项目方已采取措施妥善处理
+
 ## 快速提示
 
 - 所有问题 Token 合约总表，请访问[`bad_tokens_all.csv`](bad_tokens_all.csv)
@@ -181,6 +191,11 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 - 检查更改的文件，提交更新
 
 如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
+
+## 技术合作
+
+- Loopring https://loopring.io/
+- Dex.top https://dex.top/
 
 ## Reference
 
