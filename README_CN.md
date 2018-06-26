@@ -197,14 +197,14 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 - Loopring https://loopring.io/
 - Dex.top https://dex.top/
 
-## Todo
+## Todos
 
 - [ ] 补充收录更多管理员权限过高的问题，如:
     - [ ] 增发代币
     - [ ] 设置交易价格
     - [ ] 控制其他账号操作
 
-## Reference
+## References
 
 - [1] [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), Nov 19, 2015
 - [2] [Understanding The DAO Hack for Journalists](https://medium.com/@pullnews/understanding-the-dao-hack-for-journalists-2312dd43e993), Jun 19, 2016
