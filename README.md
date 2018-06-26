@@ -209,6 +209,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - \[20\] [SlowMist：ATN 披露特殊场景下的以太坊合约重大漏洞](https://mp.weixin.qq.com/s/S5Oq4TxxW5OgEkOmy8ZSzQ), Jun 20, 2018
 - \[21\] [BCSEC: 一些智能合约存在笔误，一个字母可造成代币千万市值蒸发！](https://bcsec.org/index/detail?id=157), Jun 22, 2018
 - \[22\] [LianAn：小心！智能合约再爆高危漏洞，两大加密货币直接变废纸！](https://mp.weixin.qq.com/s/qDTrZPy5f4_-V2F4DpzoNA), Jun 6, 2018
+- \[23\] [PeckShield: New allowAnyone Bug Identified in Multiple ERC20 Smart Contracts](https://medium.com/@peckshield/new-allowanyone-bug-identified-in-multiple-erc20-smart-contracts-20d935b5e7ff), May 23, 2018
 
 ## License
 
