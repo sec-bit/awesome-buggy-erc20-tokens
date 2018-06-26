@@ -9,8 +9,8 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Navigation
 
-- Visit [`bad_tokens_all.csv`](bad_tokens_all.csv) for a summary of all Token contracts affected
-- Visit [`bad_tokens_top.csv`](bad_tokens_top.csv) for a summary of top ranking Token contracts affected
+- Visit [`bad_tokens.all.csv`](bad_tokens.all.csv) for a summary of all Token contracts affected
+- Visit [`bad_tokens.top.csv`](bad_tokens.top.csv) for a summary of top ranking Token contracts affected
 - Visit [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md) for a detailed description of all bugs and Token contracts affected
 - [Click here](#how-to-contribute) if you find a mistake or anything missed in this repo
 
@@ -104,28 +104,28 @@ We created and would maintain this collection to:
 
 ```bash
 awesome-buggy-erc20-tokens
-├── TOKEN_DICT.json
-├── TOKEN_DETAIL_DICT.json
+├── token_dict.json
+├── token_detail_dict.json
 ├── ERC20_token_issue_list_CN.md
 ├── issues.json
-├── bad_tokens_all.csv
-├── bad_tokens_all.json
-├── bad_tokens_top.csv
-├── bad_tokens_top.json
+├── bad_tokens.all.csv
+├── bad_tokens.all.json
+├── bad_tokens.top.csv
+├── bad_tokens.top.json
 ├── raw/
 ├── csv/
 ├── json/
 ├── gen_token_detail_dict.py
 └── gen_list_from_raw.py
 ```
-- [`TOKEN_DICT.json`](TOKEN_DICT.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
-- [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json) lists addresses and detailed information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`token_dict.json`](token_dict.json) lists addresses and basic information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
+- [`token_detail_dict.json`](token_detail_dict.json) lists addresses and detailed information of ERC20 contracts collected by [CoinMarketCap](https://coinmarketcap.com/tokens/)
 - [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md) lists detailed descriptions of known bugs.
 - [`issues.json`](issues.json) maps between known bugs and indexes.
-- [`bad_tokens_all.csv`](bad_tokens_all.csv) along with [`bad_tokens_all.json`](bad_tokens_all.json) are lists of all buggy Token contracts in CSV and JSON formats.
-- [`bad_tokens_top.csv`](bad_tokens_top.csv) along with [`bad_tokens_top.json`](bad_tokens_top.json) are lists of top ranking buggy Token contracts in CSV and JSON formats.
+- [`bad_tokens.all.csv`](bad_tokens.all.csv) along with [`bad_tokens.all.json`](bad_tokens.all.json) are lists of all buggy Token contracts in CSV and JSON formats.
+- [`bad_tokens.top.csv`](bad_tokens.top.csv) along with [`bad_tokens.top.json`](bad_tokens.top.json) are lists of top ranking buggy Token contracts in CSV and JSON formats.
 -  [`raw/`](raw), [`csv/`](csv) and [`json/`](json) list all known bugs and addresses of affected contracts in formats of plain text, CSV and JSON.
-- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) is a script to update [`TOKEN_DETAIL_DICT.json`](TOKEN_DETAIL_DICT.json)
+- [`gen_token_detail_dict.py`](gen_token_detail_dict.py) is a script to update [`token_detail_dict.json`](token_detail_dict.json)
 - [`gen_list_from_raw.py`](gen_list_from_raw.py) is a script to generate ```.csv``` and ```.json``` lists above.
 
 As shown below, lists in CSV and JSON help developers to browse and search for addresses of given contracts with known vulnerabilities.
@@ -174,7 +174,7 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 We hope this collection can contribute to the Ethereum ecosystem and definitely welcome contributions to this collection.
 
-For now we only maintain detailed information of token contracts (totalSupply, decimals, exchanges) that have market caps on CoinMarketCap. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`TOKEN_DICT.json`](TOKEN_DICT.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
+For now we only maintain detailed information of token contracts (totalSupply, decimals, exchanges) that have market caps on CoinMarketCap. If you find any other incompatible/buggy/vulnerable ERC20 token contracts, please update [`token_dict.json`](token_dict.json) and use script [`gen_token_detail_dict.py`](gen_token_detail_dict.py).
 
 If you find other bugs not listed in this collection, please update in the following process.
   - Add the name and description of the bug with reference to [`ERC20_token_issue_list.md`](ERC20_token_issue_list.md)

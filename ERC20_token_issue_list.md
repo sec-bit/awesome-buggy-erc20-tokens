@@ -140,7 +140,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * BeautyChain (BEC)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow.o.csv)
 
 * Link
 
@@ -190,7 +190,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Insights Network (INSTAR)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow.o.csv) 
 
 ### A3. verify-invalid-by-overflow
 
@@ -236,7 +236,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * SmartMesh Token (SMT)  
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow.o.csv)
 
 ### A4. owner-control-sell-price-for-overflow
 
@@ -278,7 +278,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Internet Node Token (INT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow.o.csv)
 
 * Link
 
@@ -331,7 +331,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Bitcoin Red (BTCR)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow.o.csv)
 
 * Link
 
@@ -381,7 +381,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Internet Node Token (INT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow.o.csv)
 
 * Link
 
@@ -454,7 +454,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * List of Buggy Contracts
     * LGO Token (LGO)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow.o.csv)
 
 * Link
 
@@ -506,7 +506,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Playkey Token (PKT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow.o.csv)
 
 * Link
 
@@ -569,7 +569,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * EthLend Token (LEND) 
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow.o.csv)
 
 * Link
 
@@ -665,7 +665,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Soarcoin (Soar)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom.o.csv)
 
 * Link
 
@@ -723,7 +723,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - icon (ICX)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone.o.csv)
 
 - Link
 
@@ -781,7 +781,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256.o.csv)
 
 * Link
 
@@ -838,7 +838,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256.o.csv)
 
 * Link
 
@@ -892,7 +892,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   * MORPH (MORPH) 
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insensitive_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insensitive.o.csv)
 
 * Link
 
@@ -958,7 +958,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - ATN (ATN) （Fixed officially by adding Guard contract)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/custom-fallback-bypass-ds-auth_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/custom-fallback-bypass-ds-auth.o.csv)
 
 - Link
 
@@ -1012,7 +1012,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * TE-FOOD (TFD)
 
-        [more...](csv/custom-call-abuse_o.csv)  
+        [more...](csv/custom-call-abuse.o.csv)  
 
 - Link
 
@@ -1064,7 +1064,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * loopring (LRC)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return.o.csv)
 
 * Link
 
@@ -1106,7 +1106,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Metal(MTL)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return.o.csv)
 
 * Link
 
@@ -1154,7 +1154,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * Paymon Token (PMNT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
 
 * Link
 
@@ -1198,7 +1198,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals.o.csv)
 
 
 ### B5. no-name
@@ -1238,7 +1238,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name.o.csv)
 
 ### B6. no-symbol 
 
@@ -1277,7 +1277,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol.o.csv)
 
     
 ## C. List of Excessive Authorities
@@ -1316,7 +1316,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - idex-membership
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv)
 
 - Link
 
@@ -1353,7 +1353,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
   - Soarcoin (Soar)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv) 
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone.o.csv) 
 
 - Link
 

@@ -142,7 +142,7 @@
 
     * BeautyChain (BEC)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/batchTransfer-overflow.o.csv)
 
 * 相关链接
 
@@ -192,7 +192,7 @@
 
     * Insights Network (INSTAR)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow_o.csv) 
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow.o.csv) 
 
 ### A3. verify-invalid-by-overflow
 
@@ -238,7 +238,7 @@
 
     * SmartMesh Token (SMT)  
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-invalid-by-overflow.o.csv)
 
 ### A4. owner-control-sell-price-for-overflow
 
@@ -280,7 +280,7 @@
 
     * Internet Node Token (INT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-control-sell-price-for-overflow.o.csv)
 
 * 相关链接
 
@@ -333,7 +333,7 @@
 
     * Bitcoin Red (BTCR)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-overweight-token-by-overflow.o.csv)
 
 * 相关链接
 
@@ -383,7 +383,7 @@
 
     * Internet Node Token (INT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow.o.csv)
 
 * 相关链接
 
@@ -456,7 +456,7 @@
 * 问题合约列表
     * LGO Token (LGO)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-allocation-by-overflow.o.csv)
 
 * 相关链接
 
@@ -508,7 +508,7 @@
 
     * Playkey Token (PKT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-mint-token-by-overflow.o.csv)
 
 * 相关链接
 
@@ -571,7 +571,7 @@
 
     * EthLend Token (LEND) 
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/excess-buy-token-by-overflow.o.csv)
 
 * 相关链接
 
@@ -667,7 +667,7 @@
 
     * Soarcoin (Soar)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom.o.csv)
 
 * 相关链接
 
@@ -725,7 +725,7 @@
 
   - icon (ICX)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/pauseTransfer-anyone.o.csv)
 
 - 相关链接
 
@@ -783,7 +783,7 @@
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferProxy-keccak256.o.csv)
 
 * 相关链接
 
@@ -840,7 +840,7 @@
 
     * SmartMesh Token (SMT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approveProxy-keccak256.o.csv)
 
 * 相关链接
 
@@ -894,7 +894,7 @@
 
   * MORPH (MORPH) 
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insentive_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insentive.o.csv)
 
 * 相关链接
 
@@ -960,7 +960,7 @@
 
   * ATN (ATN) （官方已通过增加 Guard 合约的方式修复）
 
-    [more...](csv/custom-fallback-bypass-ds-auth_o.csv)
+    [more...](csv/custom-fallback-bypass-ds-auth.o.csv)
 
 * 相关链接
 
@@ -1006,7 +1006,7 @@
 
     * TE-FOOD (TFD)
 
-        [more...](csv/custom-call-abuse_o.csv)    
+        [more...](csv/custom-call-abuse.o.csv)    
 
 * 相关链接
 
@@ -1061,7 +1061,7 @@
 
     * loopring (LRC)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return.o.csv)
 
 * 相关链接
 
@@ -1103,7 +1103,7 @@
 
     * Metal(MTL)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/approve-no-return.o.csv)
 
 * 相关链接
 
@@ -1151,7 +1151,7 @@
 
     * Paymon Token (PMNT)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return_o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
 
 * 相关链接
 
@@ -1195,7 +1195,7 @@
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals.o.csv)
 
 
 ### B5. no-name
@@ -1235,7 +1235,7 @@
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name.o.csv)
 
 ### B6. no-symbol 
 
@@ -1274,7 +1274,7 @@
 
   - HPBCoin (HPB)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol.o.csv)
 
     
 ## C. 权限管理问题列表
@@ -1313,7 +1313,7 @@
 
   - idex-membership
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone_o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/setowner-anyone.o.csv)
 
 - 相关链接
 
@@ -1350,7 +1350,7 @@
 
   - Soarcoin (Soar)
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone_o.csv) 
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/centralAccount-transfer-anyone.o.csv) 
 
 - 相关链接
 

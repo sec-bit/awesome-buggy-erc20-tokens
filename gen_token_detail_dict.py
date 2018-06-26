@@ -1,16 +1,16 @@
 """
-Use this script to generate token detail dict as TOKEN_DETAIL_DICT.json
+Use this script to generate token detail dict as token_detail_dict.json
 
 Workflow:
 
-1. Add token in TOKEN_DICT.json (token name and coinmarketcap name needed)
+1. Add token in token_dict.json (token name and coinmarketcap name needed)
 2. Run `python3 gen_token_detail_dict.py`
-3. Check TOKEN_DETAIL_DICT.json (token info grabbed from etherscan and coinmarketcap)
+3. Check token_detail_dict.json (token info grabbed from etherscan and coinmarketcap)
 
 This script needs several packages.
 `pip3 install web3 lxml scrapy` before use.
 
-Example in TOKEN_DICT.json:
+Example in token_dict.json:
 
 "0x1A0F2aB46EC630F9FD638029027b552aFA64b94c": {
     "name": "Aston X",
@@ -97,13 +97,13 @@ def get_token_info(url, addr, cnt):
         logging.error('DL %s [FAILED][%s]' % (url, str(err)))
 
 
-with open('TOKEN_DICT.json', 'r') as f:
+with open('token_dict.json', 'r') as f:
     TOKEN_DICT = json.load(f)
-    print("TOKEN_DICT.json loaded.")
+    print("token_dict.json loaded.")
 
-with open('TOKEN_DETAIL_DICT.json', 'r') as f:
+with open('token_detail_dict.json', 'r') as f:
     TOKEN_DETAIL_DICT = json.load(f)
-    print("TOKEN_DETAIL_DICT.json loaded.")
+    print("token_detail_dict.json loaded.")
 
 
 TOKEN_DETAIL_DICT_NEW = copy.deepcopy(TOKEN_DETAIL_DICT)
@@ -119,7 +119,7 @@ for addr in TOKEN_DICT:
         append_cnt += 1
     cnt += 1
 
-with open('TOKEN_DETAIL_DICT.json', 'w') as outfile:
+with open('token_detail_dict.json', 'w') as outfile:
     json.dump(TOKEN_DETAIL_DICT_NEW, outfile, indent=4)
 
-print(f"Append done! TOKEN_DETAIL_DICT.json saved. ({append_cnt} new)")
+print(f"Append done! token_detail_dict.json saved. ({append_cnt} new)")

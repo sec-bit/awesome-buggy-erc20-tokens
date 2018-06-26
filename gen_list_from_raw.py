@@ -25,9 +25,9 @@ args = vars(ap.parse_args())
 input_files = args["input"]
 final_output = args["output"]
 
-with open('TOKEN_DETAIL_DICT.json', 'r') as f:
+with open('token_detail_dict.json', 'r') as f:
     TOKEN_DETAIL_DICT = json.load(f)
-    print("TOKEN_DETAIL_DICT.json loaded.")
+    print("token_detail_dict.json loaded.")
 
 with open('issues.json', 'r') as f:
     issue_dict = json.load(f)
@@ -39,7 +39,7 @@ write_csv = True
 
 
 def export_data(output_file, data_dict):
-    csv_saved = output_file + "_o.csv"
+    csv_saved = output_file + ".o.csv"
     csv = open("./csv/" + csv_saved, 'w')
     csv.write(csv_header)
     for addr in data_dict:
@@ -64,7 +64,7 @@ def export_data(output_file, data_dict):
     csv.close()
     print("---\nsave to %s\n---" % csv_saved)
 
-    json_saved = output_file + "_o.json"
+    json_saved = output_file + ".o.json"
     with open("./json/" + json_saved, 'w') as outfile:
         json.dump(data_dict, outfile, sort_keys=True, indent=4)
     print("---\nsave to %s\n---" % json_saved)
@@ -169,7 +169,7 @@ for input_file in input_files:
     export_data(issue_type, FINAL_DICT_SORTED)
 
 TOP_ONLY_ALL_IN_ONE_DICT_SORTED = dict(sorted(TOP_ONLY_ALL_IN_ONE_DICT.items(), key=lambda x: x[0]))
-export_data_summary(final_output + "_top", TOP_ONLY_ALL_IN_ONE_DICT_SORTED)
+export_data_summary(final_output + ".top", TOP_ONLY_ALL_IN_ONE_DICT_SORTED)
 
 ALL_IN_ONE_DICT_SORTED = dict(sorted(ALL_IN_ONE_DICT.items(), key=lambda x: x[0]))
-export_data_summary(final_output + "_all", ALL_IN_ONE_DICT_SORTED)
+export_data_summary(final_output + ".all", ALL_IN_ONE_DICT_SORTED)
