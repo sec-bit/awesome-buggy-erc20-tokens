@@ -192,18 +192,19 @@ addr,category,name,symbol,exchanges,totalSupply,decimals,info
 
 如果你有其他任何问题或者想法，欢迎加入我们的 [Gitter](https://gitter.im/sec-bit/Lobby) 参与讨论。
 
-## 技术合作
-
-- Loopring https://loopring.io/
-- DEx.top https://dex.top/
-- ConsenSys 中国
-
 ## Todos
 
 - [ ] 补充收录更多管理员权限过高的问题，如:
     - [ ] 增发代币
     - [ ] 设置交易价格
     - [ ] 控制其他账号操作
+
+## 技术合作
+
+- Loopring https://loopring.io/
+- DEx.top https://dex.top/
+- ConsenSys 中国 https://consensys.net/
+- 长亭科技 https://www.chaitin.cn/
 
 ## References
 

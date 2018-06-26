@@ -185,6 +185,13 @@ If you find other bugs not listed in this collection, please update in the follo
 
 If you have any questions or ideas, please join our discussion on [Gitter](https://gitter.im/sec-bit/Lobby).
 
+## Technical Partnership
+
+- Loopring https://loopring.io/
+- DEx.top https://dex.top/
+- ConsenSys China https://consensys.net/
+- Chaitin Tech https://www.chaitin.cn/
+
 ## References
 
 - \[1\] [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md), Nov 19, 2015
