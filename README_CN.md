@@ -48,7 +48,7 @@ ERC20 Token 在其发展历程中，经历了逐渐成熟和完善的过程。�
 
 2018 年 4 月 25 日，SMT 爆出类似的整数溢出漏洞，黑客通过漏洞制造和抛售了天文数字规模的 Token，导致 SMT 价格崩盘 [[4]](https://smartmesh.io/2018/04/25/smartmesh-announcement-on-ethereum-smart-contract-overflow-vulnerability/)。至少还有 1 份合约存在同样问题。
 
-2018 年 5 月 20 日，又是整数溢出漏洞导致任何人可以将任何用户的 EDU 账户转出，同时还有其它 3 个 Token 也出现了相同问题 [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。我们对以太坊上所有的智能合约的进一步深入分析表明，至少有81个合约具有相同的漏洞 (CVE-2018–11397, CVE-2018–11398) [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
+2018 年 5 月 20 日，严重的逻辑漏洞导致 EDU 用户的 Token 可被任意转出，同时还有其它 3 个 Token 也出现了相同问题 (CVE-2018–11397, CVE-2018–11398) [[5]](https://mp.weixin.qq.com/s/lf9vXcUxdB2fGY2YVTauRQ)。我们对以太坊上所有的智能合约的进一步深入分析表明，至少有 81 个合约具有类似性质的漏洞 [[6]](https://mp.weixin.qq.com/s/9FMt_TBSb9avL78KEAXHuA)。
 
 2018 年 6 月 12 日，一系列 ERC20 智能合约整数溢出漏洞 (CVE-2018-11687, CVE-2018-11809, CVE-2018-11810, CVE-2018-11811, CVE-2018-11812) 又被爆出 [[7]](https://www.secrss.com/articles/3289)。我们对以太坊上已部署的 2 万多个合约的分析检测后，发现有 800 多个合约受到这些漏洞影响 [[8]](http://www.chaindd.com/3083754.html)。
 
