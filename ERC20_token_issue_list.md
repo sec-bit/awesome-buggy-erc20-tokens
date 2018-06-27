@@ -56,9 +56,9 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [B4. no-decimals](#b4-no-decimals)
   - [B5. no-name](#b5-no-name)
   - [B6. no-symbol](#b6-no-symbol)
+  - [B7. no-Approval](#b7-no-approval)
 - [C. List of Excessive Authorities](#c-list-of-excessive-authorities)
-  - [C1. setowner-anyone](#c1-setowner-anyone)
-  - [C2. centralAccount-transfer-anyone](#c2-centralaccount-transfer-anyone)
+  - [C1. centralAccount-transfer-anyone](#c1-centralaccount-transfer-anyone)
 
     
 
@@ -83,7 +83,7 @@ If you find issues not listed in the article, please update in the following pro
 
 - Put the issue into [Navigation](#navigation)
 
-- Append a reference to the issue
+- Append a reference
 
 - Complete relevant contents in `raw`, `issues.json` and run the script: [Instruction](https://github.com/sec-bit/awesome-buggy-erc20-tokens#how-to-contribute)
 
@@ -190,10 +190,6 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * List of Buggy Contracts
 
     * FuturXE (FXE)
-
-    * Amber Token (AMB)
-
-    * Insights Network (INSTAR)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/totalsupply-overflow.o.csv) 
 
@@ -381,10 +377,6 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * List of Buggy Contracts
 
     * SwftCoin (SWFTC)
-
-    * Pylon Token (PYLNT)
-
-    * Internet Node Token (INT)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/owner-decrease-balance-by-mint-by-overflow.o.csv)
 
@@ -665,10 +657,6 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * List of Buggy Contracts
 
     * FuturXE (FXE)
-
-    * Useless Ethereum Token (UET)
-
-    * Soarcoin (Soar)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/verify-reverse-in-transferFrom.o.csv)
 
@@ -1186,7 +1174,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
   
 - Recommended Implementation
 
-  This issue originates from vulnerabilities in ERC20 and could be found in most contracts(List of Buggy Contracts is omitted). Please use `increaseApprove()` and `decreaseApprove()` to avoid it.
+  This issue originates from vulnerabilities in ERC20 and could be found in most contracts(Buggy Contracts are unlisted). Please use `increaseApprove()` and `decreaseApprove()` to avoid it.
 
   ```js
   function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
@@ -1249,11 +1237,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 * List of Buggy Contracts
 
-    * IOT on Chain (ITC)
-
-    * BNB (BNB)
-
-    * loopring (LRC)
+    * UNetworkToken (UUU)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transfer-no-return.o.csv)
 
@@ -1290,10 +1274,6 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
     ```
 
 * List of Buggy Contracts
-
-    * loopring (LRC)
-
-    * Paymon Token (PMNT)
 
     * Metal(MTL)
 
@@ -1341,10 +1321,6 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * CUBE (AUTO)
 
-    * loopring (LRC)
-
-    * Paymon Token (PMNT)
-
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
 
 * Link
@@ -1383,11 +1359,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 - List of Buggy Contracts 
 
-  - Loopring (LRC)
-
   - ICON (ICX)
-
-  - HPBCoin (HPB)
 
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-decimals.o.csv)
 
@@ -1423,11 +1395,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 - List of Buggy Contracts 
 
-  - Loopring (LRC)
-
   - ICON (ICX)
-
-  - HPBCoin (HPB)
 
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-name.o.csv)
 
@@ -1462,15 +1430,42 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 - List of Buggy Contracts 
 
-  - Loopring (LRC)
-
   - ICON (ICX)
-
-  - HPBCoin (HPB)
 
     [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-symbol.o.csv)
 
-    
+### B7. no-Approval 
+
+- Description
+
+  Two events - `Transfer` and `Approval` should get fired under certain circumstances as described by ERC20 specification. However, many Token contracts missed `Approval` event triggering, referred to an implementation on official Ethereum website (which has been fixed).
+
+- Problematic Implementation
+
+  ```js
+  function approve(address _spender, uint _amount) returns (bool success) {
+      allowed[msg.sender][_spender] = _amount;
+      return true;
+  }
+  ```
+
+- Recommended Implementation
+
+    ```js
+    function approve(address _spender, uint _amount) returns (bool success) {
+        allowed[msg.sender][_spender] = _amount;
+        Approval(msg.sender, _spender, _amount);
+        return true;
+    }
+    ```
+
+- List of Buggy Contracts 
+
+  - JEX Token(JEX)
+
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/no-Approval.o.csv)
+
+
 ## C. List of Excessive Authorities
 
 ### C1. centralAccount-transfer-anyone
