@@ -13,7 +13,7 @@
 * 2018-06-23，添加如何参与贡献和版权声明
 * 2018-06-23，添加快速导航
 * 2018-06-22，新增问题分类：no-decimals，no-name，no-symbol
-* 2018-06-22，新增问题分类：constructor-case-insentive
+* 2018-06-22，新增问题分类：constructor-case-insensitive
 
 
 ## 问题分类
@@ -43,7 +43,7 @@
   - [A11. pauseTransfer-anyone](#a11-pausetransfer-anyone)
   - [A12. transferProxy-keccak256](#a12-transferproxy-keccak256)
   - [A13. approveProxy-keccak256](#a13-approveproxy-keccak256)
-  - [A14. constructor-case-insentive](#a14-constructor-case-insentive)
+  - [A14. constructor-case-insensitive](#a14-constructor-case-insensitive)
   - [A15. custom-fallback-bypass-ds-auth](#a15-custom-fallback-bypass-ds-auth)
   - [A16. custom-call-abuse](#a16-custom-call-abuse)
   - [A17. setowner-anyone](#a17-setowner-anyone)
@@ -844,7 +844,7 @@
 
     * [New proxyOverflow Bug in Multiple ERC20 Smart Contracts (CVE-2018-10376)](https://peckshield.com/2018/04/25/proxyOverflow/)
 
-### A14. constructor-case-insentive
+### A14. constructor-case-insensitive
 
 * 问题描述
 
@@ -892,7 +892,7 @@
 
   * MORPH (MORPH) 
 
-    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insentive.o.csv)
+    [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-case-insensitive.o.csv)
 
 * 相关链接
 
