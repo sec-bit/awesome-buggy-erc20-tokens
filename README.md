@@ -25,6 +25,7 @@ Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens
 
 ## Recent Updates
 
+- [2018-07-08, AMMBR, a1-batchtransfer-overflow](ERC20_token_issue_list.md#a1-batchtransfer-overflow)
 - [2018-06-25, TFD, a16-custom-call-abuse](ERC20_token_issue_list.md#a16-custom-call-abuse)
 - Add info of totalSupply, decimals, exchanges into Token lists
 - [2018-06-20, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list.md#a15-custom-fallback-bypass-ds-auth)
