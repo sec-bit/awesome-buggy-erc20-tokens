@@ -1204,7 +1204,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 * Description
 
-    The condition verification and the variable modification operations are unrelated, which fails the verification and further leads to other vulnerabilities like integer underflow. 
+    The condition verification and the variable modification logic is inconsistent, which fails the verification and could further leads to other vulnerabilities like integer underflow. 
     For example, the contract checks the balance of A but updates the balance of B.
 
 * Problematic Implementation
