@@ -1214,9 +1214,9 @@
     ```js
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         ...
-        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        require(_value <= allowed[_from][msg.sender]);    // Check the allowance of msg.sender
         ...
-        allowed[_from][_to] -= _value;
+        allowed[_from][_to] -= _value;    // But update the allowance of _to
         ...
         return true;
     }
@@ -1227,7 +1227,7 @@
     ```js
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         ...
-        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        require(_value <= allowed[_from][msg.sender]);
         ...
         allowed[_from][msg.sender] -= _value;
         ...

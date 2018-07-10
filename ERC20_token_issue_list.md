@@ -1205,16 +1205,16 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 * Description
 
     The condition verification and the variable modification operations are unrelated, which fails the verification and further leads to other vulnerabilities like integer underflow. 
-    For example, checks the balance of A but updates the balance of B.
+    For example, the contract checks the balance of A but updates the balance of B.
 
 * Problematic Implementation
 
     ```js
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         ...
-        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        require(_value <= allowed[_from][msg.sender]);    // Check the allowance of msg.sender
         ...
-        allowed[_from][_to] -= _value;
+        allowed[_from][_to] -= _value;    // But update the allowance of _to
         ...
         return true;
     }
@@ -1225,7 +1225,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
     ```js
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         ...
-        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        require(_value <= allowed[_from][msg.sender]);
         ...
         allowed[_from][msg.sender] -= _value;
         ...
