@@ -49,6 +49,7 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [A18. allowAnyone](#a18-allowanyone)
   - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
   - [A20. re-approve](#a20-re-approve)
+  - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -1198,6 +1199,45 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - Link
 
   - [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/)
+
+### A21. check-effect-inconsistency
+
+* Description
+
+    The condition verification and the variable modification operations are unrelated, which fails the verification and further leads to other vulnerabilities like integer underflow. 
+    For example, checks the balance of A but updates the balance of B.
+
+* Problematic Implementation
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        ...
+        allowed[_from][_to] -= _value;
+        ...
+        return true;
+    }
+    ```
+
+* Recommended Implementation
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        ...
+        allowed[_from][msg.sender] -= _value;
+        ...
+        return true;
+    }
+    ```
+
+* List of Buggy Contracts
+
+    * LightCoin Token (LIGHT)  
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/check-effect-inconsistency.o.csv)
 
 ## B. List of Incompatibilities
 

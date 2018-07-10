@@ -50,6 +50,7 @@
   - [A18. allowAnyone](#a18-allowanyone)
   - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
   - [A20. re-approve](#a20-re-approve)
+  - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
 
 - [B.不规范问题列表](#b不规范问题列表)
 
@@ -1201,6 +1202,44 @@
 - 相关链接
 
   - [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/)
+
+### A21. check-effect-inconsistency
+
+* 问题描述
+
+    条件验证于变量修改操作不相关，使得验证失效，可进一步导致出现整数下溢等其他漏洞。
+
+* 错误的代码实现
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        ...
+        allowed[_from][_to] -= _value;
+        ...
+        return true;
+    }
+    ```
+
+* 推荐的代码实现
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);      // Check allowance
+        ...
+        allowed[_from][msg.sender] -= _value;
+        ...
+        return true;
+    }
+    ```
+
+* 问题合约列表
+
+    * LightCoin Token (LIGHT)
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/check-effect-inconsistency.o.csv)
 
 ## B.不规范问题列表
 
