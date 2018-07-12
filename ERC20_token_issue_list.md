@@ -9,6 +9,7 @@ Of all contracts deployed on Ethereum, a huge part are intended for tokens and n
 In order to help developers be fully aware of risks along with vulnerabilities in smart contracts and avoid unnecessary losses in these pitfalls, we created this article with all known issues. Please conform your code to security guides when developing, e.g. ['*Smart Contract Best Practices*'](https://github.com/ConsenSys/smart-contract-best-practices).
 
 ## Recent Updates
+* 2018-07-12， add new issue types： check-effect-inconsistency
 * 2018-06-26， add new issue types： allowAnyone，no-allowance-verify，re-approve，no-Approval
 * 2018-06-23， add 'how to contribute' and license
 * 2018-06-23， add navigation
@@ -18,7 +19,7 @@ In order to help developers be fully aware of risks along with vulnerabilities i
 
 ## Classification
 
-This article includes 22 types of issue, and we can generally divide them into 3 classes:
+This article includes 29 types of issue, and we can generally divide them into 3 classes:
 
 | Class | Description                                                  |
 | ----- | ------------------------------------------------------------ |
