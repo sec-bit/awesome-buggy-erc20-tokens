@@ -9,6 +9,7 @@ Of all contracts deployed on Ethereum, a huge part are intended for tokens and n
 In order to help developers be fully aware of risks along with vulnerabilities in smart contracts and avoid unnecessary losses in these pitfalls, we created this article with all known issues. Please conform your code to security guides when developing, e.g. ['*Smart Contract Best Practices*'](https://github.com/ConsenSys/smart-contract-best-practices).
 
 ## Recent Updates
+* 2018-07-12， add new issue types： check-effect-inconsistency
 * 2018-06-26， add new issue types： allowAnyone，no-allowance-verify，re-approve，no-Approval
 * 2018-06-23， add 'how to contribute' and license
 * 2018-06-23， add navigation
@@ -18,7 +19,7 @@ In order to help developers be fully aware of risks along with vulnerabilities i
 
 ## Classification
 
-This article includes 22 types of issue, and we can generally divide them into 3 classes:
+This article includes 29 types of issue, and we can generally divide them into 3 classes:
 
 | Class | Description                                                  |
 | ----- | ------------------------------------------------------------ |
@@ -49,6 +50,7 @@ This article includes 22 types of issue, and we can generally divide them into 3
   - [A18. allowAnyone](#a18-allowanyone)
   - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
   - [A20. re-approve](#a20-re-approve)
+  - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -1198,6 +1200,45 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - Link
 
   - [ERC20 API: An Attack Vector on Approve/TransferFrom Methods](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/)
+
+### A21. check-effect-inconsistency
+
+* Description
+
+    The condition verification and the variable modification logic is inconsistent, which fails the verification and could further leads to other vulnerabilities like integer underflow. 
+    For example, the contract checks the balance of A but updates the balance of B.
+
+* Problematic Implementation
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);    // Check the allowance of msg.sender
+        ...
+        allowed[_from][_to] -= _value;    // But update the allowance of _to
+        ...
+        return true;
+    }
+    ```
+
+* Recommended Implementation
+
+    ```js
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        ...
+        require(_value <= allowed[_from][msg.sender]);
+        ...
+        allowed[_from][msg.sender] -= _value;
+        ...
+        return true;
+    }
+    ```
+
+* List of Buggy Contracts
+
+    * LightCoin Token (LIGHT)  
+
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/check-effect-inconsistency.o.csv)
 
 ## B. List of Incompatibilities
 
