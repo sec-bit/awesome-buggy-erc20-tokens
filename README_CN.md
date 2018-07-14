@@ -24,7 +24,8 @@
 
 ## 最近更新
 
-- [2018-07-08, AMMBR, a1-batchtransfer-overflow](ERC20_token_issue_list.md#a1-batchtransfer-overflow)
+- [2018-07-14, MDOT, a22-constructor-mistyping](ERC20_token_issue_list_CN.md#a22-constructor-mistyping)
+- [2018-07-08, AMMBR, a1-batchtransfer-overflow](ERC20_token_issue_list_CN.md#a1-batchtransfer-overflow)
 - [2018-06-25, TFD, a16-custom-call-abuse](ERC20_token_issue_list_CN.md#a16-custom-call-abuse)
 - 各 Token 列表中加入 totalSupply、decimals、已上交易所等信息
 - [2018-06-23, ATN, a15-custom-fallback-bypass-ds-auth](ERC20_token_issue_list_CN.md#a15-custom-fallback-bypass-ds-auth)
