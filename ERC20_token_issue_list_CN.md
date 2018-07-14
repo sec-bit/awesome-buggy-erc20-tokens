@@ -9,6 +9,7 @@
 本文收录了token合约中目前已披露的安全风险问题，旨在帮助大家快速了解这些安全风险，提高安全意识，避免重复踩坑，杜绝不必要的损失。同时也建议大家在合约开发过程中参考安全标准的开发指导说明和规范源码，如「[以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices)」。
 
 ## 最近更新
+* 2018-07-14，新增问题分类：constructor-mistyping
 * 2018-07-12，新增问题分类：check-effect-inconsistency
 * 2018-06-26，新增问题分类：allowAnyone，no-allowance-verify，re-approve，no-Approval
 * 2018-06-23，添加如何参与贡献和版权声明
@@ -52,6 +53,7 @@
   - [A19. approve-with-balance-verify](#a19-approve-with-balance-verify)
   - [A20. re-approve](#a20-re-approve)
   - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
+  - [A22. constructor-mistyping](#a22-constructor-mistyping)
 
 - [B.不规范问题列表](#b不规范问题列表)
 
@@ -1242,6 +1244,42 @@
     * LightCoin Token (LIGHT)
 
         [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/check-effect-inconsistency.o.csv)
+
+### A22. constructor-mistyping
+
+- 问题描述
+
+  开发者在声明构造函数时应该写为 `constructor()`，但有些合约误写为 `function constructor()`，因此 Solidity 编译器将其视为任何人都可以调用的普通函数，而非仅合约部署时调用一次的构造函数。
+
+- 错误的代码实现
+
+  ```js
+  contract A{
+      function constructor() public{
+  
+      }
+  }
+  ```
+
+- 推荐的代码实现
+
+  ```js
+  contract A{
+      constructor() public{
+  
+      }
+  }
+  ```
+
+- 问题合约列表
+
+    - Maolulu Polkadot (MDOT)
+
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/constructor-mistyping.o.csv)
+
+- 相关链接
+
+  - [注意！3份合约又存在Owner权限被盗问题——低级错误不容忽视](<https://mp.weixin.qq.com/s?__biz=MzU2NzUxMTM0Nw==&mid=2247484096&idx=1&sn=d7f228bf24af9e66a6db6129b9e49aeb&chksm=fc9d529ccbeadb8a635bf46f46a23467fdee54eac862de982c7c9053ce0e2418a36ff8b003c4&scene=0&pass_ticket=Ku28saTpR8rmi3fOxGcGnUDOlhbL1U7mvP8xbjKvcVfVDW%2F3J%2BwTJV7vegBCqRyR#rd>)
 
 ## B.不规范问题列表
 
