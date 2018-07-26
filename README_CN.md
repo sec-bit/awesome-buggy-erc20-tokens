@@ -24,6 +24,7 @@
 
 ## 最近更新
 
+- [2018-07-25, OPL, a23-fake-burn](ERC20_token_issue_list_CN.md#a23-fake-burn)
 - [2018-07-14, MDOT, a22-constructor-mistyping](ERC20_token_issue_list_CN.md#a22-constructor-mistyping)
 - [2018-07-08, AMMBR, a1-batchtransfer-overflow](ERC20_token_issue_list_CN.md#a1-batchtransfer-overflow)
 - [2018-06-25, TFD, a16-custom-call-abuse](ERC20_token_issue_list_CN.md#a16-custom-call-abuse)

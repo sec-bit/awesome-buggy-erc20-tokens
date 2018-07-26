@@ -54,6 +54,7 @@
   - [A20. re-approve](#a20-re-approve)
   - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
   - [A22. constructor-mistyping](#a22-constructor-mistyping)
+  - [A23. fake-burn](#a23-fake-burn)
 
 - [B.不规范问题列表](#b不规范问题列表)
 
@@ -1280,6 +1281,40 @@
 - 相关链接
 
   - [注意！3份合约又存在Owner权限被盗问题——低级错误不容忽视](<https://mp.weixin.qq.com/s?__biz=MzU2NzUxMTM0Nw==&mid=2247484096&idx=1&sn=d7f228bf24af9e66a6db6129b9e49aeb&chksm=fc9d529ccbeadb8a635bf46f46a23467fdee54eac862de982c7c9053ce0e2418a36ff8b003c4&scene=0&pass_ticket=Ku28saTpR8rmi3fOxGcGnUDOlhbL1U7mvP8xbjKvcVfVDW%2F3J%2BwTJV7vegBCqRyR#rd>)
+
+### A23. fake-burn
+
+- 问题描述
+
+    Token 合约中存在整数溢出漏洞（CVE-2018-13151 fake-burn）。合约烧币功能存在**乘方运算**可导致整数溢出，通过精心构造指数，使得烧币的实际值为零。
+
+    黑客可通过构造参数，在自身余额并不减少的情况下，触发烧币 `Burn()` 事件。
+
+- 错误的代码实现
+
+```js
+    function burnWithDecimals(uint256 _value, uint256 _dec) public returns (bool success) {
+        _value = _value * 10 ** _dec;
+        require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
+        balanceOf[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
+        Burn(msg.sender, _value);
+        return true;
+    }
+```
+
+问题合约代码 `burnWithDecimals()` 函数中 `10 ** _dec` 这一乘方操作存在整数溢出漏洞，可使计算结果为 `0`。若 `_dec` 传入值大于 `255`，则最终 `_value` 值会被更新为 `0`。
+
+- 问题合约列表
+
+  *  OnPlace (OPL)
+
+    [more...](csv/fake-burn.o.csv)
+
+
+- 相关链接
+
+    - [震惊！利好变利空，烧币也能作假！](https://mp.weixin.qq.com/s/-4d3OD0M_a0xGGADNzi7Xw)
 
 ## B.不规范问题列表
 
