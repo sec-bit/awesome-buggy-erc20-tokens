@@ -9,8 +9,9 @@ Of all contracts deployed on Ethereum, a huge part are intended for tokens and n
 In order to help developers be fully aware of risks along with vulnerabilities in smart contracts and avoid unnecessary losses in these pitfalls, we created this article with all known issues. Please conform your code to security guides when developing, e.g. ['*Smart Contract Best Practices*'](https://github.com/ConsenSys/smart-contract-best-practices).
 
 ## Recent Updates
-* 2018-07-14， add new issue types： constructor-mistyping
-* 2018-07-12， add new issue types： check-effect-inconsistency
+* 2018-07-25， add new issue type： fake-burn
+* 2018-07-14， add new issue type： constructor-mistyping
+* 2018-07-12， add new issue type： check-effect-inconsistency
 * 2018-06-26， add new issue types： allowAnyone，no-allowance-verify，re-approve，no-Approval
 * 2018-06-23， add 'how to contribute' and license
 * 2018-06-23， add navigation
@@ -53,6 +54,7 @@ This article includes 29 types of issue, and we can generally divide them into 3
   - [A20. re-approve](#a20-re-approve)
   - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
   - [A22. constructor-mistyping](#a22-constructor-mistyping)
+  - [A23. fake-burn](#a23-fake-burn)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -1274,6 +1276,37 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - Link
 
   - [注意！3份合约又存在Owner权限被盗问题——低级错误不容忽视](<https://mp.weixin.qq.com/s?__biz=MzU2NzUxMTM0Nw==&mid=2247484096&idx=1&sn=d7f228bf24af9e66a6db6129b9e49aeb&chksm=fc9d529ccbeadb8a635bf46f46a23467fdee54eac862de982c7c9053ce0e2418a36ff8b003c4&scene=0&pass_ticket=Ku28saTpR8rmi3fOxGcGnUDOlhbL1U7mvP8xbjKvcVfVDW%2F3J%2BwTJV7vegBCqRyR#rd>)
+
+### A23. fake-burn
+
+- Description
+
+  Some token contracts have integer overflow bugs (CVE-2018-13151 fake-burn). The power method in burning might lead to an integer overflow by passing specific parameters, resulting in burning 0 token, not the intended value.
+
+- Problematic Implementation
+
+    ```js
+    function burnWithDecimals(uint256 _value, uint256 _dec) public returns (bool success) {
+        _value = _value * 10 ** _dec;
+        require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
+        balanceOf[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
+        Burn(msg.sender, _value);
+        return true;
+    }
+    ```
+
+`10 ** _dec` in `burnWithDecimals()` could lead to an integer overflow and the result may become 0. Suppose the parameter `_dec` is greater than 255, the `_value` would in turn become 0.
+
+- List of Buggy Contracts
+
+  * OnPlace (OPL)
+
+    [more...](csv/fake-burn.o.csv)
+
+- Link
+
+    - [震惊！利好变利空，烧币也能作假！](https://mp.weixin.qq.com/s/-4d3OD0M_a0xGGADNzi7Xw)
 
 ## B. List of Incompatibilities
 
