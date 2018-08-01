@@ -1303,7 +1303,7 @@
     }
 ```
 
-问题合约代码 `burnWithDecimals()` 函数中 `10 ** _dec` 这一乘方操作存在整数溢出漏洞，可使计算结果为 `0`。若 `_dec` 传入值大于 `255`，则最终 `_value` 值会被更新为 `0`。
+   问题合约代码 `burnWithDecimals()` 函数中 `10 ** _dec` 这一乘方操作存在整数溢出漏洞，可使计算结果为 `0`。若 `_dec` 传入值大于 `255`，则最终 `_value` 值会被更新为 `0`。
 
 - 问题合约列表
 
@@ -1438,7 +1438,7 @@
 
     * CUBE (AUTO) 
 
-      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
+      [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferFrom-no-return.o.csv)
 
 * 相关链接
 
