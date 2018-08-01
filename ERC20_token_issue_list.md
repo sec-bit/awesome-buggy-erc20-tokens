@@ -1430,7 +1430,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
     * CUBE (AUTO)
 
-        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferfrom-no-return.o.csv)
+        [more...](https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/csv/transferFrom-no-return.o.csv)
 
 * Link
 
