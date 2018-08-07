@@ -9,6 +9,8 @@ Of all contracts deployed on Ethereum, a huge part are intended for tokens and n
 In order to help developers be fully aware of risks along with vulnerabilities in smart contracts and avoid unnecessary losses in these pitfalls, we created this article with all known issues. Please conform your code to security guides when developing, e.g. ['*Smart Contract Best Practices*'](https://github.com/ConsenSys/smart-contract-best-practices).
 
 ## Recent Updates
+
+* 2018-07-31， add new issue type： getToken-anyone
 * 2018-07-25， add new issue type： fake-burn
 * 2018-07-14， add new issue type： constructor-mistyping
 * 2018-07-12， add new issue type： check-effect-inconsistency
@@ -55,6 +57,7 @@ This article includes 29 types of issue, and we can generally divide them into 3
   - [A21. check-effect-inconsistency](#a21-check-effect-inconsistency)
   - [A22. constructor-mistyping](#a22-constructor-mistyping)
   - [A23. fake-burn](#a23-fake-burn)
+  - [A24. getToken-anyone](#a24-getToken-anyone)
 - [B.List of Incompatibilities](#b-list-of-incompatibilities)
   - [B1. transfer-no-return](#b1-transfer-no-return)
   - [B2. approve-no-return](#b2-approve-no-return)
@@ -1296,7 +1299,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
     }
     ```
 
-`10 ** _dec` in `burnWithDecimals()` could lead to an integer overflow and the result may become 0. Suppose the parameter `_dec` is greater than 255, the `_value` would in turn become 0.
+    `10 ** _dec` in `burnWithDecimals()` could lead to an integer overflow and the result may become 0. Suppose the parameter `_dec` is greater than 255, the `_value` would in turn become 0.
 
 - List of Buggy Contracts
 
@@ -1307,6 +1310,31 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 - Link
 
     - [震惊！利好变利空，烧币也能作假！](https://mp.weixin.qq.com/s/-4d3OD0M_a0xGGADNzi7Xw)
+
+### A24. getToken-anyone
+
+- Description
+
+    Function `getToken()` is used to add value to caller's token balance. The amount `value` is defined by caller as input argument. This function works as mint token but allows anyone to call it. As a result, anyone could add arbitrary amount of token to one's own balance by calling `getToken()`. This is very ridiculous to ERC20 token contract.
+
+- Problematic Implementation
+
+    ```js
+    function getToken(uint256 _value) returns (bool success){
+        uint newTokens = _value;
+        balances[msg.sender] = balances[msg.sender] + newTokens;
+    }
+    ```
+
+- List of Buggy Contracts
+
+  *  AMORCOIN (AMR)
+
+     [more...](csv/getToken-anyone.o.csv)
+
+- Link
+
+    - [严重getToken函数随意印币漏洞：任何人可给自己的账号虚增余额](https://mp.weixin.qq.com/s/b-XQQ7n8bArO8PZ2mFO3vg)
 
 ## B. List of Incompatibilities
 
