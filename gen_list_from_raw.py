@@ -73,7 +73,7 @@ def export_data(output_file, data_dict):
 
 def export_data_summary(output_file, data_dict):
     csv_saved = output_file + ".csv"
-    csv = open("./csv/" + csv_saved, 'w', encoding = 'utf-8')
+    csv = open("./" + csv_saved, 'w', encoding = 'utf-8')
     csv.write(csv_header)
     for addr in data_dict:
         detail = data_dict[addr]
