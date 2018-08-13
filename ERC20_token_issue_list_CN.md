@@ -9,7 +9,7 @@
 本文收录了token合约中目前已披露的安全风险问题，旨在帮助大家快速了解这些安全风险，提高安全意识，避免重复踩坑，杜绝不必要的损失。同时也建议大家在合约开发过程中参考安全标准的开发指导说明和规范源码，如「[以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices)」。
 
 ## 最近更新
-
+* 2018-08-13, 新增问题分类：constructor-naming-error
 * 2018-07-31, 新增问题分类：getToken-anyone
 * 2018-07-25，新增问题分类：fake-burn
 * 2018-07-14，新增问题分类：constructor-mistyping
@@ -59,6 +59,7 @@
   - [A22. constructor-mistyping](#a22-constructor-mistyping)
   - [A23. fake-burn](#a23-fake-burn)
   - [A24. getToken-anyone](#a24-getToken-anyone)
+  - [A24. constructor-naming-error](#a25-constructor-naming-error)
 
 - [B.不规范问题列表](#b不规范问题列表)
 
@@ -1344,6 +1345,41 @@
 - 相关链接
 
     - [严重getToken函数随意印币漏洞：任何人可给自己的账号虚增余额](https://mp.weixin.qq.com/s/b-XQQ7n8bArO8PZ2mFO3vg)
+
+### a25-constructor-naming-error
+
+- 问题描述
+
+    开发者在声明构造函数时,即没有使用`constructor()`，也没有使用与合约名同名的函数名。而是使用了另外的函数名命名的函数作为构造函数，使得该函数可以被任意调用。
+
+- 错误的代码实现
+
+    ```js
+    contract Angelglorycoin {
+
+        /**
+        * Constructor function
+        *
+        * Initializes contract with initial supply tokens to the creator of the contract
+        */
+        function TokenERC20(
+            uint256 initialSupply,
+            string Angelglorycoin,
+            string AGC
+        ) public {
+            totalSupply = 1000000000000000000;  // Update total supply with the decimal amount
+            balanceOf[msg.sender] = totalSupply;                // Give the creator all initial tokens
+            name = "Angelglorycoin";                                   // Set the name for display purposes
+            symbol = "AGC";                               // Set the symbol for display purposes
+        }
+    }
+    ```
+
+- 问题合约列表
+
+  *  Angelglorycoin (AGC)
+
+        [more...](csv/constructor-naming-error.o.csv)
 
 
 ## B.不规范问题列表

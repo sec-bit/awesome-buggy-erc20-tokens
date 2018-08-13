@@ -24,6 +24,7 @@
 
 ## 最近更新
 
+- [2018-08-13, AGC, a25-constructor-naming-error](ERC20_token_issue_list_CN.md#a25-constructor-naming-error)
 - [2018-07-31, AMORCOIN, a24-getToken-anyone](ERC20_token_issue_list_CN.md#a24-getToken-anyone)
 - [2018-07-25, OPL, a23-fake-burn](ERC20_token_issue_list_CN.md#a23-fake-burn)
 - [2018-07-14, MDOT, a22-constructor-mistyping](ERC20_token_issue_list_CN.md#a22-constructor-mistyping)
