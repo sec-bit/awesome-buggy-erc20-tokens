@@ -1346,7 +1346,7 @@
 
     - [严重getToken函数随意印币漏洞：任何人可给自己的账号虚增余额](https://mp.weixin.qq.com/s/b-XQQ7n8bArO8PZ2mFO3vg)
 
-### a25-constructor-naming-error
+### A25. constructor-naming-error
 
 - 问题描述
 
