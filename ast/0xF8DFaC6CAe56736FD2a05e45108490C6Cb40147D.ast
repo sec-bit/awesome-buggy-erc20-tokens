@@ -1,0 +1,5471 @@
+{
+  "type": "SourceUnit",
+  "children": [
+    {
+      "type": "PragmaDirective",
+      "name": "solidity",
+      "value": "^0.4.18"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "owned",
+      "baseContracts": [],
+      "subNodes": [
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "owner"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "EventDefinition",
+          "name": "OwnershipTransferred",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "previousOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "previousOwner"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "newOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "newOwner"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "owned",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "msg"
+                    },
+                    "memberName": "sender"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "changeOwner",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "newOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "newOwner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "newOwner"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "transferOwnership",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "newOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "newOwner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "newOwner"
+                      },
+                      "right": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "TypeNameExpression",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "address",
+                            "stateMutability": null
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "NumberLiteral",
+                            "number": "0",
+                            "subdenomination": null
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "OwnershipTransferred"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "owner"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "newOwner"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "newOwner"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "onlyOwner",
+          "parameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "owner"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "tokenRecipient",
+      "baseContracts": [],
+      "subNodes": [
+        {
+          "type": "FunctionDefinition",
+          "name": "receiveApproval",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_from"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_token",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_token"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bytes",
+                "stateMutability": null
+              },
+              "name": "_extraData",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_extraData"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": null,
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        }
+      ],
+      "kind": "interface"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "Utils",
+      "baseContracts": [],
+      "subNodes": [
+        {
+          "type": "ModifierDefinition",
+          "name": "validAddress",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_address",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_address"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_address"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0x0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "notThis",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_address",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_address"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_address"
+                      },
+                      "right": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "TypeNameExpression",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "address",
+                            "stateMutability": null
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "this"
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "GraphenePowerToken",
+      "baseContracts": [
+        {
+          "type": "InheritanceSpecifier",
+          "baseName": {
+            "type": "UserDefinedTypeName",
+            "namePath": "owned"
+          },
+          "arguments": []
+        },
+        {
+          "type": "InheritanceSpecifier",
+          "baseName": {
+            "type": "UserDefinedTypeName",
+            "namePath": "Utils"
+          },
+          "arguments": []
+        }
+      ],
+      "subNodes": [
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "standard",
+              "identifier": {
+                "type": "Identifier",
+                "name": "standard"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "Token 0.1",
+                "parts": [
+                  "Token 0.1"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "Token 0.1",
+            "parts": [
+              "Token 0.1"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "name",
+              "identifier": {
+                "type": "Identifier",
+                "name": "name"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "Graphene Power",
+                "parts": [
+                  "Graphene Power"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "Graphene Power",
+            "parts": [
+              "Graphene Power"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "symbol",
+              "identifier": {
+                "type": "Identifier",
+                "name": "symbol"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "GRP",
+                "parts": [
+                  "GRP"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "GRP",
+            "parts": [
+              "GRP"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint8",
+                "stateMutability": null
+              },
+              "name": "decimals",
+              "identifier": {
+                "type": "Identifier",
+                "name": "decimals"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "18",
+                "subdenomination": null
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "18",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_totalSupply",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_totalSupply"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "0",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "0",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "preSaleStart",
+              "identifier": {
+                "type": "Identifier",
+                "name": "preSaleStart"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "1513771200",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "1513771200",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "preSaleEnd",
+              "identifier": {
+                "type": "Identifier",
+                "name": "preSaleEnd"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "1515585600",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "1515585600",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "preSaleTotalTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "preSaleTotalTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "30000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "30000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "preSaleTokenCost",
+              "identifier": {
+                "type": "Identifier",
+                "name": "preSaleTokenCost"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "6000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "6000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "preSaleAddress",
+              "identifier": {
+                "type": "Identifier",
+                "name": "preSaleAddress"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "enablePreSale",
+              "identifier": {
+                "type": "Identifier",
+                "name": "enablePreSale"
+              },
+              "expression": {
+                "type": "BooleanLiteral",
+                "value": false
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "BooleanLiteral",
+            "value": false
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "icoStart",
+              "identifier": {
+                "type": "Identifier",
+                "name": "icoStart"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "icoSaleTotalTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "icoSaleTotalTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "400000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "400000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "icoAddress",
+              "identifier": {
+                "type": "Identifier",
+                "name": "icoAddress"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "enableIco",
+              "identifier": {
+                "type": "Identifier",
+                "name": "enableIco"
+              },
+              "expression": {
+                "type": "BooleanLiteral",
+                "value": false
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "BooleanLiteral",
+            "value": false
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "advisersConsultantTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "advisersConsultantTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "15000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "15000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "advisersConsultantsAddress",
+              "identifier": {
+                "type": "Identifier",
+                "name": "advisersConsultantsAddress"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "bountyTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "bountyTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "15000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "15000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "bountyAddress",
+              "identifier": {
+                "type": "Identifier",
+                "name": "bountyAddress"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "founderTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "founderTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "40000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "40000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "founderAddress",
+              "identifier": {
+                "type": "Identifier",
+                "name": "founderAddress"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "wallet",
+              "identifier": {
+                "type": "Identifier",
+                "name": "wallet"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "enableMintTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "enableMintTokens"
+              },
+              "expression": {
+                "type": "BooleanLiteral",
+                "value": true
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "BooleanLiteral",
+            "value": true
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "transfersEnabled",
+              "identifier": {
+                "type": "Identifier",
+                "name": "transfersEnabled"
+              },
+              "expression": {
+                "type": "BooleanLiteral",
+                "value": false
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "BooleanLiteral",
+            "value": false
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "ElementaryTypeName",
+                  "name": "uint256",
+                  "stateMutability": null
+                }
+              },
+              "name": "balanceOf",
+              "identifier": {
+                "type": "Identifier",
+                "name": "balanceOf"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "Mapping",
+                  "keyType": {
+                    "type": "ElementaryTypeName",
+                    "name": "address",
+                    "stateMutability": null
+                  },
+                  "valueType": {
+                    "type": "ElementaryTypeName",
+                    "name": "uint256",
+                    "stateMutability": null
+                  }
+                }
+              },
+              "name": "allowed",
+              "identifier": {
+                "type": "Identifier",
+                "name": "allowed"
+              },
+              "expression": null,
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Transfer",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "from"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "to"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "value"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Approval",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_owner"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_spender"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Destruction",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_amount",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_amount"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Burn",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "from"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "value"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Issuance",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_amount",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_amount"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "GraphenePowerToken",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "preSaleAddress"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0xC07850969A0EC345A84289f9C5bb5F979f27110f",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "icoAddress"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0x1C21Cf57BF4e2dd28883eE68C03a9725056D29F1",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "advisersConsultantsAddress"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0xe8B6dA1B801b7F57e3061C1c53a011b31C9315C7",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "bountyAddress"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0xD53E82Aea770feED8e57433D3D61674caEC1D1Be",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "founderAddress"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0xDA0D3Dad39165EA2d7386f18F96664Ee2e9FD8db",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "_totalSupply"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "500000000",
+                    "subdenomination": null
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "this"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_totalSupply"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "transfersAllowed",
+          "parameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "assert"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "transfersEnabled"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "validAddress",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_address",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_address"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_address"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0x0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "notThis",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_address",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_address"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_address"
+                      },
+                      "right": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "TypeNameExpression",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "address",
+                            "stateMutability": null
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "this"
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">",
+                      "left": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "value"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "buyTokens"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": true,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "buyTokens",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "beneficiary",
+              "identifier": {
+                "type": "Identifier",
+                "name": "beneficiary"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "beneficiary"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0x0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "uint256",
+                      "stateMutability": null
+                    },
+                    "name": "weiAmount",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "weiAmount"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": null
+              },
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "uint256",
+                      "stateMutability": null
+                    },
+                    "name": "tokens",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "tokens"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": null
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "wallet"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  }
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "isPreSale"
+                  },
+                  "arguments": [],
+                  "names": [],
+                  "identifiers": []
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "wallet"
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "preSaleAddress"
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "weiAmount"
+                        },
+                        "right": {
+                          "type": "NumberLiteral",
+                          "number": "6000",
+                          "subdenomination": null
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBody": {
+                  "type": "IfStatement",
+                  "condition": {
+                    "type": "FunctionCall",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "isIco"
+                    },
+                    "arguments": [],
+                    "names": [],
+                    "identifiers": []
+                  },
+                  "trueBody": {
+                    "type": "Block",
+                    "statements": [
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "BinaryOperation",
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "wallet"
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "icoAddress"
+                          }
+                        }
+                      },
+                      {
+                        "type": "IfStatement",
+                        "condition": {
+                          "type": "BinaryOperation",
+                          "operator": ">=",
+                          "left": {
+                            "type": "TupleExpression",
+                            "components": [
+                              {
+                                "type": "BinaryOperation",
+                                "operator": "+",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "icoStart"
+                                },
+                                "right": {
+                                  "type": "TupleExpression",
+                                  "components": [
+                                    {
+                                      "type": "BinaryOperation",
+                                      "operator": "*",
+                                      "left": {
+                                        "type": "BinaryOperation",
+                                        "operator": "*",
+                                        "left": {
+                                          "type": "BinaryOperation",
+                                          "operator": "*",
+                                          "left": {
+                                            "type": "NumberLiteral",
+                                            "number": "7",
+                                            "subdenomination": null
+                                          },
+                                          "right": {
+                                            "type": "NumberLiteral",
+                                            "number": "24",
+                                            "subdenomination": null
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "NumberLiteral",
+                                          "number": "60",
+                                          "subdenomination": null
+                                        }
+                                      },
+                                      "right": {
+                                        "type": "NumberLiteral",
+                                        "number": "60",
+                                        "subdenomination": null
+                                      }
+                                    }
+                                  ],
+                                  "isArray": false
+                                }
+                              }
+                            ],
+                            "isArray": false
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "now"
+                          }
+                        },
+                        "trueBody": {
+                          "type": "Block",
+                          "statements": [
+                            {
+                              "type": "ExpressionStatement",
+                              "expression": {
+                                "type": "BinaryOperation",
+                                "operator": "=",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "weiAmount"
+                                },
+                                "right": {
+                                  "type": "NumberLiteral",
+                                  "number": "4000",
+                                  "subdenomination": null
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "falseBody": {
+                          "type": "IfStatement",
+                          "condition": {
+                            "type": "BinaryOperation",
+                            "operator": ">=",
+                            "left": {
+                              "type": "TupleExpression",
+                              "components": [
+                                {
+                                  "type": "BinaryOperation",
+                                  "operator": "+",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "icoStart"
+                                  },
+                                  "right": {
+                                    "type": "TupleExpression",
+                                    "components": [
+                                      {
+                                        "type": "BinaryOperation",
+                                        "operator": "*",
+                                        "left": {
+                                          "type": "BinaryOperation",
+                                          "operator": "*",
+                                          "left": {
+                                            "type": "BinaryOperation",
+                                            "operator": "*",
+                                            "left": {
+                                              "type": "NumberLiteral",
+                                              "number": "14",
+                                              "subdenomination": null
+                                            },
+                                            "right": {
+                                              "type": "NumberLiteral",
+                                              "number": "24",
+                                              "subdenomination": null
+                                            }
+                                          },
+                                          "right": {
+                                            "type": "NumberLiteral",
+                                            "number": "60",
+                                            "subdenomination": null
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "NumberLiteral",
+                                          "number": "60",
+                                          "subdenomination": null
+                                        }
+                                      }
+                                    ],
+                                    "isArray": false
+                                  }
+                                }
+                              ],
+                              "isArray": false
+                            },
+                            "right": {
+                              "type": "Identifier",
+                              "name": "now"
+                            }
+                          },
+                          "trueBody": {
+                            "type": "Block",
+                            "statements": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "BinaryOperation",
+                                  "operator": "=",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "weiAmount"
+                                  },
+                                  "right": {
+                                    "type": "NumberLiteral",
+                                    "number": "3750",
+                                    "subdenomination": null
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "falseBody": {
+                            "type": "IfStatement",
+                            "condition": {
+                              "type": "BinaryOperation",
+                              "operator": ">=",
+                              "left": {
+                                "type": "TupleExpression",
+                                "components": [
+                                  {
+                                    "type": "BinaryOperation",
+                                    "operator": "+",
+                                    "left": {
+                                      "type": "Identifier",
+                                      "name": "icoStart"
+                                    },
+                                    "right": {
+                                      "type": "TupleExpression",
+                                      "components": [
+                                        {
+                                          "type": "BinaryOperation",
+                                          "operator": "*",
+                                          "left": {
+                                            "type": "BinaryOperation",
+                                            "operator": "*",
+                                            "left": {
+                                              "type": "BinaryOperation",
+                                              "operator": "*",
+                                              "left": {
+                                                "type": "NumberLiteral",
+                                                "number": "21",
+                                                "subdenomination": null
+                                              },
+                                              "right": {
+                                                "type": "NumberLiteral",
+                                                "number": "24",
+                                                "subdenomination": null
+                                              }
+                                            },
+                                            "right": {
+                                              "type": "NumberLiteral",
+                                              "number": "60",
+                                              "subdenomination": null
+                                            }
+                                          },
+                                          "right": {
+                                            "type": "NumberLiteral",
+                                            "number": "60",
+                                            "subdenomination": null
+                                          }
+                                        }
+                                      ],
+                                      "isArray": false
+                                    }
+                                  }
+                                ],
+                                "isArray": false
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "name": "now"
+                              }
+                            },
+                            "trueBody": {
+                              "type": "Block",
+                              "statements": [
+                                {
+                                  "type": "ExpressionStatement",
+                                  "expression": {
+                                    "type": "BinaryOperation",
+                                    "operator": "=",
+                                    "left": {
+                                      "type": "Identifier",
+                                      "name": "weiAmount"
+                                    },
+                                    "right": {
+                                      "type": "NumberLiteral",
+                                      "number": "3500",
+                                      "subdenomination": null
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "falseBody": {
+                              "type": "IfStatement",
+                              "condition": {
+                                "type": "BinaryOperation",
+                                "operator": ">=",
+                                "left": {
+                                  "type": "TupleExpression",
+                                  "components": [
+                                    {
+                                      "type": "BinaryOperation",
+                                      "operator": "+",
+                                      "left": {
+                                        "type": "Identifier",
+                                        "name": "icoStart"
+                                      },
+                                      "right": {
+                                        "type": "TupleExpression",
+                                        "components": [
+                                          {
+                                            "type": "BinaryOperation",
+                                            "operator": "*",
+                                            "left": {
+                                              "type": "BinaryOperation",
+                                              "operator": "*",
+                                              "left": {
+                                                "type": "BinaryOperation",
+                                                "operator": "*",
+                                                "left": {
+                                                  "type": "NumberLiteral",
+                                                  "number": "28",
+                                                  "subdenomination": null
+                                                },
+                                                "right": {
+                                                  "type": "NumberLiteral",
+                                                  "number": "24",
+                                                  "subdenomination": null
+                                                }
+                                              },
+                                              "right": {
+                                                "type": "NumberLiteral",
+                                                "number": "60",
+                                                "subdenomination": null
+                                              }
+                                            },
+                                            "right": {
+                                              "type": "NumberLiteral",
+                                              "number": "60",
+                                              "subdenomination": null
+                                            }
+                                          }
+                                        ],
+                                        "isArray": false
+                                      }
+                                    }
+                                  ],
+                                  "isArray": false
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "now"
+                                }
+                              },
+                              "trueBody": {
+                                "type": "Block",
+                                "statements": [
+                                  {
+                                    "type": "ExpressionStatement",
+                                    "expression": {
+                                      "type": "BinaryOperation",
+                                      "operator": "=",
+                                      "left": {
+                                        "type": "Identifier",
+                                        "name": "weiAmount"
+                                      },
+                                      "right": {
+                                        "type": "NumberLiteral",
+                                        "number": "3250",
+                                        "subdenomination": null
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "falseBody": {
+                                "type": "IfStatement",
+                                "condition": {
+                                  "type": "BinaryOperation",
+                                  "operator": ">=",
+                                  "left": {
+                                    "type": "TupleExpression",
+                                    "components": [
+                                      {
+                                        "type": "BinaryOperation",
+                                        "operator": "+",
+                                        "left": {
+                                          "type": "Identifier",
+                                          "name": "icoStart"
+                                        },
+                                        "right": {
+                                          "type": "TupleExpression",
+                                          "components": [
+                                            {
+                                              "type": "BinaryOperation",
+                                              "operator": "*",
+                                              "left": {
+                                                "type": "BinaryOperation",
+                                                "operator": "*",
+                                                "left": {
+                                                  "type": "BinaryOperation",
+                                                  "operator": "*",
+                                                  "left": {
+                                                    "type": "NumberLiteral",
+                                                    "number": "35",
+                                                    "subdenomination": null
+                                                  },
+                                                  "right": {
+                                                    "type": "NumberLiteral",
+                                                    "number": "24",
+                                                    "subdenomination": null
+                                                  }
+                                                },
+                                                "right": {
+                                                  "type": "NumberLiteral",
+                                                  "number": "60",
+                                                  "subdenomination": null
+                                                }
+                                              },
+                                              "right": {
+                                                "type": "NumberLiteral",
+                                                "number": "60",
+                                                "subdenomination": null
+                                              }
+                                            }
+                                          ],
+                                          "isArray": false
+                                        }
+                                      }
+                                    ],
+                                    "isArray": false
+                                  },
+                                  "right": {
+                                    "type": "Identifier",
+                                    "name": "now"
+                                  }
+                                },
+                                "trueBody": {
+                                  "type": "Block",
+                                  "statements": [
+                                    {
+                                      "type": "ExpressionStatement",
+                                      "expression": {
+                                        "type": "BinaryOperation",
+                                        "operator": "=",
+                                        "left": {
+                                          "type": "Identifier",
+                                          "name": "weiAmount"
+                                        },
+                                        "right": {
+                                          "type": "NumberLiteral",
+                                          "number": "3000",
+                                          "subdenomination": null
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "falseBody": {
+                                  "type": "Block",
+                                  "statements": [
+                                    {
+                                      "type": "ExpressionStatement",
+                                      "expression": {
+                                        "type": "BinaryOperation",
+                                        "operator": "=",
+                                        "left": {
+                                          "type": "Identifier",
+                                          "name": "weiAmount"
+                                        },
+                                        "right": {
+                                          "type": "NumberLiteral",
+                                          "number": "2000",
+                                          "subdenomination": null
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "falseBody": {
+                    "type": "Block",
+                    "statements": [
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "BinaryOperation",
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "weiAmount"
+                          },
+                          "right": {
+                            "type": "NumberLiteral",
+                            "number": "6000",
+                            "subdenomination": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "forwardFunds"
+                  },
+                  "arguments": [],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "tokens"
+                  },
+                  "right": {
+                    "type": "BinaryOperation",
+                    "operator": "/",
+                    "left": {
+                      "type": "BinaryOperation",
+                      "operator": "*",
+                      "left": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "value"
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "weiAmount"
+                      }
+                    },
+                    "right": {
+                      "type": "NumberLiteral",
+                      "number": "1000000000000000000",
+                      "subdenomination": null
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "mintToken"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "beneficiary"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "tokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "beneficiary"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "tokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "forwardFunds",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "wallet"
+                    },
+                    "memberName": "transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "internal",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "getTokensForGraphenePower",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "enableMintTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "mintToken"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "bountyAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "bountyTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "bountyAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "bountyTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "mintToken"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "founderAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "founderTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "founderAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "founderTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "mintToken"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "advisersConsultantsAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "advisersConsultantTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "advisersConsultantsAddress"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "advisersConsultantTokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "BooleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "allowance",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_owner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_spender"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "remaining",
+              "identifier": {
+                "type": "Identifier",
+                "name": "remaining"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "IndexAccess",
+                  "base": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "allowed"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_owner"
+                    }
+                  },
+                  "index": {
+                    "type": "Identifier",
+                    "name": "_spender"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "transfer",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_to"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "success",
+              "identifier": {
+                "type": "Identifier",
+                "name": "success"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_to"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "Identifier",
+                              "name": "msg"
+                            },
+                            "memberName": "sender"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_to"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "BooleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "transfersAllowed",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "mintToken",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "target",
+              "identifier": {
+                "type": "Identifier",
+                "name": "target"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "mintedAmount",
+              "identifier": {
+                "type": "Identifier",
+                "name": "mintedAmount"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "Identifier",
+                  "name": "enableMintTokens"
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "+=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "target"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "mintedAmount"
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "_totalSupply"
+                        },
+                        "right": {
+                          "type": "TupleExpression",
+                          "components": [
+                            {
+                              "type": "BinaryOperation",
+                              "operator": "-",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "_totalSupply"
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "name": "mintedAmount"
+                              }
+                            }
+                          ],
+                          "isArray": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "Transfer"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "this"
+                          },
+                          {
+                            "type": "Identifier",
+                            "name": "target"
+                          },
+                          {
+                            "type": "Identifier",
+                            "name": "mintedAmount"
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "BooleanLiteral",
+                        "value": true
+                      }
+                    }
+                  ]
+                },
+                "falseBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "BooleanLiteral",
+                        "value": false
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "approve",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_spender"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "success",
+              "identifier": {
+                "type": "Identifier",
+                "name": "success"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "allowed"
+                      },
+                      "index": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      }
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_spender"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Approval"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_spender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "BooleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "transferFrom",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_from"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_to"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "success",
+              "identifier": {
+                "type": "Identifier",
+                "name": "success"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "transfersEnabled"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_from"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "<=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      },
+                      "right": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "allowed"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_from"
+                          }
+                        },
+                        "index": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_from"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_from"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "allowed"
+                      },
+                      "index": {
+                        "type": "Identifier",
+                        "name": "_from"
+                      }
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "IndexAccess",
+                            "base": {
+                              "type": "Identifier",
+                              "name": "allowed"
+                            },
+                            "index": {
+                              "type": "Identifier",
+                              "name": "_from"
+                            }
+                          },
+                          "index": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "Identifier",
+                              "name": "msg"
+                            },
+                            "memberName": "sender"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "_from"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_to"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "BooleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "transfersAllowed",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "issue",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_to"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_amount",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_amount"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "_totalSupply"
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "_totalSupply"
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_amount"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_amount"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Issuance"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "_amount"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_to"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_amount"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            },
+            {
+              "type": "ModifierInvocation",
+              "name": "validAddress",
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "name": "_to"
+                }
+              ]
+            },
+            {
+              "type": "ModifierInvocation",
+              "name": "notThis",
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "name": "_to"
+                }
+              ]
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "burn",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "success",
+              "identifier": {
+                "type": "Identifier",
+                "name": "success"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "destroy"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Burn"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "BooleanLiteral",
+                  "value": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "destroy",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_from"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_amount",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_amount"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_from"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_from"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_amount"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_from"
+                    }
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_from"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_amount"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "_totalSupply"
+                  },
+                  "right": {
+                    "type": "TupleExpression",
+                    "components": [
+                      {
+                        "type": "BinaryOperation",
+                        "operator": "-",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "_totalSupply"
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_amount"
+                        }
+                      }
+                    ],
+                    "isArray": false
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "_from"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_amount"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Destruction"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "_amount"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "killBalance",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "&&",
+                      "left": {
+                        "type": "UnaryOperation",
+                        "operator": "!",
+                        "subExpression": {
+                          "type": "Identifier",
+                          "name": "enablePreSale"
+                        },
+                        "isPrefix": true
+                      },
+                      "right": {
+                        "type": "UnaryOperation",
+                        "operator": "!",
+                        "subExpression": {
+                          "type": "Identifier",
+                          "name": "enableIco"
+                        },
+                        "isPrefix": true
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "BinaryOperation",
+                  "operator": ">",
+                  "left": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    "memberName": "balance"
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "0",
+                    "subdenomination": null
+                  }
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "owner"
+                          },
+                          "memberName": "transfer"
+                        },
+                        "arguments": [
+                          {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "Identifier",
+                              "name": "this"
+                            },
+                            "memberName": "balance"
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    }
+                  ]
+                },
+                "falseBody": null
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "enabledMintTokens",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "enableMintTokens"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "value"
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "enableMintTokens"
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "contractBalance",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "balance",
+              "identifier": {
+                "type": "Identifier",
+                "name": "balance"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "IndexAccess",
+                  "base": {
+                    "type": "Identifier",
+                    "name": "balanceOf"
+                  },
+                  "index": {
+                    "type": "Identifier",
+                    "name": "this"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "startPreSale",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "enablePreSale"
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "enablePreSale"
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "endPreSale",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "enablePreSale"
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "enablePreSale"
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "startIco",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "enableIco"
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "enableIco"
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "endIco",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "result",
+              "identifier": {
+                "type": "Identifier",
+                "name": "result"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "enableIco"
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "enableIco"
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "isIco",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "closed",
+              "identifier": {
+                "type": "Identifier",
+                "name": "closed"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "bool",
+                      "stateMutability": null
+                    },
+                    "name": "result",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "result"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": {
+                  "type": "TupleExpression",
+                  "components": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "TupleExpression",
+                        "components": [
+                          {
+                            "type": "BinaryOperation",
+                            "operator": "+",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "icoStart"
+                            },
+                            "right": {
+                              "type": "TupleExpression",
+                              "components": [
+                                {
+                                  "type": "BinaryOperation",
+                                  "operator": "*",
+                                  "left": {
+                                    "type": "BinaryOperation",
+                                    "operator": "*",
+                                    "left": {
+                                      "type": "BinaryOperation",
+                                      "operator": "*",
+                                      "left": {
+                                        "type": "NumberLiteral",
+                                        "number": "35",
+                                        "subdenomination": null
+                                      },
+                                      "right": {
+                                        "type": "NumberLiteral",
+                                        "number": "24",
+                                        "subdenomination": null
+                                      }
+                                    },
+                                    "right": {
+                                      "type": "NumberLiteral",
+                                      "number": "60",
+                                      "subdenomination": null
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "NumberLiteral",
+                                    "number": "60",
+                                    "subdenomination": null
+                                  }
+                                }
+                              ],
+                              "isArray": false
+                            }
+                          }
+                        ],
+                        "isArray": false
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "now"
+                      }
+                    }
+                  ],
+                  "isArray": false
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "Identifier",
+                  "name": "enableIco"
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "BooleanLiteral",
+                        "value": true
+                      }
+                    }
+                  ]
+                },
+                "falseBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "result"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "isPreSale",
+          "parameters": [],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "bool",
+                "stateMutability": null
+              },
+              "name": "closed",
+              "identifier": {
+                "type": "Identifier",
+                "name": "closed"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "bool",
+                      "stateMutability": null
+                    },
+                    "name": "result",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "result"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": {
+                  "type": "TupleExpression",
+                  "components": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "preSaleEnd"
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "now"
+                      }
+                    }
+                  ],
+                  "isArray": false
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "Identifier",
+                  "name": "enablePreSale"
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "BooleanLiteral",
+                        "value": true
+                      }
+                    }
+                  ]
+                },
+                "falseBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ReturnStatement",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "result"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        }
+      ],
+      "kind": "contract"
+    }
+  ]
+}

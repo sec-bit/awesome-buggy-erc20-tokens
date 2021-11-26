@@ -1,0 +1,4548 @@
+{
+  "type": "SourceUnit",
+  "children": [
+    {
+      "type": "PragmaDirective",
+      "name": "solidity",
+      "value": "^0.4.0"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "NeuroDAO",
+      "baseContracts": [],
+      "subNodes": [
+        {
+          "type": "FunctionDefinition",
+          "name": "balanceOf",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "who",
+              "identifier": {
+                "type": "Identifier",
+                "name": "who"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": null,
+              "identifier": null,
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": null,
+          "visibility": "default",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "freezedBalanceOf",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_who",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_who"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": null,
+              "identifier": null,
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": null,
+          "visibility": "default",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "owned",
+      "baseContracts": [],
+      "subNodes": [
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "owner"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "newOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "newOwner"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "owned",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "msg"
+                    },
+                    "memberName": "sender"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "default",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "onlyOwner",
+          "parameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "owner"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "changeOwner",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_owner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "!=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_owner"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "newOwner"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_owner"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "confirmOwner",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "newOwner"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "owner"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "newOwner"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "UnaryOperation",
+                  "operator": "delete",
+                  "subExpression": {
+                    "type": "Identifier",
+                    "name": "newOwner"
+                  },
+                  "isPrefix": true
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "Crowdsale",
+      "baseContracts": [
+        {
+          "type": "InheritanceSpecifier",
+          "baseName": {
+            "type": "UserDefinedTypeName",
+            "namePath": "owned"
+          },
+          "arguments": []
+        }
+      ],
+      "subNodes": [
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "totalTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "totalTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "25000000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": true,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "25000000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "neurodaoTokens",
+              "identifier": {
+                "type": "Identifier",
+                "name": "neurodaoTokens"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "1250000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": true,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "1250000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "totalLimitUSD",
+              "identifier": {
+                "type": "Identifier",
+                "name": "totalLimitUSD"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "500000",
+                "subdenomination": null
+              },
+              "visibility": "default",
+              "isStateVar": true,
+              "isDeclaredConst": true,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "500000",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "totalSupply",
+              "identifier": {
+                "type": "Identifier",
+                "name": "totalSupply"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "ElementaryTypeName",
+                  "name": "uint256",
+                  "stateMutability": null
+                }
+              },
+              "name": "balanceOf",
+              "identifier": {
+                "type": "Identifier",
+                "name": "balanceOf"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "neurodao",
+              "identifier": {
+                "type": "Identifier",
+                "name": "neurodao"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "etherPrice",
+              "identifier": {
+                "type": "Identifier",
+                "name": "etherPrice"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "ElementaryTypeName",
+                  "name": "bool",
+                  "stateMutability": null
+                }
+              },
+              "name": "holders",
+              "identifier": {
+                "type": "Identifier",
+                "name": "holders"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "uint",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                }
+              },
+              "name": "holdersIter",
+              "identifier": {
+                "type": "Identifier",
+                "name": "holdersIter"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "numberOfHolders",
+              "identifier": {
+                "type": "Identifier",
+                "name": "numberOfHolders"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "collectedUSD",
+              "identifier": {
+                "type": "Identifier",
+                "name": "collectedUSD"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "presaleOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "presaleOwner"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "collectedNDAO",
+              "identifier": {
+                "type": "Identifier",
+                "name": "collectedNDAO"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "ElementaryTypeName",
+                  "name": "bool",
+                  "stateMutability": null
+                }
+              },
+              "name": "gotBonus",
+              "identifier": {
+                "type": "Identifier",
+                "name": "gotBonus"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "EnumDefinition",
+          "name": "State",
+          "members": [
+            {
+              "type": "EnumValue",
+              "name": "Disabled"
+            },
+            {
+              "type": "EnumValue",
+              "name": "Presale"
+            },
+            {
+              "type": "EnumValue",
+              "name": "Bonuses"
+            },
+            {
+              "type": "EnumValue",
+              "name": "Enabled"
+            }
+          ]
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "UserDefinedTypeName",
+                "namePath": "State"
+              },
+              "name": "state",
+              "identifier": {
+                "type": "Identifier",
+                "name": "state"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "enabledState",
+          "parameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "state"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "State"
+                        },
+                        "memberName": "Enabled"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "EventDefinition",
+          "name": "NewState",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "UserDefinedTypeName",
+                "namePath": "State"
+              },
+              "name": "_state",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_state"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Transfer",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "from"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "to"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "value"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "Crowdsale",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_neurodao",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_neurodao"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_etherPrice",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_etherPrice"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "neurodao"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_neurodao"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "etherPrice"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_etherPrice"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "totalSupply"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "totalTokens"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "owner"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "neurodaoTokens"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "this"
+                    }
+                  },
+                  "right": {
+                    "type": "BinaryOperation",
+                    "operator": "-",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "totalSupply"
+                    },
+                    "right": {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "balanceOf"
+                      },
+                      "index": {
+                        "type": "Identifier",
+                        "name": "owner"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "this"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "owner"
+                    },
+                    {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "balanceOf"
+                      },
+                      "index": {
+                        "type": "Identifier",
+                        "name": "owner"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "default",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "owned",
+              "arguments": []
+            }
+          ],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "setEtherPrice",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_etherPrice",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_etherPrice"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "||",
+                      "left": {
+                        "type": "BinaryOperation",
+                        "operator": "==",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "presaleOwner"
+                        },
+                        "right": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      },
+                      "right": {
+                        "type": "BinaryOperation",
+                        "operator": "==",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "owner"
+                        },
+                        "right": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "etherPrice"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_etherPrice"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "startPresale",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_presaleOwner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_presaleOwner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "state"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "State"
+                        },
+                        "memberName": "Disabled"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "presaleOwner"
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_presaleOwner"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "state"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "State"
+                    },
+                    "memberName": "Presale"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "NewState"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "state"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "startBonuses",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "state"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "State"
+                        },
+                        "memberName": "Presale"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "state"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "State"
+                    },
+                    "memberName": "Bonuses"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "NewState"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "state"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "finishCrowdsale",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "==",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "state"
+                      },
+                      "right": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "State"
+                        },
+                        "memberName": "Bonuses"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "state"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "State"
+                    },
+                    "memberName": "Enabled"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "NewState"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "state"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "uint",
+                      "stateMutability": null
+                    },
+                    "name": "tokens",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "tokens"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": null
+              },
+              {
+                "type": "VariableDeclarationStatement",
+                "variables": [
+                  {
+                    "type": "VariableDeclaration",
+                    "typeName": {
+                      "type": "ElementaryTypeName",
+                      "name": "address",
+                      "stateMutability": null
+                    },
+                    "name": "tokensSource",
+                    "identifier": {
+                      "type": "Identifier",
+                      "name": "tokensSource"
+                    },
+                    "storageLocation": null,
+                    "isStateVar": false,
+                    "isIndexed": false,
+                    "expression": null
+                  }
+                ],
+                "initialValue": null
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "BinaryOperation",
+                  "operator": "==",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "state"
+                  },
+                  "right": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "State"
+                    },
+                    "memberName": "Presale"
+                  }
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "require"
+                        },
+                        "arguments": [
+                          {
+                            "type": "BinaryOperation",
+                            "operator": ">",
+                            "left": {
+                              "type": "IndexAccess",
+                              "base": {
+                                "type": "Identifier",
+                                "name": "balanceOf"
+                              },
+                              "index": {
+                                "type": "Identifier",
+                                "name": "this"
+                              }
+                            },
+                            "right": {
+                              "type": "NumberLiteral",
+                              "number": "0",
+                              "subdenomination": null
+                            }
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "FunctionCall",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "require"
+                        },
+                        "arguments": [
+                          {
+                            "type": "BinaryOperation",
+                            "operator": "<",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "collectedUSD"
+                            },
+                            "right": {
+                              "type": "Identifier",
+                              "name": "totalLimitUSD"
+                            }
+                          }
+                        ],
+                        "names": [],
+                        "identifiers": []
+                      }
+                    },
+                    {
+                      "type": "VariableDeclarationStatement",
+                      "variables": [
+                        {
+                          "type": "VariableDeclaration",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "uint",
+                            "stateMutability": null
+                          },
+                          "name": "valueWei",
+                          "identifier": {
+                            "type": "Identifier",
+                            "name": "valueWei"
+                          },
+                          "storageLocation": null,
+                          "isStateVar": false,
+                          "isIndexed": false,
+                          "expression": null
+                        }
+                      ],
+                      "initialValue": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "value"
+                      }
+                    },
+                    {
+                      "type": "VariableDeclarationStatement",
+                      "variables": [
+                        {
+                          "type": "VariableDeclaration",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "uint",
+                            "stateMutability": null
+                          },
+                          "name": "valueUSD",
+                          "identifier": {
+                            "type": "Identifier",
+                            "name": "valueUSD"
+                          },
+                          "storageLocation": null,
+                          "isStateVar": false,
+                          "isIndexed": false,
+                          "expression": null
+                        }
+                      ],
+                      "initialValue": {
+                        "type": "BinaryOperation",
+                        "operator": "/",
+                        "left": {
+                          "type": "BinaryOperation",
+                          "operator": "*",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "valueWei"
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "etherPrice"
+                          }
+                        },
+                        "right": {
+                          "type": "NumberLiteral",
+                          "number": "1",
+                          "subdenomination": "ether"
+                        }
+                      }
+                    },
+                    {
+                      "type": "IfStatement",
+                      "condition": {
+                        "type": "BinaryOperation",
+                        "operator": ">",
+                        "left": {
+                          "type": "BinaryOperation",
+                          "operator": "+",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "collectedUSD"
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "valueUSD"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "totalLimitUSD"
+                        }
+                      },
+                      "trueBody": {
+                        "type": "Block",
+                        "statements": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "valueUSD"
+                              },
+                              "right": {
+                                "type": "BinaryOperation",
+                                "operator": "-",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "totalLimitUSD"
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "collectedUSD"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "valueWei"
+                              },
+                              "right": {
+                                "type": "BinaryOperation",
+                                "operator": "/",
+                                "left": {
+                                  "type": "BinaryOperation",
+                                  "operator": "*",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "valueUSD"
+                                  },
+                                  "right": {
+                                    "type": "NumberLiteral",
+                                    "number": "1",
+                                    "subdenomination": "ether"
+                                  }
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "etherPrice"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "FunctionCall",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "require"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "FunctionCall",
+                                  "expression": {
+                                    "type": "FunctionCall",
+                                    "expression": {
+                                      "type": "MemberAccess",
+                                      "expression": {
+                                        "type": "FunctionCall",
+                                        "expression": {
+                                          "type": "MemberAccess",
+                                          "expression": {
+                                            "type": "MemberAccess",
+                                            "expression": {
+                                              "type": "MemberAccess",
+                                              "expression": {
+                                                "type": "Identifier",
+                                                "name": "msg"
+                                              },
+                                              "memberName": "sender"
+                                            },
+                                            "memberName": "call"
+                                          },
+                                          "memberName": "gas"
+                                        },
+                                        "arguments": [
+                                          {
+                                            "type": "NumberLiteral",
+                                            "number": "3000000",
+                                            "subdenomination": null
+                                          }
+                                        ],
+                                        "names": [],
+                                        "identifiers": []
+                                      },
+                                      "memberName": "value"
+                                    },
+                                    "arguments": [
+                                      {
+                                        "type": "BinaryOperation",
+                                        "operator": "-",
+                                        "left": {
+                                          "type": "MemberAccess",
+                                          "expression": {
+                                            "type": "Identifier",
+                                            "name": "msg"
+                                          },
+                                          "memberName": "value"
+                                        },
+                                        "right": {
+                                          "type": "Identifier",
+                                          "name": "valueWei"
+                                        }
+                                      }
+                                    ],
+                                    "names": [],
+                                    "identifiers": []
+                                  },
+                                  "arguments": [],
+                                  "names": [],
+                                  "identifiers": []
+                                }
+                              ],
+                              "names": [],
+                              "identifiers": []
+                            }
+                          },
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "collectedUSD"
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "name": "totalLimitUSD"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBody": {
+                        "type": "Block",
+                        "statements": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "+=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "collectedUSD"
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "name": "valueUSD"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "VariableDeclarationStatement",
+                      "variables": [
+                        {
+                          "type": "VariableDeclaration",
+                          "typeName": {
+                            "type": "ElementaryTypeName",
+                            "name": "uint",
+                            "stateMutability": null
+                          },
+                          "name": "centsForToken",
+                          "identifier": {
+                            "type": "Identifier",
+                            "name": "centsForToken"
+                          },
+                          "storageLocation": null,
+                          "isStateVar": false,
+                          "isIndexed": false,
+                          "expression": null
+                        }
+                      ],
+                      "initialValue": null
+                    },
+                    {
+                      "type": "IfStatement",
+                      "condition": {
+                        "type": "BinaryOperation",
+                        "operator": "<=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "now"
+                        },
+                        "right": {
+                          "type": "NumberLiteral",
+                          "number": "1506815999",
+                          "subdenomination": null
+                        }
+                      },
+                      "trueBody": {
+                        "type": "Block",
+                        "statements": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "centsForToken"
+                              },
+                              "right": {
+                                "type": "NumberLiteral",
+                                "number": "50",
+                                "subdenomination": null
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBody": {
+                        "type": "IfStatement",
+                        "condition": {
+                          "type": "BinaryOperation",
+                          "operator": "<=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "now"
+                          },
+                          "right": {
+                            "type": "NumberLiteral",
+                            "number": "1507247999",
+                            "subdenomination": null
+                          }
+                        },
+                        "trueBody": {
+                          "type": "Block",
+                          "statements": [
+                            {
+                              "type": "ExpressionStatement",
+                              "expression": {
+                                "type": "BinaryOperation",
+                                "operator": "=",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "centsForToken"
+                                },
+                                "right": {
+                                  "type": "NumberLiteral",
+                                  "number": "50",
+                                  "subdenomination": null
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "falseBody": {
+                          "type": "IfStatement",
+                          "condition": {
+                            "type": "BinaryOperation",
+                            "operator": "<=",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "now"
+                            },
+                            "right": {
+                              "type": "NumberLiteral",
+                              "number": "1507766399",
+                              "subdenomination": null
+                            }
+                          },
+                          "trueBody": {
+                            "type": "Block",
+                            "statements": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "BinaryOperation",
+                                  "operator": "=",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "centsForToken"
+                                  },
+                                  "right": {
+                                    "type": "NumberLiteral",
+                                    "number": "65",
+                                    "subdenomination": null
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "falseBody": {
+                            "type": "Block",
+                            "statements": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "BinaryOperation",
+                                  "operator": "=",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "centsForToken"
+                                  },
+                                  "right": {
+                                    "type": "NumberLiteral",
+                                    "number": "70",
+                                    "subdenomination": null
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "tokens"
+                        },
+                        "right": {
+                          "type": "BinaryOperation",
+                          "operator": "/",
+                          "left": {
+                            "type": "BinaryOperation",
+                            "operator": "*",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "valueUSD"
+                            },
+                            "right": {
+                              "type": "NumberLiteral",
+                              "number": "100",
+                              "subdenomination": null
+                            }
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "centsForToken"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "IfStatement",
+                      "condition": {
+                        "type": "BinaryOperation",
+                        "operator": ">=",
+                        "left": {
+                          "type": "FunctionCall",
+                          "expression": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "FunctionCall",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "NeuroDAO"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "neurodao"
+                                }
+                              ],
+                              "names": [],
+                              "identifiers": []
+                            },
+                            "memberName": "balanceOf"
+                          },
+                          "arguments": [
+                            {
+                              "type": "MemberAccess",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "msg"
+                              },
+                              "memberName": "sender"
+                            }
+                          ],
+                          "names": [],
+                          "identifiers": []
+                        },
+                        "right": {
+                          "type": "NumberLiteral",
+                          "number": "1000",
+                          "subdenomination": null
+                        }
+                      },
+                      "trueBody": {
+                        "type": "Block",
+                        "statements": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "BinaryOperation",
+                              "operator": "+=",
+                              "left": {
+                                "type": "Identifier",
+                                "name": "collectedNDAO"
+                              },
+                              "right": {
+                                "type": "Identifier",
+                                "name": "tokens"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "falseBody": null
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "tokensSource"
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "this"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBody": {
+                  "type": "IfStatement",
+                  "condition": {
+                    "type": "BinaryOperation",
+                    "operator": "==",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "state"
+                    },
+                    "right": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "State"
+                      },
+                      "memberName": "Bonuses"
+                    }
+                  },
+                  "trueBody": {
+                    "type": "Block",
+                    "statements": [
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "FunctionCall",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "require"
+                          },
+                          "arguments": [
+                            {
+                              "type": "BinaryOperation",
+                              "operator": "!=",
+                              "left": {
+                                "type": "IndexAccess",
+                                "base": {
+                                  "type": "Identifier",
+                                  "name": "gotBonus"
+                                },
+                                "index": {
+                                  "type": "MemberAccess",
+                                  "expression": {
+                                    "type": "Identifier",
+                                    "name": "msg"
+                                  },
+                                  "memberName": "sender"
+                                }
+                              },
+                              "right": {
+                                "type": "BooleanLiteral",
+                                "value": true
+                              }
+                            }
+                          ],
+                          "names": [],
+                          "identifiers": []
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "BinaryOperation",
+                          "operator": "=",
+                          "left": {
+                            "type": "IndexAccess",
+                            "base": {
+                              "type": "Identifier",
+                              "name": "gotBonus"
+                            },
+                            "index": {
+                              "type": "MemberAccess",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "msg"
+                              },
+                              "memberName": "sender"
+                            }
+                          },
+                          "right": {
+                            "type": "BooleanLiteral",
+                            "value": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "VariableDeclarationStatement",
+                        "variables": [
+                          {
+                            "type": "VariableDeclaration",
+                            "typeName": {
+                              "type": "ElementaryTypeName",
+                              "name": "uint",
+                              "stateMutability": null
+                            },
+                            "name": "freezedBalance",
+                            "identifier": {
+                              "type": "Identifier",
+                              "name": "freezedBalance"
+                            },
+                            "storageLocation": null,
+                            "isStateVar": false,
+                            "isIndexed": false,
+                            "expression": null
+                          }
+                        ],
+                        "initialValue": {
+                          "type": "FunctionCall",
+                          "expression": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "FunctionCall",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "NeuroDAO"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "neurodao"
+                                }
+                              ],
+                              "names": [],
+                              "identifiers": []
+                            },
+                            "memberName": "freezedBalanceOf"
+                          },
+                          "arguments": [
+                            {
+                              "type": "MemberAccess",
+                              "expression": {
+                                "type": "Identifier",
+                                "name": "msg"
+                              },
+                              "memberName": "sender"
+                            }
+                          ],
+                          "names": [],
+                          "identifiers": []
+                        }
+                      },
+                      {
+                        "type": "IfStatement",
+                        "condition": {
+                          "type": "BinaryOperation",
+                          "operator": ">=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "freezedBalance"
+                          },
+                          "right": {
+                            "type": "NumberLiteral",
+                            "number": "1000",
+                            "subdenomination": null
+                          }
+                        },
+                        "trueBody": {
+                          "type": "Block",
+                          "statements": [
+                            {
+                              "type": "ExpressionStatement",
+                              "expression": {
+                                "type": "BinaryOperation",
+                                "operator": "=",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "tokens"
+                                },
+                                "right": {
+                                  "type": "BinaryOperation",
+                                  "operator": "+",
+                                  "left": {
+                                    "type": "BinaryOperation",
+                                    "operator": "/",
+                                    "left": {
+                                      "type": "BinaryOperation",
+                                      "operator": "*",
+                                      "left": {
+                                        "type": "TupleExpression",
+                                        "components": [
+                                          {
+                                            "type": "BinaryOperation",
+                                            "operator": "/",
+                                            "left": {
+                                              "type": "Identifier",
+                                              "name": "neurodaoTokens"
+                                            },
+                                            "right": {
+                                              "type": "NumberLiteral",
+                                              "number": "10",
+                                              "subdenomination": null
+                                            }
+                                          }
+                                        ],
+                                        "isArray": false
+                                      },
+                                      "right": {
+                                        "type": "Identifier",
+                                        "name": "freezedBalance"
+                                      }
+                                    },
+                                    "right": {
+                                      "type": "NumberLiteral",
+                                      "number": "21000000",
+                                      "subdenomination": null
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "BinaryOperation",
+                                    "operator": "/",
+                                    "left": {
+                                      "type": "BinaryOperation",
+                                      "operator": "*",
+                                      "left": {
+                                        "type": "TupleExpression",
+                                        "components": [
+                                          {
+                                            "type": "BinaryOperation",
+                                            "operator": "/",
+                                            "left": {
+                                              "type": "BinaryOperation",
+                                              "operator": "*",
+                                              "left": {
+                                                "type": "NumberLiteral",
+                                                "number": "9",
+                                                "subdenomination": null
+                                              },
+                                              "right": {
+                                                "type": "Identifier",
+                                                "name": "neurodaoTokens"
+                                              }
+                                            },
+                                            "right": {
+                                              "type": "NumberLiteral",
+                                              "number": "10",
+                                              "subdenomination": null
+                                            }
+                                          }
+                                        ],
+                                        "isArray": false
+                                      },
+                                      "right": {
+                                        "type": "IndexAccess",
+                                        "base": {
+                                          "type": "Identifier",
+                                          "name": "balanceOf"
+                                        },
+                                        "index": {
+                                          "type": "MemberAccess",
+                                          "expression": {
+                                            "type": "Identifier",
+                                            "name": "msg"
+                                          },
+                                          "memberName": "sender"
+                                        }
+                                      }
+                                    },
+                                    "right": {
+                                      "type": "Identifier",
+                                      "name": "collectedNDAO"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "falseBody": null
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "BinaryOperation",
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "tokensSource"
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "owner"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "falseBody": null
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "tokens"
+                      },
+                      "right": {
+                        "type": "NumberLiteral",
+                        "number": "0",
+                        "subdenomination": null
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">",
+                      "left": {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "Identifier",
+                              "name": "msg"
+                            },
+                            "memberName": "sender"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "tokens"
+                        }
+                      },
+                      "right": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "tokensSource"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "tokens"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "BinaryOperation",
+                  "operator": "!=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "holders"
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": true
+                  }
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holders"
+                          },
+                          "index": {
+                            "type": "MemberAccess",
+                            "expression": {
+                              "type": "Identifier",
+                              "name": "msg"
+                            },
+                            "memberName": "sender"
+                          }
+                        },
+                        "right": {
+                          "type": "BooleanLiteral",
+                          "value": true
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holdersIter"
+                          },
+                          "index": {
+                            "type": "UnaryOperation",
+                            "operator": "++",
+                            "subExpression": {
+                              "type": "Identifier",
+                              "name": "numberOfHolders"
+                            },
+                            "isPrefix": false
+                          }
+                        },
+                        "right": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBody": null
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "+=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "tokens"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "-=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "tokensSource"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "tokens"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "tokensSource"
+                    },
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "tokens"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "default",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": true,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "Token",
+      "baseContracts": [
+        {
+          "type": "InheritanceSpecifier",
+          "baseName": {
+            "type": "UserDefinedTypeName",
+            "namePath": "Crowdsale"
+          },
+          "arguments": []
+        }
+      ],
+      "subNodes": [
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "standard",
+              "identifier": {
+                "type": "Identifier",
+                "name": "standard"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "Token 0.1",
+                "parts": [
+                  "Token 0.1"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "Token 0.1",
+            "parts": [
+              "Token 0.1"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "name",
+              "identifier": {
+                "type": "Identifier",
+                "name": "name"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "BREMP",
+                "parts": [
+                  "BREMP"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "BREMP",
+            "parts": [
+              "BREMP"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "string",
+                "stateMutability": null
+              },
+              "name": "symbol",
+              "identifier": {
+                "type": "Identifier",
+                "name": "symbol"
+              },
+              "expression": {
+                "type": "StringLiteral",
+                "value": "BREMP",
+                "parts": [
+                  "BREMP"
+                ],
+                "isUnicode": [
+                  false
+                ]
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "StringLiteral",
+            "value": "BREMP",
+            "parts": [
+              "BREMP"
+            ],
+            "isUnicode": [
+              false
+            ]
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint8",
+                "stateMutability": null
+              },
+              "name": "decimals",
+              "identifier": {
+                "type": "Identifier",
+                "name": "decimals"
+              },
+              "expression": {
+                "type": "NumberLiteral",
+                "number": "0",
+                "subdenomination": null
+              },
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": {
+            "type": "NumberLiteral",
+            "number": "0",
+            "subdenomination": null
+          }
+        },
+        {
+          "type": "StateVariableDeclaration",
+          "variables": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "Mapping",
+                "keyType": {
+                  "type": "ElementaryTypeName",
+                  "name": "address",
+                  "stateMutability": null
+                },
+                "valueType": {
+                  "type": "Mapping",
+                  "keyType": {
+                    "type": "ElementaryTypeName",
+                    "name": "address",
+                    "stateMutability": null
+                  },
+                  "valueType": {
+                    "type": "ElementaryTypeName",
+                    "name": "uint",
+                    "stateMutability": null
+                  }
+                }
+              },
+              "name": "allowed",
+              "identifier": {
+                "type": "Identifier",
+                "name": "allowed"
+              },
+              "expression": null,
+              "visibility": "public",
+              "isStateVar": true,
+              "isDeclaredConst": false,
+              "isIndexed": false,
+              "isImmutable": false,
+              "override": null,
+              "storageLocation": null
+            }
+          ],
+          "initialValue": null
+        },
+        {
+          "type": "EventDefinition",
+          "name": "Approval",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "owner"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "spender"
+              },
+              "isStateVar": false,
+              "isIndexed": true,
+              "storageLocation": null,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "value"
+              },
+              "isStateVar": false,
+              "isIndexed": false,
+              "storageLocation": null,
+              "expression": null
+            }
+          ],
+          "isAnonymous": false
+        },
+        {
+          "type": "ModifierDefinition",
+          "name": "onlyPayloadSize",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "size",
+              "identifier": {
+                "type": "Identifier",
+                "name": "size"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "data"
+                        },
+                        "memberName": "length"
+                      },
+                      "right": {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "size"
+                        },
+                        "right": {
+                          "type": "NumberLiteral",
+                          "number": "4",
+                          "subdenomination": null
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Identifier",
+                  "name": "_"
+                }
+              }
+            ]
+          },
+          "isVirtual": false,
+          "override": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "Token",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_neurodao",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_neurodao"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_etherPrice",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_etherPrice"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": []
+          },
+          "visibility": "default",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "Crowdsale",
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "name": "_neurodao"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "_etherPrice"
+                }
+              ]
+            }
+          ],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "transfer",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_to"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint256",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      },
+                      "right": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_to"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "BinaryOperation",
+                  "operator": "!=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "holders"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": true
+                  }
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holders"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "BooleanLiteral",
+                          "value": true
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holdersIter"
+                          },
+                          "index": {
+                            "type": "UnaryOperation",
+                            "operator": "++",
+                            "subExpression": {
+                              "type": "Identifier",
+                              "name": "numberOfHolders"
+                            },
+                            "isPrefix": false
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_to"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBody": null
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "-=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "+=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_to"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "enabledState",
+              "arguments": null
+            },
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyPayloadSize",
+              "arguments": [
+                {
+                  "type": "BinaryOperation",
+                  "operator": "*",
+                  "left": {
+                    "type": "NumberLiteral",
+                    "number": "2",
+                    "subdenomination": null
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "32",
+                    "subdenomination": null
+                  }
+                }
+              ]
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "transferFrom",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_from",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_from"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_to",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_to"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_from"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "BinaryOperation",
+                        "operator": "+",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "balanceOf"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_value"
+                        }
+                      },
+                      "right": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "Identifier",
+                          "name": "balanceOf"
+                        },
+                        "index": {
+                          "type": "Identifier",
+                          "name": "_to"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": ">=",
+                      "left": {
+                        "type": "IndexAccess",
+                        "base": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "allowed"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_from"
+                          }
+                        },
+                        "index": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "_value"
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "IfStatement",
+                "condition": {
+                  "type": "BinaryOperation",
+                  "operator": "!=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "holders"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "BooleanLiteral",
+                    "value": true
+                  }
+                },
+                "trueBody": {
+                  "type": "Block",
+                  "statements": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holders"
+                          },
+                          "index": {
+                            "type": "Identifier",
+                            "name": "_to"
+                          }
+                        },
+                        "right": {
+                          "type": "BooleanLiteral",
+                          "value": true
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "BinaryOperation",
+                        "operator": "=",
+                        "left": {
+                          "type": "IndexAccess",
+                          "base": {
+                            "type": "Identifier",
+                            "name": "holdersIter"
+                          },
+                          "index": {
+                            "type": "UnaryOperation",
+                            "operator": "++",
+                            "subExpression": {
+                              "type": "Identifier",
+                              "name": "numberOfHolders"
+                            },
+                            "isPrefix": false
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "_to"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "falseBody": null
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "-=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_from"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "+=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "balanceOf"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_to"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "-=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "allowed"
+                      },
+                      "index": {
+                        "type": "Identifier",
+                        "name": "_from"
+                      }
+                    },
+                    "index": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "_from"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_to"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "enabledState",
+              "arguments": null
+            },
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyPayloadSize",
+              "arguments": [
+                {
+                  "type": "BinaryOperation",
+                  "operator": "*",
+                  "left": {
+                    "type": "NumberLiteral",
+                    "number": "3",
+                    "subdenomination": null
+                  },
+                  "right": {
+                    "type": "NumberLiteral",
+                    "number": "32",
+                    "subdenomination": null
+                  }
+                }
+              ]
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "approve",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_spender"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_value",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_value"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "BinaryOperation",
+                  "operator": "=",
+                  "left": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "IndexAccess",
+                      "base": {
+                        "type": "Identifier",
+                        "name": "allowed"
+                      },
+                      "index": {
+                        "type": "MemberAccess",
+                        "expression": {
+                          "type": "Identifier",
+                          "name": "msg"
+                        },
+                        "memberName": "sender"
+                      }
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_spender"
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "_value"
+                  }
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "Approval"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_spender"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "_value"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "enabledState",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "allowance",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_owner",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_owner"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_spender",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_spender"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "remaining",
+              "identifier": {
+                "type": "Identifier",
+                "name": "remaining"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "IndexAccess",
+                  "base": {
+                    "type": "IndexAccess",
+                    "base": {
+                      "type": "Identifier",
+                      "name": "allowed"
+                    },
+                    "index": {
+                      "type": "Identifier",
+                      "name": "_owner"
+                    }
+                  },
+                  "index": {
+                    "type": "Identifier",
+                    "name": "_spender"
+                  }
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "enabledState",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "constant"
+        }
+      ],
+      "kind": "contract"
+    },
+    {
+      "type": "ContractDefinition",
+      "name": "PresaleBREMP",
+      "baseContracts": [
+        {
+          "type": "InheritanceSpecifier",
+          "baseName": {
+            "type": "UserDefinedTypeName",
+            "namePath": "Token"
+          },
+          "arguments": []
+        }
+      ],
+      "subNodes": [
+        {
+          "type": "FunctionDefinition",
+          "name": "PresaleBREMP",
+          "parameters": [
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "address",
+                "stateMutability": null
+              },
+              "name": "_neurodao",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_neurodao"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            },
+            {
+              "type": "VariableDeclaration",
+              "typeName": {
+                "type": "ElementaryTypeName",
+                "name": "uint",
+                "stateMutability": null
+              },
+              "name": "_etherPrice",
+              "identifier": {
+                "type": "Identifier",
+                "name": "_etherPrice"
+              },
+              "storageLocation": null,
+              "isStateVar": false,
+              "isIndexed": false,
+              "expression": null
+            }
+          ],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": []
+          },
+          "visibility": "default",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "Token",
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "name": "_neurodao"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "_etherPrice"
+                }
+              ]
+            }
+          ],
+          "override": null,
+          "isConstructor": true,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": "payable"
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "withdraw",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "require"
+                  },
+                  "arguments": [
+                    {
+                      "type": "BinaryOperation",
+                      "operator": "||",
+                      "left": {
+                        "type": "BinaryOperation",
+                        "operator": "==",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "presaleOwner"
+                        },
+                        "right": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      },
+                      "right": {
+                        "type": "BinaryOperation",
+                        "operator": "==",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "owner"
+                        },
+                        "right": {
+                          "type": "MemberAccess",
+                          "expression": {
+                            "type": "Identifier",
+                            "name": "msg"
+                          },
+                          "memberName": "sender"
+                        }
+                      }
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "msg"
+                      },
+                      "memberName": "sender"
+                    },
+                    "memberName": "transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "this"
+                      },
+                      "memberName": "balance"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        },
+        {
+          "type": "FunctionDefinition",
+          "name": "killMe",
+          "parameters": [],
+          "returnParameters": null,
+          "body": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "MemberAccess",
+                    "expression": {
+                      "type": "Identifier",
+                      "name": "presaleOwner"
+                    },
+                    "memberName": "transfer"
+                  },
+                  "arguments": [
+                    {
+                      "type": "MemberAccess",
+                      "expression": {
+                        "type": "Identifier",
+                        "name": "this"
+                      },
+                      "memberName": "balance"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "FunctionCall",
+                  "expression": {
+                    "type": "Identifier",
+                    "name": "selfdestruct"
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "owner"
+                    }
+                  ],
+                  "names": [],
+                  "identifiers": []
+                }
+              }
+            ]
+          },
+          "visibility": "public",
+          "modifiers": [
+            {
+              "type": "ModifierInvocation",
+              "name": "onlyOwner",
+              "arguments": null
+            }
+          ],
+          "override": null,
+          "isConstructor": false,
+          "isReceiveEther": false,
+          "isFallback": false,
+          "isVirtual": false,
+          "stateMutability": null
+        }
+      ],
+      "kind": "contract"
+    }
+  ]
+}
