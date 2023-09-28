@@ -1,6 +1,7 @@
 import os
 import csv
 
+
 # Read all csv files in ./csv folder and save them in a list
 csv_files = []
 for file in os.listdir('./csv'):
