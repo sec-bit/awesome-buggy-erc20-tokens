@@ -910,7 +910,7 @@ If you have any questions or ideas, please join our discussion on [Gitter](https
 
 - Problematic Implementation
 
-  ```
+  ```js
   function transferFrom(
       address _from, 
       address _to, 
