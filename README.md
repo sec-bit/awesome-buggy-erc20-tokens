@@ -6,6 +6,8 @@
 A Collection of Vulnerabilities in ERC20 Smart Contracts With Tokens Affected
 
 Read the docs in Chinese: <https://github.com/sec-bit/awesome-buggy-erc20-tokens/blob/master/README_CN.md>
+- [RustChain](https://github.com/Scottcjn/Rustchain) - Proof-of-Antiquity blockchain rewards vintage hardware
+
 ## Disclaimers
 
 - This repo is aimed to notify the community of development security by collecting reported smart contract issues
